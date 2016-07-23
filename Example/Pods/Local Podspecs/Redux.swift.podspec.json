@@ -1,0 +1,22 @@
+{
+  "name": "Redux.swift",
+  "version": "0.1.0",
+  "summary": "A short description of Redux.swift.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/Redux.swift",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Fellipe Caetano": "fellipe.caetano@movile.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/Redux.swift.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Redux.swift/Classes/**/*"
+}

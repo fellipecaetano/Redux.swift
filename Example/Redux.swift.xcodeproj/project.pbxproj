@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		244933CEC39DB9B9C5E49B5A /* Pods_Redux_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,7 +15,6 @@
 		557EDF9142D369CEBB35C84F /* Pods-Redux.swift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Redux.swift_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Redux.swift_Tests/Pods-Redux.swift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Redux.swift_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Redux.swift_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		92E40A221381C132FF4A54CA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F6349902FA71B9ECDB069B67 /* Pods-Redux.swift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Redux.swift_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Redux.swift_Tests/Pods-Redux.swift_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Redux_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +64,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -218,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

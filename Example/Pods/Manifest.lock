@@ -1,0 +1,22 @@
+PODS:
+  - Nimble (3.2.0)
+  - Quick (0.9.2)
+  - Redux.swift (0.1.0)
+
+DEPENDENCIES:
+  - Nimble (~> 3.0)
+  - Quick (~> 0.8)
+  - Redux.swift (from `../`)
+
+EXTERNAL SOURCES:
+  Redux.swift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  Redux.swift: 3b06de805e5eea31adac63f34864afd70b4690ed
+
+PODFILE CHECKSUM: 34eb927e86975a76797562451590df7c323d37ab
+
+COCOAPODS: 1.0.0
