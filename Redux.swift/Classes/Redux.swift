@@ -40,26 +40,27 @@ public final class Store<State>: Publisher, Dispatch {
     }
 }
 
-protocol Dispatch {
+public protocol Dispatch {
     func dispatch(action: Action)
 }
 
 extension Dispatch {
-    func dispatch(thunk: (Action -> Void) -> Void) {
+    public func dispatch(thunk: (Action -> Void) -> Void) {
         thunk { self.dispatch($0) }
     }
 }
 
 public protocol Action {}
 
-protocol Publisher {
+public protocol Publisher {
     associatedtype Publishing
     func subscribe(subscription: Publishing -> Void) -> Void -> Void
 }
 
 extension Publisher {
-    func subscribe <T: Subscriber where T.Publishing == Publishing> (subscriber subscriber: T) -> Void -> Void {
-        return subscribe { subscriber.receive(subscriber.select($0)) }
+    public func subscribe <T: Subscriber where T.Publishing == Publishing> (subscriber subscriber: T) -> Void -> Void {
+        var mutableSubscriber = subscriber
+        return subscribe { mutableSubscriber.receive(subscriber.select($0)) }
     }
 }
 
@@ -71,15 +72,15 @@ extension Publisher where Self: Dispatch {
     }
 }
 
-protocol Subscriber {
+public protocol Subscriber: class {
     associatedtype Publishing
     associatedtype Selection
     
     func select(publishing: Publishing) -> Selection
-    func receive(publishing: Selection)
+    func receive(selection: Selection)
 }
 
-protocol StateConnection: Dispatch {
+public protocol StateConnection: Dispatch {
     func unsubscribe()
 }
 
@@ -101,16 +102,16 @@ private struct AnyStateConnection: StateConnection {
     }
 }
 
-protocol StateConnectable {
-    func connect(with connection: StateConnection)
+public protocol StateConnectable {
+    mutating func connect(with connection: StateConnection)
 }
 
 extension StateConnectable where Self: Subscriber {
-    func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
+    mutating func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
         connect(with: connector.connection(to: self))
     }
     
-    func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
+    mutating func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
         connect(to: connector)
         return self
     }

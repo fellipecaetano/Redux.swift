@@ -1,11 +1,3 @@
-//
-//  StoreSpec.swift
-//  Redux.swift
-//
-//  Created by Fellipe Caetano on 7/24/16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
-//
-
 import Foundation
 import Quick
 import Nimble
@@ -27,7 +19,23 @@ struct CounterIncrementAction: Action {
     let increment: Int
 }
 
-class StoreSpec: QuickSpec {
+class CounterSubscriber: Subscriber {
+    var counter: Int
+    
+    init (counter: Int) {
+        self.counter = counter
+    }
+    
+    func select(publishing: CounterState) -> Int {
+        return publishing.counter
+    }
+
+    func receive(selection: Int) {
+        self.counter = selection
+    }
+}
+
+class ReduxSpec: QuickSpec {
     override func spec() {
         it("publishes the initial state") {
             let store = Store<ActionIdentificationState>(reducer: { state, action in
@@ -83,6 +91,45 @@ class StoreSpec: QuickSpec {
             expect(stateReceived?.counter).toEventually(equal(5))
             store.dispatch(CounterIncrementAction(increment: -2))
             expect(stateReceived?.counter).toEventually(equal(3))
+        }
+        
+        it("dispatches async actions") {
+            let store = Store<CounterState>(reducer: { state, action in
+                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
+            }, initialState: CounterState(counter: 0))
+            
+            var stateReceived: CounterState?
+            _ = store.subscribe { newState in
+                stateReceived = newState
+            }
+            
+            store.dispatch { dispatch in
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        dispatch(CounterIncrementAction(increment: 3))
+                    }
+                }
+            }
+
+            expect(stateReceived?.counter).toEventually(equal(3))
+        }
+        
+        it("is compatible with Subscribers") {
+            let store = Store<CounterState>(reducer: { state, action in
+                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
+            }, initialState: CounterState(counter: 0))
+            
+            let subscriber = CounterSubscriber(counter: -1)
+            let unsubscribe = store.subscribe(subscriber: subscriber)
+            
+            expect(subscriber.counter).toEventually(equal(0))
+            store.dispatch(CounterIncrementAction(increment: 2))
+            expect(subscriber.counter).toEventually(equal(2))
+            
+            unsubscribe()
+            
+            store.dispatch(CounterIncrementAction(increment: 3))
+            expect(subscriber.counter).toEventually(equal(2))
         }
     }
 }
