@@ -32,7 +32,6 @@
 		486B74C8EFEB68AD25CE128F3051E432 /* ObjCExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129290F935182407C183EB04C0C2C90 /* ObjCExpectation.swift */; };
 		48A711B185B6646195A0F9CABA7D4328 /* ExampleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D34ECCB9113A10197320CD540DDA73 /* ExampleMetadata.swift */; };
 		49EFE6191FEC7417718E5123BDEDAB5A /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17FBDF6FF6B666A3D102EDD81DFE416 /* Filter.swift */; };
-		4A8DC5745C1DCB2B8F8971FDF9F40FCD /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4B980A24B2997A712B8336BA7A6D7 /* ReplaceMe.swift */; };
 		4AF6C26A30D865059C24DC5317786B76 /* BeNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2748FABD1661E3A75F8B07E115CF96 /* BeNil.swift */; };
 		4DE1B8B833F49D38361C67A4616F61AF /* QuickSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A1177F46842A02EE1A9A945434E453FF /* QuickSpec.m */; };
 		4E5A721963877AA3A6AA3D80DAA4E5E9 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA753452F6B96DE24D2CF7D396628 /* AssertionRecorder.swift */; };
@@ -46,7 +45,7 @@
 		63BBD83995BA60FA7D2E6AD4138C0D71 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B5315AD30C24D1172D4F1524B068D /* Functional.swift */; };
 		64539BE196D1741570018FFF86F14133 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971FBD63640E42D5B13E199D80A38E44 /* MatcherFunc.swift */; };
 		64CFF0A1821C42A38F3403A33A7BF309 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7005B0ADF96C275382B45359AE1A0FDC /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		67D548F926F6B1B6495C77D510599C8F /* Redux.swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EA93E5BEEC37D79FB68BA9319163D6 /* Redux.swift-dummy.m */; };
+		6646238F7D48A46AB2C3BBADE3712F0E /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F2935284D3CEB24316FDCE9D259EA /* Redux.swift */; };
 		68527A7545342CBB4F923DC8543F7B20 /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89F15C3F95B9AD5D5608775C0DF7BD /* DSL.m */; };
 		6ED0409031540D9B2AD7B061B608B0C9 /* DSL+Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75752235C59671F25A86BF987E354AFE /* DSL+Wait.swift */; };
 		71AC339671F64FB0A700DF0ED284E7CE /* ErrorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B7C1953D52C630B7CEA85DC7D30371 /* ErrorUtility.swift */; };
@@ -54,6 +53,7 @@
 		7303A77D3377C8B97DDCC4E4EFB94D3A /* ExampleHooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3FFEFA87108503C1154659236D755 /* ExampleHooks.swift */; };
 		7734BABBECE0071CF5D4430515B938BF /* BeCloseTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE93FA4667205AEE386C8648ABDC57E /* BeCloseTo.swift */; };
 		775646739B95E828ECE349F6A39534F4 /* NimbleEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E85327D01378E8AB714335E9E7CE7F /* NimbleEnvironment.swift */; };
+		7BFC41D279EC8AAF8F6735F02F3B4248 /* Redux.swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EA93E5BEEC37D79FB68BA9319163D6 /* Redux.swift-dummy.m */; };
 		7CC86ABC7F4135EE12A755B023F134CE /* AssertionDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3267C4CAF13D33F026B9104C33238 /* AssertionDispatcher.swift */; };
 		7DC9B169B5FCC3EE99F6D36EC530FE1E /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D924A98F0691CB7100035FC7C2958D3 /* Async.swift */; };
 		7EBD6B630F4536CB673DC0B455CCB16D /* BeGreaterThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6988794BE3149D9E7253F7D057A0A92 /* BeGreaterThan.swift */; };
@@ -174,11 +174,11 @@
 		66CBE690E9186E686698A8A8A71C5355 /* String+FileName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+FileName.swift"; path = "Sources/Quick/String+FileName.swift"; sourceTree = "<group>"; };
 		69E738963C2EB4542069F1E6586836C9 /* QCKDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QCKDSL.m; path = Sources/Quick/DSL/QCKDSL.m; sourceTree = "<group>"; };
 		6A5B6394838D23DE3BD6C1113A355553 /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
-		6AA4B980A24B2997A712B8336BA7A6D7 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		6CF762208E123E2F61AEE13E62DCA565 /* Stringers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stringers.swift; path = Sources/Nimble/Utils/Stringers.swift; sourceTree = "<group>"; };
 		7005B0ADF96C275382B45359AE1A0FDC /* QCKDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QCKDSL.h; path = Sources/Quick/DSL/QCKDSL.h; sourceTree = "<group>"; };
 		702D610886AA829A76EF79A25B88E1AC /* Quick-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-umbrella.h"; sourceTree = "<group>"; };
 		75752235C59671F25A86BF987E354AFE /* DSL+Wait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DSL+Wait.swift"; path = "Sources/Nimble/DSL+Wait.swift"; sourceTree = "<group>"; };
+		775F2935284D3CEB24316FDCE9D259EA /* Redux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		797D9E5FC765DD871C57D7B06A9A4B4F /* Redux.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Redux.swift-umbrella.h"; sourceTree = "<group>"; };
 		7EB79662DFF8CAC9A93BB403631D5490 /* Quick.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Quick.h; path = Sources/Quick/Quick.h; sourceTree = "<group>"; };
 		7FECB7BA22714038546A0E8DD513114B /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Quick/Configuration/Configuration.swift; sourceTree = "<group>"; };
@@ -281,6 +281,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07F0F5D5572A3733E00A75F08A479190 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				775F2935284D3CEB24316FDCE9D259EA /* Redux.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		38DD4762E5FEE37B4ADD13CC69A3F8AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,14 +430,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		BFA3DC4B1F8AA6A7AB63D5019EA86E95 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				6AA4B980A24B2997A712B8336BA7A6D7 /* ReplaceMe.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		CADC3EC948F24F3C262060ABA5F66D9A /* Quick */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,7 +471,7 @@
 		D106F572614F47BB4E180D22C0F70394 /* Redux.swift */ = {
 			isa = PBXGroup;
 			children = (
-				BFA3DC4B1F8AA6A7AB63D5019EA86E95 /* Classes */,
+				07F0F5D5572A3733E00A75F08A479190 /* Classes */,
 			);
 			path = Redux.swift;
 			sourceTree = "<group>";
@@ -579,7 +579,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0AB417C1E0DC07D1FF7A812116312EB /* Build configuration list for PBXNativeTarget "Redux.swift" */;
 			buildPhases = (
-				C176D921D32AE95C93F4C87B1C5604F4 /* Sources */,
+				1B228A1AAA72CDADBABB9214139F30E7 /* Sources */,
 				5FAD1A494CFEC2F8B208B2F7FE63D1AF /* Frameworks */,
 				541F2CB5643BE7FF5B844B2E44F6CBFE /* Headers */,
 			);
@@ -707,6 +707,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B228A1AAA72CDADBABB9214139F30E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6646238F7D48A46AB2C3BBADE3712F0E /* Redux.swift in Sources */,
+				7BFC41D279EC8AAF8F6735F02F3B4248 /* Redux.swift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2823BDA58F2F74DEAB39C2F345AA07A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -766,15 +775,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E3E610D3F6BC1ED9D14A48BE0AA2B0 /* Pods-Redux.swift_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C176D921D32AE95C93F4C87B1C5604F4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				67D548F926F6B1B6495C77D510599C8F /* Redux.swift-dummy.m in Sources */,
-				4A8DC5745C1DCB2B8F8971FDF9F40FCD /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
