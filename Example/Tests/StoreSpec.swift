@@ -11,7 +11,7 @@ import Quick
 import Nimble
 import Redux_swift
 
-struct State {
+struct ActionIdentificationState {
     let actionIdentifier: String
 }
 
@@ -19,13 +19,22 @@ struct IdentifiedAction: Action {
     let identifier: String
 }
 
+struct CounterState {
+    let counter: Int
+}
+
+struct CounterIncrementAction: Action {
+    let increment: Int
+}
+
 class StoreSpec: QuickSpec {
     override func spec() {
         it("publishes the initial state") {
-            let store = Store<State>(reducer: { state, action in State(actionIdentifier: (action as! IdentifiedAction).identifier) },
-                                     initialState: State(actionIdentifier: "initial"))
+            let store = Store<ActionIdentificationState>(reducer: { state, action in
+                return ActionIdentificationState(actionIdentifier: (action as! IdentifiedAction).identifier)
+            }, initialState: ActionIdentificationState(actionIdentifier: "initial"))
             
-            var stateReceived: State?
+            var stateReceived: ActionIdentificationState?
             _ = store.subscribe { newState in
                 stateReceived = newState
             }
@@ -33,10 +42,11 @@ class StoreSpec: QuickSpec {
         }
         
         it("publishes dispatched changes") {
-            let store = Store<State>(reducer: { state, action in State(actionIdentifier: (action as! IdentifiedAction).identifier) },
-                                     initialState: State(actionIdentifier: "initial"))
+            let store = Store<ActionIdentificationState>(reducer: { state, action in
+                return ActionIdentificationState(actionIdentifier: (action as! IdentifiedAction).identifier)
+            }, initialState: ActionIdentificationState(actionIdentifier: "initial"))
             
-            var stateReceived: State?
+            var stateReceived: ActionIdentificationState?
             _ = store.subscribe { newState in
                 stateReceived = newState
             }
@@ -45,16 +55,34 @@ class StoreSpec: QuickSpec {
         }
         
         it("removes subscriptions when requested") {
-            let store = Store<State>(reducer: { state, action in State(actionIdentifier: (action as! IdentifiedAction).identifier) },
-                                     initialState: State(actionIdentifier: "initial"))
+            let store = Store<ActionIdentificationState>(reducer: { state, action in
+                return ActionIdentificationState(actionIdentifier: (action as! IdentifiedAction).identifier)
+            }, initialState: ActionIdentificationState(actionIdentifier: "initial"))
             
-            var stateReceived: State?
+            var stateReceived: ActionIdentificationState?
             let unsubscribe = store.subscribe { newState in
                 stateReceived = newState
             }
             unsubscribe()
             store.dispatch(IdentifiedAction(identifier: "dispatched"))
             expect(stateReceived?.actionIdentifier).toEventually(equal("initial"))
+        }
+        
+        it("reduces actions and state into new state") {
+            let store = Store<CounterState>(reducer: { state, action in
+                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
+            }, initialState: CounterState(counter: 0))
+            
+            var stateReceived: CounterState?
+            _ = store.subscribe { newState in
+                stateReceived = newState
+            }
+            
+            expect(stateReceived?.counter).toEventually(equal(0))
+            store.dispatch(CounterIncrementAction(increment: 5))
+            expect(stateReceived?.counter).toEventually(equal(5))
+            store.dispatch(CounterIncrementAction(increment: -2))
+            expect(stateReceived?.counter).toEventually(equal(3))
         }
     }
 }
