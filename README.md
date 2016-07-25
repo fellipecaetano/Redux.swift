@@ -76,7 +76,13 @@ unsubscribe()
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Inside the `Example` directory you will find a sample application that presents a counter, which can be manipulated by increment and decrement buttons. To run it:
+
+1. Clone the repository
+2. Enter the `Example` directory
+3. Open the `Redux.swift.xcworkspace` file in Xcode 7.3
+4. Select the `ReduxCounterExample` target in the target selection dropdown near the Stop button
+5. Build and run the application
 
 ## Installation
 
