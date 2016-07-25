@@ -5,6 +5,10 @@ import Redux_swift
 
 struct ActionIdentificationState {
     let actionIdentifier: String
+
+    static var initial: ActionIdentificationState {
+        return ActionIdentificationState(actionIdentifier: "initial")
+    }
 }
 
 struct IdentifiedAction: Action {
@@ -13,6 +17,10 @@ struct IdentifiedAction: Action {
 
 struct CounterState {
     let counter: Int
+    
+    static var zero: CounterState {
+        return CounterState(counter: 0)
+    }
 }
 
 struct CounterIncrementAction: Action {
@@ -40,51 +48,85 @@ class CounterSubscriber: Subscriber, StateConnectable {
     }
 }
 
+class ActionIdentificationStore: Publisher, Dispatch {
+    private let store = Store<ActionIdentificationState>(initialState: ActionIdentificationState.initial) { state, action in
+        switch action {
+        case let action as IdentifiedAction:
+            return ActionIdentificationState(actionIdentifier: action.identifier)
+        default:
+            return state ?? ActionIdentificationState.initial
+        }
+    }
+    
+    func subscribe(subscription: ActionIdentificationState -> Void) -> Void -> Void {
+        return store.subscribe(subscription)
+    }
+    
+    func dispatch(action: Action) {
+        store.dispatch(action)
+    }
+}
+
+class CounterStore: Publisher, Dispatch {
+    private let store = Store<CounterState>(initialState: CounterState.zero) { state, action in
+        switch action {
+        case let action as CounterIncrementAction:
+            return CounterState(counter: state.counter + action.increment)
+            
+        default:
+            return state
+        }
+    }
+    
+    func subscribe(subscription: CounterState -> Void) -> Void -> Void {
+        return store.subscribe(subscription)
+    }
+    
+    func dispatch(action: Action) {
+        return store.dispatch(action)
+    }
+}
+
 class ReduxSpec: QuickSpec {
     override func spec() {
         it("publishes the initial state") {
-            let store = Store<ActionIdentificationState>(reducer: { state, action in
-                return ActionIdentificationState(actionIdentifier: (action as! IdentifiedAction).identifier)
-            }, initialState: ActionIdentificationState(actionIdentifier: "initial"))
-            
+            let store = ActionIdentificationStore()
+
             var stateReceived: ActionIdentificationState?
             _ = store.subscribe { newState in
                 stateReceived = newState
             }
+
             expect(stateReceived?.actionIdentifier).toEventually(equal("initial"))
         }
         
         it("publishes dispatched changes") {
-            let store = Store<ActionIdentificationState>(reducer: { state, action in
-                return ActionIdentificationState(actionIdentifier: (action as! IdentifiedAction).identifier)
-            }, initialState: ActionIdentificationState(actionIdentifier: "initial"))
+            let store = ActionIdentificationStore()
             
             var stateReceived: ActionIdentificationState?
             _ = store.subscribe { newState in
                 stateReceived = newState
             }
+
             store.dispatch(IdentifiedAction(identifier: "dispatched"))
             expect(stateReceived?.actionIdentifier).toEventually(equal("dispatched"))
         }
         
         it("removes subscriptions when requested") {
-            let store = Store<ActionIdentificationState>(reducer: { state, action in
-                return ActionIdentificationState(actionIdentifier: (action as! IdentifiedAction).identifier)
-            }, initialState: ActionIdentificationState(actionIdentifier: "initial"))
+            let store = ActionIdentificationStore()
             
             var stateReceived: ActionIdentificationState?
             let unsubscribe = store.subscribe { newState in
                 stateReceived = newState
             }
             unsubscribe()
+
             store.dispatch(IdentifiedAction(identifier: "dispatched"))
             expect(stateReceived?.actionIdentifier).toEventually(equal("initial"))
         }
         
         it("reduces actions and state into new state") {
-            let store = Store<CounterState>(reducer: { state, action in
-                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
-            }, initialState: CounterState(counter: 0))
+            let store = CounterStore()
             
             var stateReceived: CounterState?
             _ = store.subscribe { newState in
@@ -99,9 +141,7 @@ class ReduxSpec: QuickSpec {
         }
         
         it("dispatches async actions") {
-            let store = Store<CounterState>(reducer: { state, action in
-                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
-            }, initialState: CounterState(counter: 0))
+            let store = CounterStore()
             
             var stateReceived: CounterState?
             _ = store.subscribe { newState in
@@ -120,9 +160,7 @@ class ReduxSpec: QuickSpec {
         }
         
         it("is compatible with Subscribers") {
-            let store = Store<CounterState>(reducer: { state, action in
-                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
-            }, initialState: CounterState(counter: 0))
+            let store = CounterStore()
             
             let subscriber = CounterSubscriber(counter: -1)
             let unsubscribe = store.subscribe(subscriber: subscriber)
@@ -138,9 +176,7 @@ class ReduxSpec: QuickSpec {
         }
         
         it("connnects to StateConnectables") {
-            let store = Store<CounterState>(reducer: { state, action in
-                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
-            }, initialState: CounterState(counter: 0))
+            let store = CounterStore()
             
             let subscriber = CounterSubscriber(counter: -1)
             subscriber.connect(to: store)

@@ -1,15 +1,15 @@
 import Foundation
 
 public final class Store<State>: Publisher, Dispatch {
-    private let reduce: (State?, Action) -> State
+    private let reduce: (State, Action) -> State
     
-    private var state: State? {
+    private var state: State {
         didSet { publish(state) }
     }
     
     private var subscribers: [String: State -> Void]
     
-    public init (reducer: (State?, Action) -> State, initialState: State? = nil) {
+    public init (initialState: State, reducer: (State, Action) -> State) {
         reduce = reducer
         state = initialState
         subscribers = [:]
@@ -23,19 +23,14 @@ public final class Store<State>: Publisher, Dispatch {
         let token = NSUUID().UUIDString
         subscribers[token] = subscription
         
-        if let state = state {
-            subscription(state)
-        }
+        subscription(state)
         
         return { [weak self] in
             self?.subscribers.removeValueForKey(token)
         }
     }
     
-    private func publish(newState: State?) {
-        guard let state = newState else {
-            return
-        }
+    private func publish(newState: State) {
         subscribers.values.forEach { $0(state) }
     }
 }
