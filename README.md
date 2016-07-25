@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/Redux.swift.svg?style=flat)](http://cocoapods.org/pods/Redux.swift)
 [![Platform](https://img.shields.io/cocoapods/p/Redux.swift.svg?style=flat)](http://cocoapods.org/pods/Redux.swift)
 
+Redux.swift is an implementation of a predictable state container, written in Swift. Inspired by Redux and projects such as ReSwift, it aims to enforce separation of concerns and a unidirectional data flow by focusing your entire app state in a single data structure that cannot be mutated directly, instead relying on an action dispatch mechanism to describe changes.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
