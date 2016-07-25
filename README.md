@@ -1,6 +1,6 @@
 # Redux.swift
 
-[![CI Status](http://img.shields.io/travis/Fellipe Caetano/Redux.swift.svg?style=flat)](https://travis-ci.org/Fellipe Caetano/Redux.swift)
+[![CI Status](http://img.shields.io/travis/fellipecaetano/Redux.swift.svg?style=flat)](https://travis-ci.org/fellipecaetano/Redux.swift)
 [![Version](https://img.shields.io/cocoapods/v/Redux.swift.svg?style=flat)](http://cocoapods.org/pods/Redux.swift)
 [![License](https://img.shields.io/cocoapods/l/Redux.swift.svg?style=flat)](http://cocoapods.org/pods/Redux.swift)
 [![Platform](https://img.shields.io/cocoapods/p/Redux.swift.svg?style=flat)](http://cocoapods.org/pods/Redux.swift)
