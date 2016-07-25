@@ -2,12 +2,13 @@ import Foundation
 import Redux
 
 class IdentificationStore: Publisher, Dispatch {
-    private let store = Store<IdentificationState>(initialState: IdentificationState.initial) { state, action in
+    private let store = Store<IdentificationState>(initialState: IdentificationState()) { state, action in
         switch action {
         case let action as IdentifiedAction:
             return IdentificationState(identifier: action.identifier)
+
         default:
-            return state ?? IdentificationState.initial
+            return state
         }
     }
 
@@ -23,8 +24,8 @@ class IdentificationStore: Publisher, Dispatch {
 struct IdentificationState {
     let identifier: String
 
-    static var initial: IdentificationState {
-        return IdentificationState(identifier: "initial")
+    init (identifier: String = "initial") {
+        self.identifier = identifier
     }
 }
 

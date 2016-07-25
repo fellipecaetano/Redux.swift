@@ -2,7 +2,7 @@ import Foundation
 import Redux
 
 class CounterStore: Publisher, Dispatch {
-    private let store = Store<CounterState>(initialState: CounterState.zero) { state, action in
+    private let store = Store<CounterState>(initialState: CounterState()) { state, action in
         switch action {
         case let action as CounterIncrementAction:
             return CounterState(counter: state.counter + action.increment)
@@ -24,8 +24,8 @@ class CounterStore: Publisher, Dispatch {
 struct CounterState {
     let counter: Int
 
-    static var zero: CounterState {
-        return CounterState(counter: 0)
+    init (counter: Int = 0) {
+        self.counter = counter
     }
 }
 
