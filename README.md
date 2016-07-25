@@ -84,6 +84,16 @@ Inside the `Example` directory you will find a sample application that presents 
 4. Select the `ReduxCounterExample` target in the target selection dropdown near the Stop button
 5. Build and run the application
 
+## Testing
+
+The `Example` directory contains a project holding the tests for Redux.swift. To run them:
+
+1. Clone the repository
+2. Enter the `Example` directory
+3. Open the `Redux.swift.xcworkspace` file in Xcode 7.3
+4. Select the `Redux.swift-Example` target in the target selection dropdown near the Stop button
+5. Press `⌘U` or click `Test` from the `Product` menu
+
 ## Installation
 
 Redux.swift is available through [CocoaPods](http://cocoapods.org). To install
