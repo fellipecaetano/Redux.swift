@@ -16,8 +16,8 @@ public final class Store<State>: Publisher, Dispatch {
     
     /**
      Initializes a `Store`.
-     - parameter initialState The initial value of the application state in hold
-     - parameter reducer The root pure function that's responsible for transforming state according to `Actions`
+     - parameter initialState The initial value of the application state in hold.
+     - parameter reducer The root pure function that's responsible for transforming state according to `Actions`.
     **/
     public init (initialState: State, reducer: (State, Action) -> State) {
         reduce = reducer
@@ -35,7 +35,8 @@ public final class Store<State>: Publisher, Dispatch {
     
     /**
      Registers a handler that's called when state changes
-     - parameter subscription A closure that's called whenever there's a change to the state in hold
+     - parameter subscription A closure that's called whenever there's a change to the state in hold.
+     - returns A closure that unsubscribes the provided subscription.
      **/
     public func subscribe(subscription: State -> Void) -> Void -> Void {
         let token = NSUUID().UUIDString
@@ -53,24 +54,58 @@ public final class Store<State>: Publisher, Dispatch {
     }
 }
 
+/**
+ Defines `Action` dispatch cabalities. Instances that conform to `Dispatch` are expected
+ to know how to dispatch `Actions`.
+ **/
+
 public protocol Dispatch {
+    /**
+     Dispatches an action.
+     - parameter action The action that'll be dispatched.
+    **/
     func dispatch(action: Action)
 }
 
 extension Dispatch {
+    /**
+     Executes a closure with an injected `dispatch` function. Useful for
+     asynchronous `Action` dispatching.
+     - parameter thunk The closure that will be executed with an injected `dispatch` function.
+     **/
     public func dispatch(thunk: (Action -> Void) -> Void) {
         thunk { self.dispatch($0) }
     }
 }
 
+/**
+ Defines a mutation descriptor. Are typically associated to application actions and operations.
+ **/
 public protocol Action {}
 
+/**
+ Instances that conform to `Publisher` are expected to know how to add
+ handlers that are provided with an associated object in response
+ to generic events.
+ **/
 public protocol Publisher {
     associatedtype Publishing
+    /**
+     Adds a handler to a generic event.
+     - parameter subscription The handler that will be called in response
+     to generic events.
+     - returns A closure that unsubscribes the provided subscription.
+    **/
     func subscribe(subscription: Publishing -> Void) -> Void -> Void
 }
 
 extension Publisher {
+    /**
+     Adds the handler defined by a `Subscriber` that is compatible with the
+     events defined by this `Publisher`.
+     - parameter subscriber The compatible `Subscriber`.
+     - returns A closure that unsubscribes the provided `Subscriber`.
+     **/
     public func subscribe <T: Subscriber where T.Publishing == Publishing> (subscriber subscriber: T) -> Void -> Void {
         return subscribe { newState in
             subscriber.receive(subscriber.select(newState))
@@ -79,6 +114,11 @@ extension Publisher {
 }
 
 extension Publisher where Self: Dispatch {
+    /**
+     Subscribes a `Subscriber` that is compatible with this `Publisher`.
+     - parameter subscriber The compatible `Subscriber`.
+     - returns A `dispatch` function and an `unsubscribe` handle, encapsulated.
+    **/
     func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnection {
         let dispatch = { self.dispatch($0) }
         let unsubscribe = self.subscribe(subscriber: subscriber)
