@@ -1,3 +1,3 @@
-excluded: # paths to ignore during linting. Takes precedence over `included`.
+excluded:
   - Pods
 line_length: 120
