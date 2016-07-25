@@ -31,7 +31,7 @@ public final class Store<State>: Publisher, Dispatch {
     }
     
     private func publish(newState: State) {
-        subscribers.values.forEach { $0(state) }
+        subscribers.values.forEach { $0(newState) }
     }
 }
 
