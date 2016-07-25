@@ -123,7 +123,7 @@ $ gem install cocoapods
 To integrate Redux.swift into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-target `<target_name>` do
+target '<target_name>' do
   pod 'Redux.swift'
 end
 ```
