@@ -1,5 +1,6 @@
 {
   "name": "Redux.swift",
+  "module_name": "Redux",
   "version": "0.1.0",
   "summary": "A short description of Redux.swift.",
   "description": "TODO: Add long description of the pod here.",

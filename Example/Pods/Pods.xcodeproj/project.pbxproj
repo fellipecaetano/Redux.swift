@@ -138,13 +138,12 @@
 		14E1DC94DD47A6F91084F3EAA92AF552 /* Quick.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Quick.modulemap; sourceTree = "<group>"; };
 		18D110A87EF135293B27C04BD720A8E8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C369DE47B8FBDDF56994EF084D14F12 /* HooksPhase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HooksPhase.swift; path = Sources/Quick/Hooks/HooksPhase.swift; sourceTree = "<group>"; };
-		2034D843C0904AF9FEABF8140178C3A0 /* Redux_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redux_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		203A5C5D36EAB5C74A7CA2C7F3E57854 /* BeginWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeginWith.swift; path = Sources/Nimble/Matchers/BeginWith.swift; sourceTree = "<group>"; };
 		22BF65FFEC8A084057E63EDF139D2BD1 /* PostNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PostNotification.swift; path = Sources/Nimble/Matchers/PostNotification.swift; sourceTree = "<group>"; };
 		23D3F787478B2953573939A0E8511140 /* Nimble-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-prefix.pch"; sourceTree = "<group>"; };
+		26A75528660965C0A08BE53889A4B418 /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		299FCFFDCC88E9151397B8D50F79E36E /* World+DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "World+DSL.swift"; path = "Sources/Quick/DSL/World+DSL.swift"; sourceTree = "<group>"; };
 		2A414C35360A25163AA8D7D17AB68C77 /* RaisesException.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RaisesException.swift; path = Sources/Nimble/Matchers/RaisesException.swift; sourceTree = "<group>"; };
-		2AE9AF8F55D8047A4ACB919AA69F76D9 /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AEDCA8E96FF6E3C7A604705D4D34B06 /* World.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = World.swift; path = Sources/Quick/World.swift; sourceTree = "<group>"; };
 		2D4DEBAA391B6F9E5C9294F4DE25CA96 /* QuickConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickConfiguration.h; path = Sources/Quick/Configuration/QuickConfiguration.h; sourceTree = "<group>"; };
 		30B16739831A57E59BFE39E8BF50128C /* NSBundle+CurrentTestBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBundle+CurrentTestBundle.swift"; path = "Sources/Quick/NSBundle+CurrentTestBundle.swift"; sourceTree = "<group>"; };
@@ -172,6 +171,7 @@
 		62C9EA115D167F4132613835B0AA5585 /* BeLessThan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLessThan.swift; path = Sources/Nimble/Matchers/BeLessThan.swift; sourceTree = "<group>"; };
 		66A3FFEFA87108503C1154659236D755 /* ExampleHooks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExampleHooks.swift; path = Sources/Quick/Hooks/ExampleHooks.swift; sourceTree = "<group>"; };
 		66CBE690E9186E686698A8A8A71C5355 /* String+FileName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+FileName.swift"; path = "Sources/Quick/String+FileName.swift"; sourceTree = "<group>"; };
+		68EB0CB3D350DCA6A44795F6F9963E53 /* Pods_Redux_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Redux_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E738963C2EB4542069F1E6586836C9 /* QCKDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QCKDSL.m; path = Sources/Quick/DSL/QCKDSL.m; sourceTree = "<group>"; };
 		6A5B6394838D23DE3BD6C1113A355553 /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
 		6CF762208E123E2F61AEE13E62DCA565 /* Stringers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stringers.swift; path = Sources/Nimble/Utils/Stringers.swift; sourceTree = "<group>"; };
@@ -181,7 +181,9 @@
 		775F2935284D3CEB24316FDCE9D259EA /* Redux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		797D9E5FC765DD871C57D7B06A9A4B4F /* Redux.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Redux.swift-umbrella.h"; sourceTree = "<group>"; };
 		7EB79662DFF8CAC9A93BB403631D5490 /* Quick.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Quick.h; path = Sources/Quick/Quick.h; sourceTree = "<group>"; };
+		7FEB2D24967B882A2E7C78CF681F59F2 /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FECB7BA22714038546A0E8DD513114B /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Quick/Configuration/Configuration.swift; sourceTree = "<group>"; };
+		8161EA549B7D00627B317B2B7D077B04 /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83741AFF872F1C4DA9F1180749D9BC70 /* Pods-Redux.swift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Redux.swift_Tests-umbrella.h"; sourceTree = "<group>"; };
 		85564484FA6ABBE76C0B73863EFFFCDE /* SourceLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceLocation.swift; path = Sources/Nimble/Utils/SourceLocation.swift; sourceTree = "<group>"; };
 		875A7681674D572B7002D69BBCD1BA09 /* Example.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Example.swift; path = Sources/Quick/Example.swift; sourceTree = "<group>"; };
@@ -208,7 +210,6 @@
 		A7E85327D01378E8AB714335E9E7CE7F /* NimbleEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleEnvironment.swift; path = Sources/Nimble/Adapters/NimbleEnvironment.swift; sourceTree = "<group>"; };
 		AAC325F77555916EE55065F37EA4C575 /* BeGreaterThanOrEqualTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThanOrEqualTo.swift; path = Sources/Nimble/Matchers/BeGreaterThanOrEqualTo.swift; sourceTree = "<group>"; };
 		AAC405455F8E20BD0434D9D3E3D2879A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		AB0DD8B2456389922F476AC95E9ABFF9 /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CFDED63B2CD5BC846E14E3354AC73 /* Closures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Closures.swift; path = Sources/Quick/Hooks/Closures.swift; sourceTree = "<group>"; };
 		B2393DC28E471CBC03F772EAC81C7210 /* Pods-Redux.swift_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Redux.swift_Tests-resources.sh"; sourceTree = "<group>"; };
 		B65AB889028901EAF2823A40F21B4F5B /* Contain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Contain.swift; path = Sources/Nimble/Matchers/Contain.swift; sourceTree = "<group>"; };
@@ -236,7 +237,6 @@
 		E2C4C90276F90FE175A5F20FD7E87C85 /* Pods-Redux.swift_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Redux.swift_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E2DE7320F652DCF39EB6A1476F0C761B /* NimbleXCTestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleXCTestHandler.swift; path = Sources/Nimble/Adapters/NimbleXCTestHandler.swift; sourceTree = "<group>"; };
 		EA1C305082DBF75710A818FFBD2714D2 /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
-		EEB211E6B41B96B0929432B9995D3F7C /* Pods_Redux_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Redux_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB2D871B9C6D5C6EE2172BB9AFD2627 /* BeVoid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeVoid.swift; path = Sources/Nimble/Matchers/BeVoid.swift; sourceTree = "<group>"; };
 		F17FBDF6FF6B666A3D102EDD81DFE416 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Quick/Filter.swift; sourceTree = "<group>"; };
 		F258A1F6D8643B17C4863BCE1154CFA7 /* Pods-Redux.swift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Redux.swift_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -287,17 +287,6 @@
 				775F2935284D3CEB24316FDCE9D259EA /* Redux.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		38DD4762E5FEE37B4ADD13CC69A3F8AA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2AE9AF8F55D8047A4ACB919AA69F76D9 /* Nimble.framework */,
-				EEB211E6B41B96B0929432B9995D3F7C /* Pods_Redux_swift_Tests.framework */,
-				AB0DD8B2456389922F476AC95E9ABFF9 /* Quick.framework */,
-				2034D843C0904AF9FEABF8140178C3A0 /* Redux_swift.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3DA718426B574401281FFA751D33D9BF /* Nimble */ = {
@@ -380,7 +369,7 @@
 				99637E19A6333A74D7D5CC4C5B00201D /* Development Pods */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
 				B2F3226D3D4A34C6FDC47A7E7567F3E3 /* Pods */,
-				38DD4762E5FEE37B4ADD13CC69A3F8AA /* Products */,
+				A5F68A942DF16B768065CDCE40992E82 /* Products */,
 				44AA5DB5754822B5DC799D1AC94F45FC /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -419,6 +408,17 @@
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/Redux.swift";
+			sourceTree = "<group>";
+		};
+		A5F68A942DF16B768065CDCE40992E82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26A75528660965C0A08BE53889A4B418 /* Nimble.framework */,
+				68EB0CB3D350DCA6A44795F6F9963E53 /* Pods_Redux_swift_Tests.framework */,
+				8161EA549B7D00627B317B2B7D077B04 /* Quick.framework */,
+				7FEB2D24967B882A2E7C78CF681F59F2 /* Redux.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B2F3226D3D4A34C6FDC47A7E7567F3E3 /* Pods */ = {
@@ -589,7 +589,7 @@
 			);
 			name = Redux.swift;
 			productName = Redux.swift;
-			productReference = 2034D843C0904AF9FEABF8140178C3A0 /* Redux_swift.framework */;
+			productReference = 7FEB2D24967B882A2E7C78CF681F59F2 /* Redux.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		2C0E4FE4653CAF2AF2A4D71FC713CA17 /* Quick */ = {
@@ -606,7 +606,7 @@
 			);
 			name = Quick;
 			productName = Quick;
-			productReference = AB0DD8B2456389922F476AC95E9ABFF9 /* Quick.framework */;
+			productReference = 8161EA549B7D00627B317B2B7D077B04 /* Quick.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A7FC78F409BD0413C4C2B4DF5AFFA10D /* Pods-Redux.swift_Tests */ = {
@@ -626,7 +626,7 @@
 			);
 			name = "Pods-Redux.swift_Tests";
 			productName = "Pods-Redux.swift_Tests";
-			productReference = EEB211E6B41B96B0929432B9995D3F7C /* Pods_Redux_swift_Tests.framework */;
+			productReference = 68EB0CB3D350DCA6A44795F6F9963E53 /* Pods_Redux_swift_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FF61C7C740C1B196A3B33F37B77DBC68 /* Nimble */ = {
@@ -643,7 +643,7 @@
 			);
 			name = Nimble;
 			productName = Nimble;
-			productReference = 2AE9AF8F55D8047A4ACB919AA69F76D9 /* Nimble.framework */;
+			productReference = 26A75528660965C0A08BE53889A4B418 /* Nimble.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -663,7 +663,7 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 38DD4762E5FEE37B4ADD13CC69A3F8AA /* Products */;
+			productRefGroup = A5F68A942DF16B768065CDCE40992E82 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -907,35 +907,6 @@
 			};
 			name = Release;
 		};
-		685B71E652971CF6450F02A42EE9153C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D00D67FE2087B9CBCB94B14C8ACF5C6 /* Redux.swift.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Redux.swift/Redux.swift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Redux.swift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Redux.swift/Redux.swift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Redux_swift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		9CDDE54B22FF805116AE6FAA11F28E71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D90C7EF12BFF57324CAB1F99C968C0BF /* Quick.xcconfig */;
@@ -994,36 +965,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		CB1B2487B312DC66D933895531A14F46 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D00D67FE2087B9CBCB94B14C8ACF5C6 /* Redux.swift.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Redux.swift/Redux.swift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Redux.swift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Redux.swift/Redux.swift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Redux_swift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		D136996600E31F365F763213EFA35139 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1095,6 +1036,65 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
+		};
+		E5961925DBC9BA1A83B0966A25D604A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D00D67FE2087B9CBCB94B14C8ACF5C6 /* Redux.swift.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Redux.swift/Redux.swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Redux.swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Redux.swift/Redux.swift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Redux;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EB27D2DB9DEAC4AF911BBE677FA78130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D00D67FE2087B9CBCB94B14C8ACF5C6 /* Redux.swift.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Redux.swift/Redux.swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Redux.swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Redux.swift/Redux.swift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Redux;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		F14745E2F2D90E33DB7401B9ED7C5F16 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1168,8 +1168,8 @@
 		F0AB417C1E0DC07D1FF7A812116312EB /* Build configuration list for PBXNativeTarget "Redux.swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CB1B2487B312DC66D933895531A14F46 /* Debug */,
-				685B71E652971CF6450F02A42EE9153C /* Release */,
+				E5961925DBC9BA1A83B0966A25D604A7 /* Debug */,
+				EB27D2DB9DEAC4AF911BBE677FA78130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

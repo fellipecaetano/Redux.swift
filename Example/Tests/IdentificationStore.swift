@@ -1,5 +1,5 @@
 import Foundation
-import Redux_swift
+import Redux
 
 class IdentificationStore: Publisher, Dispatch {
     private let store = Store<IdentificationState>(initialState: IdentificationState.initial) { state, action in

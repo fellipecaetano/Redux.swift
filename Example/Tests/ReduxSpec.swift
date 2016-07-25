@@ -1,7 +1,7 @@
 import Foundation
 import Quick
 import Nimble
-import Redux_swift
+import Redux
 
 class ReduxSpec: QuickSpec {
     override func spec() {
@@ -50,8 +50,10 @@ class ReduxSpec: QuickSpec {
             }
             
             expect(stateReceived?.counter).toEventually(equal(0))
+            
             store.dispatch(CounterIncrementAction(increment: 5))
             expect(stateReceived?.counter).toEventually(equal(5))
+            
             store.dispatch(CounterIncrementAction(increment: -2))
             expect(stateReceived?.counter).toEventually(equal(3))
         }
@@ -82,11 +84,11 @@ class ReduxSpec: QuickSpec {
             let unsubscribe = store.subscribe(subscriber: subscriber)
             
             expect(subscriber.counter).toEventually(equal(0))
+            
             store.dispatch(CounterIncrementAction(increment: 2))
             expect(subscriber.counter).toEventually(equal(2))
             
             unsubscribe()
-            
             store.dispatch(CounterIncrementAction(increment: 3))
             expect(subscriber.counter).toEventually(equal(2))
         }

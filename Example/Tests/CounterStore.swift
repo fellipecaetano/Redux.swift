@@ -1,5 +1,5 @@
 import Foundation
-import Redux_swift
+import Redux
 
 class CounterStore: Publisher, Dispatch {
     private let store = Store<CounterState>(initialState: CounterState.zero) { state, action in
