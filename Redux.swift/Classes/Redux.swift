@@ -1,9 +1,8 @@
 import Foundation
 
 /**
- The data structure responsible for holding application state, 
- allowing controlled mutation through dispatched `Actions` and
- notifying interested parties that `subscribe` to state changes.
+ The data structure responsible for holding application state, allowing controlled mutation through dispatched 
+ `Actions` and notifying interested parties that `subscribe` to state changes.
  **/
 public final class Store<State>: Publisher, Dispatch {
     private let reduce: (State, Action) -> State
@@ -55,8 +54,8 @@ public final class Store<State>: Publisher, Dispatch {
 }
 
 /**
- Defines `Action` dispatch cabalities. Instances that conform to `Dispatch` are expected
- to know how to dispatch `Actions`.
+ Defines `Action` dispatch cabalities. Instances conforming to `Dispatch` are expected to know how to 
+ dispatch `Actions`.
  **/
 
 public protocol Dispatch {
@@ -69,8 +68,7 @@ public protocol Dispatch {
 
 extension Dispatch {
     /**
-     Executes a closure with an injected `dispatch` function. Useful for
-     asynchronous `Action` dispatching.
+     Executes a closure with an injected `dispatch` function. Useful for asynchronous `Action` dispatching.
      - parameter thunk The closure that will be executed with an injected `dispatch` function.
      **/
     public func dispatch(thunk: (Action -> Void) -> Void) {
@@ -84,16 +82,14 @@ extension Dispatch {
 public protocol Action {}
 
 /**
- Instances that conform to `Publisher` are expected to know how to add
- handlers that are provided with an associated object in response
- to generic events.
+ Instances conforming to `Publisher` are expected to know how to add handlers that are provided with an associated 
+ object in response to generic events.
  **/
 public protocol Publisher {
     associatedtype Publishing
     /**
      Adds a handler to a generic event.
-     - parameter subscription The handler that will be called in response
-     to generic events.
+     - parameter subscription The handler that will be called in response to generic events.
      - returns A closure that unsubscribes the provided subscription.
     **/
     func subscribe(subscription: Publishing -> Void) -> Void -> Void
@@ -101,8 +97,7 @@ public protocol Publisher {
 
 extension Publisher {
     /**
-     Adds the handler defined by a `Subscriber` that is compatible with the
-     events defined by this `Publisher`.
+     Adds the handler defined by a `Subscriber` that is compatible with the events defined by this `Publisher`.
      - parameter subscriber The compatible `Subscriber`.
      - returns A closure that unsubscribes the provided `Subscriber`.
      **/
@@ -126,11 +121,26 @@ extension Publisher where Self: Dispatch {
     }
 }
 
+/**
+ Instances conforming to `Subscriber` receive objects of an `associatedtype` associated to generic updates.
+ Plus, they should be able to select some portion of this associated object, producing a second associated 
+ object of another `associatedtype`.
+ **/
 public protocol Subscriber: class {
     associatedtype Publishing
     associatedtype Selection
     
+    /**
+     Selects some portion of an object of an arbitrary (associated) type.
+     - parameter publishing The object that will suffer the selection.
+     - returns An object selected from `publishing`.
+    **/
     func select(publishing: Publishing) -> Selection
+    
+    /**
+     Receives an object associated to a generic update, preferably after undergoing selection by `select`.
+     - parameter selection The object associated to a generic update, after going through selection.
+     **/
     func receive(selection: Selection)
 }
 
