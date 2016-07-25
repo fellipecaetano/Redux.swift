@@ -1,5 +1,10 @@
 import Foundation
 
+/**
+ The data structure responsible for holding application state, 
+ allowing controlled mutation through dispatched `Actions` and
+ notifying interested parties that `subscribe` to state changes.
+ **/
 public final class Store<State>: Publisher, Dispatch {
     private let reduce: (State, Action) -> State
     
@@ -9,16 +14,29 @@ public final class Store<State>: Publisher, Dispatch {
     
     private var subscribers: [String: State -> Void]
     
+    /**
+     Initializes a `Store`.
+     - parameter initialState The initial value of the application state in hold
+     - parameter reducer The root pure function that's responsible for transforming state according to `Actions`
+    **/
     public init (initialState: State, reducer: (State, Action) -> State) {
         reduce = reducer
         state = initialState
         subscribers = [:]
     }
     
+    /**
+     Perform state changes described by the action and the root reducer.
+     - parameter action The descriptor of **what** is the state change.
+     **/
     public func dispatch(action: Action) {
         state = reduce(state, action)
     }
     
+    /**
+     Registers a handler that's called when state changes
+     - parameter subscription A closure that's called whenever there's a change to the state in hold
+     **/
     public func subscribe(subscription: State -> Void) -> Void -> Void {
         let token = NSUUID().UUIDString
         subscribers[token] = subscription
