@@ -3,126 +3,42 @@ import Quick
 import Nimble
 import Redux_swift
 
-struct ActionIdentificationState {
-    let actionIdentifier: String
-
-    static var initial: ActionIdentificationState {
-        return ActionIdentificationState(actionIdentifier: "initial")
-    }
-}
-
-struct IdentifiedAction: Action {
-    let identifier: String
-}
-
-struct CounterState {
-    let counter: Int
-    
-    static var zero: CounterState {
-        return CounterState(counter: 0)
-    }
-}
-
-struct CounterIncrementAction: Action {
-    let increment: Int
-}
-
-class CounterSubscriber: Subscriber, StateConnectable {
-    var counter: Int
-    var connection: StateConnection?
-    
-    init (counter: Int) {
-        self.counter = counter
-    }
-    
-    func select(publishing: CounterState) -> Int {
-        return publishing.counter
-    }
-
-    func receive(selection: Int) {
-        self.counter = selection
-    }
-    
-    func connect(with connection: StateConnection) {
-        self.connection = connection
-    }
-}
-
-class ActionIdentificationStore: Publisher, Dispatch {
-    private let store = Store<ActionIdentificationState>(initialState: ActionIdentificationState.initial) { state, action in
-        switch action {
-        case let action as IdentifiedAction:
-            return ActionIdentificationState(actionIdentifier: action.identifier)
-        default:
-            return state ?? ActionIdentificationState.initial
-        }
-    }
-    
-    func subscribe(subscription: ActionIdentificationState -> Void) -> Void -> Void {
-        return store.subscribe(subscription)
-    }
-    
-    func dispatch(action: Action) {
-        store.dispatch(action)
-    }
-}
-
-class CounterStore: Publisher, Dispatch {
-    private let store = Store<CounterState>(initialState: CounterState.zero) { state, action in
-        switch action {
-        case let action as CounterIncrementAction:
-            return CounterState(counter: state.counter + action.increment)
-            
-        default:
-            return state
-        }
-    }
-    
-    func subscribe(subscription: CounterState -> Void) -> Void -> Void {
-        return store.subscribe(subscription)
-    }
-    
-    func dispatch(action: Action) {
-        return store.dispatch(action)
-    }
-}
-
 class ReduxSpec: QuickSpec {
     override func spec() {
         it("publishes the initial state") {
-            let store = ActionIdentificationStore()
+            let store = IdentificationStore()
 
-            var stateReceived: ActionIdentificationState?
+            var stateReceived: IdentificationState?
             _ = store.subscribe { newState in
                 stateReceived = newState
             }
 
-            expect(stateReceived?.actionIdentifier).toEventually(equal("initial"))
+            expect(stateReceived?.identifier).toEventually(equal("initial"))
         }
         
         it("publishes dispatched changes") {
-            let store = ActionIdentificationStore()
+            let store = IdentificationStore()
             
-            var stateReceived: ActionIdentificationState?
+            var stateReceived: IdentificationState?
             _ = store.subscribe { newState in
                 stateReceived = newState
             }
 
             store.dispatch(IdentifiedAction(identifier: "dispatched"))
-            expect(stateReceived?.actionIdentifier).toEventually(equal("dispatched"))
+            expect(stateReceived?.identifier).toEventually(equal("dispatched"))
         }
         
         it("removes subscriptions when requested") {
-            let store = ActionIdentificationStore()
+            let store = IdentificationStore()
             
-            var stateReceived: ActionIdentificationState?
+            var stateReceived: IdentificationState?
             let unsubscribe = store.subscribe { newState in
                 stateReceived = newState
             }
             unsubscribe()
 
             store.dispatch(IdentifiedAction(identifier: "dispatched"))
-            expect(stateReceived?.actionIdentifier).toEventually(equal("initial"))
+            expect(stateReceived?.identifier).toEventually(equal("initial"))
         }
         
         it("reduces actions and state into new state") {
