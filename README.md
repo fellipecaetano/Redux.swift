@@ -41,6 +41,20 @@ let store = Store<CounterState>(initialState: CounterState(counter: 0)) { state,
 }
 ```
 
+Actions describe *what* should change, but **reducers** decide *how* those changes will be applied:
+
+```swift
+let store = Store<CounterState>(initialState: CounterState(counter: 0)) { state, action in
+    switch action {
+    case let action as IncrementAction:
+        return CounterState(counter: state.counter + action.increment)
+        
+    default:
+        return state
+    }
+}
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
