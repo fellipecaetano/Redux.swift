@@ -22,7 +22,7 @@ pod "Redux.swift"
 
 ## Author
 
-Fellipe Caetano, fellipe.caetano@movile.com
+Fellipe Caetano, fellipe.caetano4@gmail.com
 
 ## License
 
