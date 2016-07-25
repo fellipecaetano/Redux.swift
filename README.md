@@ -107,7 +107,7 @@ Redux.swift is available through [CocoaPods](http://cocoapods.org), a dependency
 $ gem install cocoapods
 ```
 
-To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate Redux.swift into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 target `<target_name>` do
