@@ -15,6 +15,24 @@ Redux.swift is very small and I strived for clarity when writing it, so hopefull
 - **State is read-only**: state can only be mutated through dispatched **actions**, lightweight objects that describe what should be changed. Since mutations are centralized, inconsistencies are infrequent and race-conditions become easier to avoid.
 - **Mutations are applied by pure functions**: actions are only descriptors of changes. The actual logic that determines how those changes are applied is performed by pure functions called **reducers**, which receive the current snapshot of a state branch and an action, and return a new snapshot of how the state should look after the change.
 
+## Usage
+
+Your app's **state** would ideally be defined as a lightweight `struct`:
+
+```swift
+struct CounterState {
+    let counter: Int
+}
+```
+
+As an example, operations that users might perform within your app would be described as **actions**:
+
+```swift
+struct IncrementAction: Action {
+    let increment: Int
+}
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
