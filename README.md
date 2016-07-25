@@ -13,8 +13,6 @@ Redux.swift is very small and I strived for clarity when writing it, so hopefull
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
-
 ## Installation
 
 Redux.swift is available through [CocoaPods](http://cocoapods.org). To install
