@@ -15,8 +15,9 @@ public final class Store<State>: Publisher, Dispatch {
     
     /**
      Initializes a `Store`.
-     - parameter initialState The initial value of the application state in hold.
-     - parameter reducer The root pure function that's responsible for transforming state according to `Actions`.
+     
+     - parameter initialState: The initial value of the application state in hold.
+     - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
     */
     public init (initialState: State, reducer: (State, Action) -> State) {
         reduce = reducer
@@ -26,7 +27,8 @@ public final class Store<State>: Publisher, Dispatch {
     
     /**
      Perform state changes described by the action and the root reducer.
-     - parameter action The descriptor of **what** is the state change.
+     
+     - parameter action: The descriptor of **what** is the state change.
      */
     public func dispatch(action: Action) {
         state = reduce(state, action)
@@ -34,8 +36,9 @@ public final class Store<State>: Publisher, Dispatch {
     
     /**
      Registers a handler that's called when state changes
-     - parameter subscription A closure that's called whenever there's a change to the state in hold.
-     - returns A closure that unsubscribes the provided subscription.
+     
+     - parameter subscription: A closure that's called whenever there's a change to the state in hold.
+     - returns: A closure that unsubscribes the provided subscription.
      */
     public func subscribe(subscription: State -> Void) -> Void -> Void {
         let token = NSUUID().UUIDString
@@ -61,7 +64,8 @@ public final class Store<State>: Publisher, Dispatch {
 public protocol Dispatch {
     /**
      Dispatches an action.
-     - parameter action The action that'll be dispatched.
+     
+     - parameter action: The action that'll be dispatched.
     */
     func dispatch(action: Action)
 }
@@ -69,7 +73,8 @@ public protocol Dispatch {
 extension Dispatch {
     /**
      Executes a closure with an injected `dispatch` function. Useful for asynchronous `Action` dispatching.
-     - parameter thunk The closure that will be executed with an injected `dispatch` function.
+     
+     - parameter thunk: The closure that will be executed with an injected `dispatch` function.
      */
     public func dispatch(thunk: (Action -> Void) -> Void) {
         thunk { self.dispatch($0) }
@@ -89,8 +94,9 @@ public protocol Publisher {
     associatedtype Publishing
     /**
      Adds a handler to a generic event.
-     - parameter subscription The handler that will be called in response to generic events.
-     - returns A closure that unsubscribes the provided subscription.
+     
+     - parameter subscription: The handler that will be called in response to generic events.
+     - returns: A closure that unsubscribes the provided subscription.
     */
     func subscribe(subscription: Publishing -> Void) -> Void -> Void
 }
@@ -98,8 +104,9 @@ public protocol Publisher {
 extension Publisher {
     /**
      Adds the handler defined by a `Subscriber` that is compatible with the events defined by this `Publisher`.
-     - parameter subscriber The compatible `Subscriber`.
-     - returns A closure that unsubscribes the provided `Subscriber`.
+     
+     - parameter subscriber: The compatible `Subscriber`.
+     - returns: A closure that unsubscribes the provided `Subscriber`.
      */
     public func subscribe <T: Subscriber where T.Publishing == Publishing> (subscriber subscriber: T) -> Void -> Void {
         return subscribe { newState in
@@ -111,8 +118,9 @@ extension Publisher {
 extension Publisher where Self: Dispatch {
     /**
      Subscribes a `Subscriber` that is compatible with this `Publisher`.
-     - parameter subscriber The compatible `Subscriber`.
-     - returns A `dispatch` function and an `unsubscribe` handle, encapsulated.
+     
+     - parameter subscriber: The compatible `Subscriber`.
+     - returns: A `dispatch` function and an `unsubscribe` handle, encapsulated.
     */
     func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnection {
         let dispatch = { self.dispatch($0) }
@@ -132,14 +140,16 @@ public protocol Subscriber: class {
     
     /**
      Selects some portion of an object of an arbitrary (associated) type.
-     - parameter publishing The object that will suffer the selection.
-     - returns An object selected from `publishing`.
+     
+     - parameter publishing: The object that will suffer the selection.
+     - returns: An object selected from `publishing`.
     */
     func select(publishing: Publishing) -> Selection
     
     /**
      Receives an object associated to a generic update, preferably after undergoing selection by `select`.
-     - parameter selection The object associated to a generic update, after going through selection.
+     
+     - parameter selection: The object associated to a generic update, after going through selection.
      */
     func receive(selection: Selection)
 }
@@ -178,7 +188,8 @@ private struct AnyStateConnection: StateConnection {
 public protocol StateConnectable: class {
     /**
      Receives a connection.
-     - parameter connection The connection to receive.
+     
+     - parameter connection: The connection to receive.
     */
     func connect(with connection: StateConnection)
 }
@@ -186,7 +197,8 @@ public protocol StateConnectable: class {
 extension StateConnectable where Self: Subscriber {
     /**
      Receives a connection created by a connection creator.
-    - parameter connector The connection creator.
+     
+    - parameter connector: The connection creator.
     */
     public func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
         connect(with: connector.connection(to: self))
@@ -194,8 +206,9 @@ extension StateConnectable where Self: Subscriber {
     
     /**
      Connects and returns this `StateConnectable` to a connection creator.
-     - parameter connector The connection creator.
-     - returns This `StateConnectable` after receiving the connection.
+     
+     - parameter connector: The connection creator.
+     - returns: This `StateConnectable` after receiving the connection.
     */
     public func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
         connect(to: connector)
