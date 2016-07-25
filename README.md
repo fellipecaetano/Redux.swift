@@ -58,11 +58,22 @@ let store = Store<CounterState>(initialState: CounterState(counter: 0)) { state,
 Actions are dispatched through the store, and resulting changes are propagated to **subscribers**:
 
 ```swift
-store.subscribe { newState in
+let _ = store.subscribe { newState in
     // UI updates etc.
 }
 
 store.dispatch(IncrementAction(increment: 3))
+```
+
+Lastly, subscribers should **unsubscribe** when appropriate:
+
+```swift
+let unsubscribe = store.subscribe { //... }
+
+// ...
+
+unsubscribe()
+
 ```
 
 ## Example
