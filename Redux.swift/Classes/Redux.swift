@@ -144,7 +144,13 @@ public protocol Subscriber: class {
     func receive(selection: Selection)
 }
 
+/**
+ Wraps a `dispatch` function and an `unsubscribe` handle.
+ **/
 public protocol StateConnection: Dispatch {
+    /**
+     Typically used to unsubscribe a `Subscriber` associated with this `StateConnection`.
+    **/
     func unsubscribe()
 }
 
@@ -166,15 +172,31 @@ private struct AnyStateConnection: StateConnection {
     }
 }
 
+/**
+ Instances conforming to `StateConnectable` are expected to know how to receive a `StateConnection` instance.
+ **/
 public protocol StateConnectable: class {
+    /**
+     Receives a connection.
+     - parameter connection The connection to receive.
+    **/
     func connect(with connection: StateConnection)
 }
 
 extension StateConnectable where Self: Subscriber {
+    /**
+     Receives a connection created by a connection creator.
+    - parameter connector The connection creator.
+    **/
     public func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
         connect(with: connector.connection(to: self))
     }
     
+    /**
+     Connects and returns this `StateConnectable` to a connection creator.
+     - parameter connector The connection creator.
+     - returns This `StateConnectable` after receiving the connection.
+    **/
     public func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
         connect(to: connector)
         return self
