@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "summary": "A short description of Redux.swift.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/Redux.swift",
+  "homepage": "https://github.com/fellipecaetano/Redux.swift",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -13,7 +13,7 @@
     "Fellipe Caetano": "fellipe.caetano4@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/Redux.swift.git",
+    "git": "https://github.com/fellipecaetano/Redux.swift.git",
     "tag": "0.1.0"
   },
   "platforms": {

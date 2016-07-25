@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aqR-B3-JR1">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Counter View Controller-->
+        <scene sceneID="SnB-sc-wJq">
+            <objects>
+                <viewController storyboardIdentifier="CounterViewController" id="aqR-B3-JR1" customClass="CounterViewController" customModule="ReduxCounterExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dck-VR-bko"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ur1-hF-gEm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xo2-yo-OXI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fb3-xG-rLR">
+                                <rect key="frame" x="165" y="226" width="270" height="148"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtU-f5-TyP">
+                                        <rect key="frame" x="87" y="0.0" width="97" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msx-Fb-bnC" userLabel="Big Decrement">
+                                        <rect key="frame" x="0.0" y="88" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="5pr-mp-Z09"/>
+                                            <constraint firstAttribute="height" constant="60" id="NIW-Rp-vsQ"/>
+                                        </constraints>
+                                        <state key="normal" title="-5"/>
+                                        <connections>
+                                            <action selector="didTapBigDecrement" destination="aqR-B3-JR1" eventType="touchUpInside" id="PZN-LF-bQb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYJ-US-b2p" userLabel="Small Decrement">
+                                        <rect key="frame" x="70" y="88" width="60" height="60"/>
+                                        <state key="normal" title="-1"/>
+                                        <connections>
+                                            <action selector="didTapSmallDecrement" destination="aqR-B3-JR1" eventType="touchUpInside" id="re0-pR-rLw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rL-Wg-AVQ" userLabel="Small Increment">
+                                        <rect key="frame" x="140" y="88" width="60" height="60"/>
+                                        <state key="normal" title="+1"/>
+                                        <connections>
+                                            <action selector="didTapSmallIncrement" destination="aqR-B3-JR1" eventType="touchUpInside" id="ECZ-PN-OyA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-V0-2hN" userLabel="Big Increment">
+                                        <rect key="frame" x="210" y="88" width="60" height="60"/>
+                                        <state key="normal" title="+5"/>
+                                        <connections>
+                                            <action selector="didTapBigIncrement" destination="aqR-B3-JR1" eventType="touchUpInside" id="nda-iv-LAu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="RZF-V0-2hN" secondAttribute="trailing" id="77m-6o-DJA"/>
+                                    <constraint firstItem="5rL-Wg-AVQ" firstAttribute="centerY" secondItem="GYJ-US-b2p" secondAttribute="centerY" id="7Au-gU-yOE"/>
+                                    <constraint firstItem="GYJ-US-b2p" firstAttribute="leading" secondItem="msx-Fb-bnC" secondAttribute="trailing" constant="10" id="9Yu-fJ-RHo"/>
+                                    <constraint firstItem="GYJ-US-b2p" firstAttribute="height" secondItem="msx-Fb-bnC" secondAttribute="height" id="CTy-Lb-fM2"/>
+                                    <constraint firstItem="msx-Fb-bnC" firstAttribute="leading" secondItem="Fb3-xG-rLR" secondAttribute="leading" id="DQP-PC-AkW"/>
+                                    <constraint firstItem="msx-Fb-bnC" firstAttribute="top" secondItem="HtU-f5-TyP" secondAttribute="bottom" constant="40" id="Q31-n7-PHE"/>
+                                    <constraint firstItem="HtU-f5-TyP" firstAttribute="top" secondItem="Fb3-xG-rLR" secondAttribute="top" id="WFd-7f-ZO8"/>
+                                    <constraint firstItem="RZF-V0-2hN" firstAttribute="leading" secondItem="5rL-Wg-AVQ" secondAttribute="trailing" constant="10" id="XDR-w0-dRi"/>
+                                    <constraint firstItem="GYJ-US-b2p" firstAttribute="width" secondItem="msx-Fb-bnC" secondAttribute="width" id="You-F2-Csu"/>
+                                    <constraint firstItem="RZF-V0-2hN" firstAttribute="centerY" secondItem="5rL-Wg-AVQ" secondAttribute="centerY" id="eOc-Kw-qDt"/>
+                                    <constraint firstItem="GYJ-US-b2p" firstAttribute="centerY" secondItem="msx-Fb-bnC" secondAttribute="centerY" id="fx6-oA-sPJ"/>
+                                    <constraint firstItem="5rL-Wg-AVQ" firstAttribute="height" secondItem="GYJ-US-b2p" secondAttribute="height" id="gyM-Xz-mqP"/>
+                                    <constraint firstItem="5rL-Wg-AVQ" firstAttribute="leading" secondItem="GYJ-US-b2p" secondAttribute="trailing" constant="10" id="h47-AA-hu4"/>
+                                    <constraint firstItem="5rL-Wg-AVQ" firstAttribute="width" secondItem="GYJ-US-b2p" secondAttribute="width" id="hzu-Fe-JLB"/>
+                                    <constraint firstItem="RZF-V0-2hN" firstAttribute="width" secondItem="5rL-Wg-AVQ" secondAttribute="width" id="oTK-rn-O3H"/>
+                                    <constraint firstItem="RZF-V0-2hN" firstAttribute="height" secondItem="5rL-Wg-AVQ" secondAttribute="height" id="oyB-gA-vEZ"/>
+                                    <constraint firstItem="HtU-f5-TyP" firstAttribute="centerX" secondItem="Fb3-xG-rLR" secondAttribute="centerX" id="s6E-u4-X6L"/>
+                                    <constraint firstAttribute="bottom" secondItem="msx-Fb-bnC" secondAttribute="bottom" id="sw1-5Z-PVO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fb3-xG-rLR" firstAttribute="centerX" secondItem="Xo2-yo-OXI" secondAttribute="centerX" id="Ibu-FV-aBD"/>
+                            <constraint firstItem="Fb3-xG-rLR" firstAttribute="centerY" secondItem="Xo2-yo-OXI" secondAttribute="centerY" id="KRz-cI-0zk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="HtU-f5-TyP" id="KLL-dz-cOB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hTp-AX-33l" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="410" y="428"/>
+        </scene>
+    </scenes>
+</document>
