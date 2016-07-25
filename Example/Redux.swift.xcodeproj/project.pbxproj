@@ -10,10 +10,8 @@
 		244933CEC39DB9B9C5E49B5A /* Pods_Redux_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */; };
 		7B532EC94304CEFD0230C67B /* Pods_ReduxCounterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E34534853BE317E3B0B5918 /* Pods_ReduxCounterExample.framework */; };
 		B36FC85B1D451EE500EED804 /* ReduxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36FC85A1D451EE500EED804 /* ReduxSpec.swift */; };
-		B374D1151D4691F2009BC5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1121D4691F2009BC5DD /* AppDelegate.swift */; };
 		B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
-		B374D1171D4691F2009BC5DD /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1141D4691F2009BC5DD /* CounterViewController.swift */; };
-		B3859CA71D45C5510046F1F6 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3859CA61D45C5510046F1F6 /* CounterStore.swift */; };
+		B374D1191D4695EB009BC5DD /* CounterSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1181D4695EB009BC5DD /* CounterSubscriber.swift */; };
 		B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */; };
 		B3859CBA1D468B960046F1F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3859CB81D468B960046F1F6 /* Main.storyboard */; };
 		B3859CBC1D468B960046F1F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3859CBB1D468B960046F1F6 /* Assets.xcassets */; };
@@ -32,7 +30,7 @@
 		B374D1121D4691F2009BC5DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B374D1131D4691F2009BC5DD /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
 		B374D1141D4691F2009BC5DD /* CounterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
-		B3859CA61D45C5510046F1F6 /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
+		B374D1181D4695EB009BC5DD /* CounterSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterSubscriber.swift; sourceTree = "<group>"; };
 		B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentificationStore.swift; sourceTree = "<group>"; };
 		B3859CB21D468B960046F1F6 /* ReduxCounterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxCounterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3859CB91D468B960046F1F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,8 +100,8 @@
 			children = (
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				B36FC85A1D451EE500EED804 /* ReduxSpec.swift */,
-				B3859CA61D45C5510046F1F6 /* CounterStore.swift */,
 				B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */,
+				B374D1181D4695EB009BC5DD /* CounterSubscriber.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -192,6 +190,7 @@
 				B3859CB01D468B960046F1F6 /* Resources */,
 				442614C494B87AF909676CE2 /* 📦 Embed Pods Frameworks */,
 				B58E936A2B8C11054E7ED247 /* 📦 Copy Pods Resources */,
+				B374D11A1D4696F7009BC5DD /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -305,6 +304,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReduxCounterExample/Pods-ReduxCounterExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B374D11A1D4696F7009BC5DD /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		B3859CAA1D45C8680046F1F6 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,10 +384,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B374D1191D4695EB009BC5DD /* CounterSubscriber.swift in Sources */,
 				B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */,
-				B374D1151D4691F2009BC5DD /* AppDelegate.swift in Sources */,
-				B3859CA71D45C5510046F1F6 /* CounterStore.swift in Sources */,
-				B374D1171D4691F2009BC5DD /* CounterViewController.swift in Sources */,
 				B36FC85B1D451EE500EED804 /* ReduxSpec.swift in Sources */,
 				B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */,
 			);

@@ -52,10 +52,10 @@ class ReduxSpec: QuickSpec {
 
             expect(stateReceived?.counter).toEventually(equal(0))
 
-            store.dispatch(CounterIncrementAction(increment: 5))
+            store.dispatch(IncrementAction(amount: 5))
             expect(stateReceived?.counter).toEventually(equal(5))
 
-            store.dispatch(CounterIncrementAction(increment: -2))
+            store.dispatch(DecrementAction(amount: 2))
             expect(stateReceived?.counter).toEventually(equal(3))
         }
 
@@ -70,7 +70,7 @@ class ReduxSpec: QuickSpec {
             store.dispatch { dispatch in
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
                     dispatch_async(dispatch_get_main_queue()) {
-                        dispatch(CounterIncrementAction(increment: 3))
+                        dispatch(IncrementAction(amount: 3))
                     }
                 }
             }
@@ -86,11 +86,11 @@ class ReduxSpec: QuickSpec {
 
             expect(subscriber.counter).toEventually(equal(0))
 
-            store.dispatch(CounterIncrementAction(increment: 2))
+            store.dispatch(IncrementAction(amount: 2))
             expect(subscriber.counter).toEventually(equal(2))
 
             unsubscribe()
-            store.dispatch(CounterIncrementAction(increment: 3))
+            store.dispatch(IncrementAction(amount: 3))
             expect(subscriber.counter).toEventually(equal(2))
         }
 
@@ -102,11 +102,11 @@ class ReduxSpec: QuickSpec {
 
             expect(subscriber.connection).toEventuallyNot(beNil())
 
-            subscriber.connection?.dispatch(CounterIncrementAction(increment: 3))
+            subscriber.connection?.dispatch(IncrementAction(amount: 3))
             expect(subscriber.counter).toEventually(equal(3))
 
             subscriber.connection?.unsubscribe()
-            subscriber.connection?.dispatch(CounterIncrementAction(increment: 3))
+            subscriber.connection?.dispatch(IncrementAction(amount: 3))
             expect(subscriber.counter).toEventually(equal(3))
         }
     }

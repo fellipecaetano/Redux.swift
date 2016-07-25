@@ -12,15 +12,15 @@ class CounterViewController: UIViewController, StateConnectable, Subscriber {
     deinit {
         connection?.unsubscribe()
     }
-    
+
     func connect(with connection: StateConnection) {
         self.connection = connection
     }
-    
+
     func select(state: CounterState) -> Int {
         return state.counter
     }
-    
+
     func receive(selection: Int) {
         counterLabel?.text = String(selection)
     }
