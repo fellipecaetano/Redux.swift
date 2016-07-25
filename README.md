@@ -101,11 +101,10 @@ The `Example` directory contains a project holding the tests for Redux.swift. To
 
 ## Installation
 
-Redux.swift is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Redux.swift is available through [CocoaPods](http://cocoapods.org), a dependency manager for Cocoa projects. CocoaPods can be downloaded as a stand-alone app and can also be installed through [RubyGems](https://rubygems.org/):
 
-```ruby
-pod "Redux.swift"
+```bash
+$ gem install cocoapods
 ```
 
 ## Disclaimer
