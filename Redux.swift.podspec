@@ -4,9 +4,9 @@ Pod::Spec.new do |s|
   s.version = '0.1.0'
   s.summary = 'A short description of Redux.swift.'
 
-  s.description = <<- DESC
+  s.description = <<-DESC
 TODO: Add long description of the pod here.
-                      DESC
+                     DESC
 
   s.homepage = 'https://github.com/fellipecaetano/Redux.swift'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
