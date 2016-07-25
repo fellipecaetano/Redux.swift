@@ -7,6 +7,8 @@
 
 Redux.swift is an implementation of a predictable state container, written in Swift. Inspired by Redux and projects such as ReSwift, it aims to enforce separation of concerns and a unidirectional data flow by focusing your entire app state in a single data structure that cannot be mutated directly, instead relying on an action dispatch mechanism to describe changes.
 
+Redux.swift is very small and I strived for clarity when writing it, so hopefully the whole code can be easily understood. It is not meant to be a comprehensive translation of Redux, nor do I want it to replace mature and solid projects such as ReSwift. It is rather an experiment and an exercise, and I hope you will have as much fun using it as I did writing it.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
