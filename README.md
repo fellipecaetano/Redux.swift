@@ -94,6 +94,11 @@ The `Example` directory contains a project holding the tests for Redux.swift. To
 4. Select the `Redux.swift-Example` target in the target selection dropdown near the Stop button
 5. Press `⌘U` or click `Test` from the `Product` menu
 
+## Requirements
+
+- iOS 8.0+ / Mac OS X 10.9+ / tvOS 9.0+ / watchOS 2.0+
+- Xcode 7.3+
+
 ## Installation
 
 Redux.swift is available through [CocoaPods](http://cocoapods.org). To install
