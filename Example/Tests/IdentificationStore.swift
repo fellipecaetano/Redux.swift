@@ -10,11 +10,11 @@ class IdentificationStore: Publisher, Dispatch {
             return state ?? IdentificationState.initial
         }
     }
-    
+
     func subscribe(subscription: IdentificationState -> Void) -> Void -> Void {
         return store.subscribe(subscription)
     }
-    
+
     func dispatch(action: Action) {
         store.dispatch(action)
     }
@@ -22,7 +22,7 @@ class IdentificationStore: Publisher, Dispatch {
 
 struct IdentificationState {
     let identifier: String
-    
+
     static var initial: IdentificationState {
         return IdentificationState(identifier: "initial")
     }

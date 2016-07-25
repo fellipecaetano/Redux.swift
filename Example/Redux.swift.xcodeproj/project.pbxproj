@@ -51,6 +51,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				B3859CAB1D45C8B80046F1F6 /* Supporting Files */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -104,6 +105,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B3859CAB1D45C8B80046F1F6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,6 +125,7 @@
 				607FACE31AFB9204008FA782 /* Resources */,
 				F975B8A48D87DA8D6E1CB05E /* 📦 Embed Pods Frameworks */,
 				0B5D53B2D6D8AA284A39F4ED /* 📦 Copy Pods Resources */,
+				B3859CAA1D45C8680046F1F6 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -185,6 +194,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Redux.swift_Tests/Pods-Redux.swift_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B3859CAA1D45C8680046F1F6 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		C078B893AAC55B48863F2C66 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
