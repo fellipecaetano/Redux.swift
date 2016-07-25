@@ -12,8 +12,8 @@ Redux.swift is very small and I strived for clarity when writing it, so hopefull
 ## Principles
 
 - **Single source of truth**: the state of your whole application is stored in a single hierarchical data structure. This makes it easier to reason about state at any given point in time, simplifies state persistence and improves code readability since it's trivial to derive definitions for each branch of your state tree.
-- **State is read-only**: state can only be mutated through dispatched *actions*, lightweight objects that describe what should be changed. Since mutations are centralized, inconsistencies are infrequent and race-conditions become easier to avoid.
-- **Mutations are applied by pure functions**: actions are only descriptors of changes. The actual logic that determines how those changes are applied is performed by pure functions called *reducers*, which receive the current snapshot of a state branch and an action, and return a new snapshot of how the state should look after the change.
+- **State is read-only**: state can only be mutated through dispatched **actions**, lightweight objects that describe what should be changed. Since mutations are centralized, inconsistencies are infrequent and race-conditions become easier to avoid.
+- **Mutations are applied by pure functions**: actions are only descriptors of changes. The actual logic that determines how those changes are applied is performed by pure functions called **reducers**, which receive the current snapshot of a state branch and an action, and return a new snapshot of how the state should look after the change.
 
 ## Example
 
