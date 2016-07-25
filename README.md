@@ -9,16 +9,16 @@ Redux.swift is an implementation of a predictable state container, written in Sw
 
 ## Contents
 
-- [Principles](#principles)
-- [Usage](#usage)
-- [Example](#example)
-- [Testing](#testing)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Disclaimer](#disclaimer)
-- [Acknowledgements](#acknowledgements)
-- [Author](#author)
-- [License](#license)
+- [Principles](#Principles)
+- [Usage](#Usage)
+- [Example](#Example)
+- [Testing](#Testing)
+- [Requirements](#Requirements)
+- [Installation](#Installation)
+- [Disclaimer](#Disclaimer)
+- [Acknowledgements](#Acknowledgements)
+- [Author](#Author)
+- [License](#License)
 
 ## Principles
 
