@@ -102,16 +102,16 @@ private struct AnyStateConnection: StateConnection {
     }
 }
 
-public protocol StateConnectable {
-    mutating func connect(with connection: StateConnection)
+public protocol StateConnectable: class {
+    func connect(with connection: StateConnection)
 }
 
 extension StateConnectable where Self: Subscriber {
-    mutating func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
+    public func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
         connect(with: connector.connection(to: self))
     }
     
-    mutating func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
+    public func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
         connect(to: connector)
         return self
     }

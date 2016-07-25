@@ -19,8 +19,9 @@ struct CounterIncrementAction: Action {
     let increment: Int
 }
 
-class CounterSubscriber: Subscriber {
+class CounterSubscriber: Subscriber, StateConnectable {
     var counter: Int
+    var connection: StateConnection?
     
     init (counter: Int) {
         self.counter = counter
@@ -32,6 +33,10 @@ class CounterSubscriber: Subscriber {
 
     func receive(selection: Int) {
         self.counter = selection
+    }
+    
+    func connect(with connection: StateConnection) {
+        self.connection = connection
     }
 }
 
@@ -130,6 +135,24 @@ class ReduxSpec: QuickSpec {
             
             store.dispatch(CounterIncrementAction(increment: 3))
             expect(subscriber.counter).toEventually(equal(2))
+        }
+        
+        it("connnects to StateConnectables") {
+            let store = Store<CounterState>(reducer: { state, action in
+                return CounterState(counter: state!.counter + (action as! CounterIncrementAction).increment)
+            }, initialState: CounterState(counter: 0))
+            
+            let subscriber = CounterSubscriber(counter: -1)
+            subscriber.connect(to: store)
+            
+            expect(subscriber.connection).toEventuallyNot(beNil())
+            
+            subscriber.connection?.dispatch(CounterIncrementAction(increment: 3))
+            expect(subscriber.counter).toEventually(equal(3))
+            
+            subscriber.connection?.unsubscribe()
+            subscriber.connection?.dispatch(CounterIncrementAction(increment: 3))
+            expect(subscriber.counter).toEventually(equal(3))
         }
     }
 }
