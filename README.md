@@ -33,6 +33,14 @@ struct IncrementAction: Action {
 }
 ```
 
+Then you would define a `store`, a data structure used to hold and safeguard your state. This store will receive dispatched actions and call your reducers to transform state based on those actions. A typical application would define only one store and hold it in memory for its lifetime:
+
+```swift
+let store = Store<CounterState>(initialState: CounterState(counter: 0)) { state, action in
+    // ...
+}
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
