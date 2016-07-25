@@ -127,7 +127,7 @@ Redux.swift is very small and I strived for clarity when writing it, so hopefull
 
 ## Acknowledgements
 
-- [Dan Abramov](http://twitter.com/gaeron) and the team behind [Redux](http://redux.js.org)
+- [Dan Abramov](http://twitter.com/dan_abramov) and the team behind [Redux](http://redux.js.org)
 - [Benjamin Encz](http://www.benjamin-encz.de/) and the team behind [ReSwift](https://github.com/ReSwift/ReSwift)
 
 ## Author
