@@ -54,8 +54,7 @@ public protocol Publisher {
 
 extension Publisher {
     public func subscribe <T: Subscriber where T.Publishing == Publishing> (subscriber subscriber: T) -> Void -> Void {
-        var mutableSubscriber = subscriber
-        return subscribe { mutableSubscriber.receive(subscriber.select($0)) }
+        return subscribe { subscriber.receive(subscriber.select($0)) }
     }
 }
 
