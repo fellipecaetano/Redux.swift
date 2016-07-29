@@ -122,7 +122,7 @@ extension Publisher where Self: Dispatch {
      - parameter subscriber: The compatible `Subscriber`.
      - returns: A `dispatch` function and an `unsubscribe` handle, encapsulated.
     */
-    func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnection {
+    func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnectionProtocol {
         let dispatch = { self.dispatch($0) }
         let unsubscribe = self.subscribe(subscriber: subscriber)
         return AnyStateConnection(dispatch: dispatch, unsubscribe: unsubscribe)
@@ -157,14 +157,14 @@ public protocol Subscriber: class {
 /**
  Wraps a `dispatch` function and an `unsubscribe` handle.
  */
-public protocol StateConnection: Dispatch {
+public protocol StateConnectionProtocol: Dispatch {
     /**
      Typically used to unsubscribe a `Subscriber` associated with this `StateConnection`.
     */
     func unsubscribe()
 }
 
-private struct AnyStateConnection: StateConnection {
+private struct AnyStateConnection: StateConnectionProtocol {
     private let doDispatch: Action -> Void
     private let doUnsubscribe: Void -> Void
 
@@ -191,7 +191,7 @@ public protocol StateConnectable: class {
 
      - parameter connection: The connection to receive.
     */
-    func connect(with connection: StateConnection)
+    func connect(with connection: StateConnectionProtocol)
 }
 
 extension StateConnectable where Self: Subscriber {

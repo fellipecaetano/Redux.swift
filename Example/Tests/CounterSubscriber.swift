@@ -10,14 +10,14 @@ import Foundation
 import Redux
 
 class CounterSubscriber: StateConnectable, Subscriber {
-    private(set) var connection: StateConnection?
+    private(set) var connection: StateConnectionProtocol?
     private(set) var counter: Int
 
     init (counter: Int) {
         self.counter = counter
     }
 
-    func connect(with connection: StateConnection) {
+    func connect(with connection: StateConnectionProtocol) {
         self.connection = connection
     }
 

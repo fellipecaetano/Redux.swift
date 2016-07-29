@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		244933CEC39DB9B9C5E49B5A /* Pods_Redux_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */; };
 		7B532EC94304CEFD0230C67B /* Pods_ReduxCounterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E34534853BE317E3B0B5918 /* Pods_ReduxCounterExample.framework */; };
+		B33D0A2F1D4B92BD00F8FC29 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1141D4691F2009BC5DD /* CounterViewController.swift */; };
+		B33D0A301D4B92C400F8FC29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1121D4691F2009BC5DD /* AppDelegate.swift */; };
+		B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B36FC85B1D451EE500EED804 /* ReduxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36FC85A1D451EE500EED804 /* ReduxSpec.swift */; };
 		B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B374D1191D4695EB009BC5DD /* CounterSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1181D4695EB009BC5DD /* CounterSubscriber.swift */; };
@@ -395,6 +398,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33D0A301D4B92C400F8FC29 /* AppDelegate.swift in Sources */,
+				B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */,
+				B33D0A2F1D4B92BD00F8FC29 /* CounterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,10 +513,7 @@
 			baseConfigurationReference = 557EDF9142D369CEBB35C84F /* Pods-Redux.swift_Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -528,10 +531,7 @@
 			baseConfigurationReference = F6349902FA71B9ECDB069B67 /* Pods-Redux.swift_Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";

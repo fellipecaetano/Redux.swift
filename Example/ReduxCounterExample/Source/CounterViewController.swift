@@ -7,13 +7,13 @@ class CounterViewController: UIViewController, StateConnectable, Subscriber {
             counterLabel.text = String(0)
         }
     }
-    private var connection: StateConnection?
+    private var connection: StateConnectionProtocol?
 
     deinit {
         connection?.unsubscribe()
     }
 
-    func connect(with connection: StateConnection) {
+    func connect(with connection: StateConnectionProtocol) {
         self.connection = connection
     }
 

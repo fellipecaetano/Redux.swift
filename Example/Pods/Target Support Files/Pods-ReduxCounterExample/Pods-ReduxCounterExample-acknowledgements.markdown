@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## Redux.swift
 
-Copyright (c) 2016 Fellipe Caetano <fellipe.caetano@movile.com>
+Copyright (c) 2016 Fellipe Caetano <fellipe.caetano4@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
