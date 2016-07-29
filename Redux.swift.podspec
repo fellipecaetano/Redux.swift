@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'Redux.swift'
   s.module_name = 'Redux'
-  s.version = '0.1.3'
+  s.version = '0.2.0'
   s.summary = 'An implementation of a predictable state container in Swift.'
 
   s.description = <<-DESC

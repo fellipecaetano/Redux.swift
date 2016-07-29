@@ -162,7 +162,7 @@ public protocol StateConnection: Dispatch {
     /**
      Typically used to subscribe a previously associated `Subscriber` to changes published by the
      `Publisher` that created this `StateConnection`.
-     
+
      - returns: A handle that unsubscribes the previously associated `Subscriber`.
     */
     func subscribe() -> (Void -> Void)
