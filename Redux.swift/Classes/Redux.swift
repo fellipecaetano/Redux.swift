@@ -122,10 +122,10 @@ extension Publisher where Self: Dispatch {
      - parameter subscriber: The compatible `Subscriber`.
      - returns: A `dispatch` function and an `unsubscribe` handle, encapsulated.
     */
-    func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnectionProtocol {
+    func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnection {
         let dispatch = { self.dispatch($0) }
-        let unsubscribe = self.subscribe(subscriber: subscriber)
-        return AnyStateConnection(dispatch: dispatch, unsubscribe: unsubscribe)
+        let subscribe = { self.subscribe(subscriber: subscriber) }
+        return AnyStateConnection(subscribe: subscribe, dispatch: dispatch)
     }
 }
 
@@ -157,20 +157,26 @@ public protocol Subscriber: class {
 /**
  Wraps a `dispatch` function and an `unsubscribe` handle.
  */
-public protocol StateConnectionProtocol: Dispatch {
+public protocol StateConnection: Dispatch {
     /**
      Typically used to unsubscribe a `Subscriber` associated with this `StateConnection`.
     */
+    func subscribe()
     func unsubscribe()
 }
 
-private struct AnyStateConnection: StateConnectionProtocol {
+private class AnyStateConnection: StateConnection {
+    private let doSubscribe: Void -> (Void -> Void)
     private let doDispatch: Action -> Void
-    private let doUnsubscribe: Void -> Void
+    private var doUnsubscribe: (Void -> Void)?
 
-    private init (dispatch: Action -> Void, unsubscribe: Void -> Void) {
+    private init (subscribe: Void -> (Void -> Void), dispatch: Action -> Void) {
         doDispatch = dispatch
-        doUnsubscribe = unsubscribe
+        doSubscribe = subscribe
+    }
+
+    func subscribe() {
+        doUnsubscribe = doSubscribe()
     }
 
     func dispatch(action: Action) {
@@ -178,7 +184,7 @@ private struct AnyStateConnection: StateConnectionProtocol {
     }
 
     func unsubscribe() {
-        doUnsubscribe()
+        doUnsubscribe?()
     }
 }
 
@@ -191,7 +197,7 @@ public protocol StateConnectable: class {
 
      - parameter connection: The connection to receive.
     */
-    func connect(with connection: StateConnectionProtocol)
+    func connect(with connection: StateConnection)
 }
 
 extension StateConnectable where Self: Subscriber {

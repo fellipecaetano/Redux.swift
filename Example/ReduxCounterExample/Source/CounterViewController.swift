@@ -1,28 +1,21 @@
 import UIKit
 import Redux
 
-class CounterViewController: UIViewController, StateConnectable, Subscriber {
-    @IBOutlet private weak var counterLabel: UILabel! {
-        didSet {
-            counterLabel.text = String(0)
-        }
-    }
-    private var connection: StateConnectionProtocol?
+class CounterViewController: UIViewController, StateConnectable {
+    @IBOutlet private weak var counterLabel: UILabel!
+    private var connection: StateConnection?
 
-    deinit {
-        connection?.unsubscribe()
-    }
-
-    func connect(with connection: StateConnectionProtocol) {
+    func connect(with connection: StateConnection) {
         self.connection = connection
     }
 
-    func select(state: CounterState) -> Int {
-        return state.counter
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        connection?.subscribe()
     }
 
-    func receive(selection: Int) {
-        counterLabel?.text = String(selection)
+    deinit {
+        connection?.unsubscribe()
     }
 
     @IBAction func didTapBigDecrement() {
@@ -39,5 +32,15 @@ class CounterViewController: UIViewController, StateConnectable, Subscriber {
 
     @IBAction func didTapBigIncrement() {
         connection?.dispatch(IncrementAction(amount: 5))
+    }
+}
+
+extension CounterViewController: Subscriber {
+    func select(state: CounterState) -> Int {
+        return state.counter
+    }
+
+    func receive(selection: Int) {
+        counterLabel.text = String(selection)
     }
 }

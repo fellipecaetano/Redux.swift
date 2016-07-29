@@ -99,6 +99,7 @@ class ReduxSpec: QuickSpec {
 
             let subscriber = CounterSubscriber(counter: -1)
             subscriber.connect(to: store)
+            subscriber.connection?.subscribe()
 
             expect(subscriber.connection).toEventuallyNot(beNil())
 
