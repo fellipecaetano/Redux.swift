@@ -161,30 +161,24 @@ public protocol StateConnection: Dispatch {
     /**
      Typically used to unsubscribe a `Subscriber` associated with this `StateConnection`.
     */
-    func subscribe()
-    func unsubscribe()
+    func subscribe() -> (Void -> Void)
 }
 
-private class AnyStateConnection: StateConnection {
+private struct AnyStateConnection: StateConnection {
     private let doSubscribe: Void -> (Void -> Void)
     private let doDispatch: Action -> Void
-    private var doUnsubscribe: (Void -> Void)?
 
     private init (subscribe: Void -> (Void -> Void), dispatch: Action -> Void) {
         doDispatch = dispatch
         doSubscribe = subscribe
     }
 
-    func subscribe() {
-        doUnsubscribe = doSubscribe()
+    func subscribe() -> (Void -> Void) {
+        return doSubscribe()
     }
 
     func dispatch(action: Action) {
         doDispatch(action)
-    }
-
-    func unsubscribe() {
-        doUnsubscribe?()
     }
 }
 

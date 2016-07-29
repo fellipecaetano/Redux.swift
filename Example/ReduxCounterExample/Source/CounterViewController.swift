@@ -4,6 +4,7 @@ import Redux
 class CounterViewController: UIViewController, StateConnectable {
     @IBOutlet private weak var counterLabel: UILabel!
     private var connection: StateConnection?
+    private var unsubscribe: (Void -> Void)?
 
     func connect(with connection: StateConnection) {
         self.connection = connection
@@ -11,11 +12,11 @@ class CounterViewController: UIViewController, StateConnectable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        connection?.subscribe()
+        unsubscribe = connection?.subscribe()
     }
 
     deinit {
-        connection?.unsubscribe()
+        unsubscribe?()
     }
 
     @IBAction func didTapBigDecrement() {

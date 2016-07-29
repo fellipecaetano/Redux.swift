@@ -99,14 +99,14 @@ class ReduxSpec: QuickSpec {
 
             let subscriber = CounterSubscriber(counter: -1)
             subscriber.connect(to: store)
-            subscriber.connection?.subscribe()
+            let unsubscribe = subscriber.connection?.subscribe()
 
             expect(subscriber.connection).toEventuallyNot(beNil())
 
             subscriber.connection?.dispatch(IncrementAction(amount: 3))
             expect(subscriber.counter).toEventually(equal(3))
 
-            subscriber.connection?.unsubscribe()
+            unsubscribe?()
             subscriber.connection?.dispatch(IncrementAction(amount: 3))
             expect(subscriber.counter).toEventually(equal(3))
         }
