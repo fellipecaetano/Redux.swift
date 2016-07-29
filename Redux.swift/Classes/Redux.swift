@@ -117,10 +117,11 @@ extension Publisher {
 
 extension Publisher where Self: Dispatch {
     /**
-     Subscribes a `Subscriber` that is compatible with this `Publisher`.
+     Creates a `StateConnection` to a compatible `Subscriber` (i. e. a subscriber that subscribes to changes to the same kind of object published by this `Publisher`).
+     A `StateConnection` is an object that knows how to `subscribe()` and `dispatch()`.
 
      - parameter subscriber: The compatible `Subscriber`.
-     - returns: A `dispatch` function and an `unsubscribe` handle, encapsulated.
+     - returns: The connection.
     */
     func connection <T: Subscriber where T.Publishing == Publishing> (to subscriber: T) -> StateConnection {
         let dispatch = { self.dispatch($0) }
