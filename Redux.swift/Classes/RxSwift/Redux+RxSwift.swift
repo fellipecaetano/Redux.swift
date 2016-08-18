@@ -34,6 +34,10 @@ public struct StateSubject<T>: ObservableType, Dispatch {
     }
 }
 
+extension Store: ObservableType {
+    public typealias E = State
+}
+
 public extension ObservableType {
     @warn_unused_result(message="http://git.io/rxs.ud")
     func bindTo<S: Subscriber where S.Publishing == E>(subscriber: S) -> Disposable {
