@@ -12,10 +12,6 @@ class ReactiveCounterViewController: UIViewController {
         subject?.bindTo(self).addDisposableTo(disposeBag)
     }
 
-    private func renderCounter(counter: Int) {
-        counterLabel.text = String(counter)
-    }
-
     @IBAction func didTapBigDecrement() {
         subject?.dispatch(DecrementAction(amount: 5))
     }
