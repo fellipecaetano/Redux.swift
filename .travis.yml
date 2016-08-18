@@ -1,9 +1,8 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
-
 osx_image: xcode7.3
 language: objective-c
+before_install:
+  - pod repo update
+  - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -workspace Example/Redux.swift.xcworkspace -scheme Redux.swift-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+  - set -o pipefail && xcodebuild test -workspace Example/Redux.swift.xcworkspace -scheme Redux.swift-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
+  - travis_wait 30 pod lib lint
