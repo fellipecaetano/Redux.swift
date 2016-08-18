@@ -23,10 +23,27 @@
     "watchos": "2.0"
   },
   "requires_arc": true,
-  "source_files": "Redux.swift/Classes/**/*",
-  "dependencies": {
-    "RxSwift": [
-
-    ]
-  }
+  "default_subspecs": "Standard",
+  "subspecs": [
+    {
+      "name": "Standard",
+      "source_files": [
+        "Redux.swift/Classes/**/*"
+      ],
+      "exclude_files": [
+        "Redux.swift/Classes/RxSwift/**/*"
+      ]
+    },
+    {
+      "name": "RxSwift",
+      "source_files": [
+        "Redux.swift/Classes/**/*"
+      ],
+      "dependencies": {
+        "RxSwift": [
+          "~> 2.6"
+        ]
+      }
+    }
+  ]
 }
