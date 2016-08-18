@@ -51,6 +51,11 @@
                BlueprintName = "Redux.swift_Tests"
                ReferencedContainer = "container:Redux.swift.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ReduxSpec">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
