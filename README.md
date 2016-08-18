@@ -11,6 +11,7 @@ Redux.swift is an implementation of a predictable state container, written in Sw
 
 - [Principles](#principles)
 - [Usage](#usage)
+  - [RxSwift](#rxswift)
 - [Example](#example)
 - [Testing](#testing)
 - [Requirements](#requirements)
@@ -59,7 +60,7 @@ let store = Store<CounterState>(initialState: CounterState(counter: 0)) { state,
     switch action {
     case let action as IncrementAction:
         return CounterState(counter: state.counter + action.increment)
-        
+
     default:
         return state
     }
@@ -86,6 +87,12 @@ let unsubscribe = store.subscribe { //... }
 unsubscribe()
 
 ```
+
+### RxSwift
+
+The "reactive" programming model of Redux matches effortlessly with the concept of observable streams advocated by projects such as [RxSwift](https://github.com/ReactiveX/RxSwift).
+Therefore, Redux.swift ships an extension exposing `Publishers` as `Observables`, effectively turning state changes into a ReactiveX-compatible stream.
+If you include the `Redux.swift/RxSwift` subspec, `Store` conforms to `ObservableType` by default.
 
 ## Example
 
@@ -125,6 +132,15 @@ To integrate Redux.swift into your Xcode project using CocoaPods, specify it in 
 ```ruby
 target '<target_name>' do
   pod 'Redux.swift'
+end
+```
+
+Redux.swift also couples nicely with [RxSwift](https://github.com/ReactiveX/RxSwift). The `Redux.swift/RxSwift` subspec ships the entire project plus
+extensions that integrate Redux.swift with RxSwift:
+
+```ruby
+target '<target_name>' do
+  pod 'Redux.swift/RxSwift'
 end
 ```
 
