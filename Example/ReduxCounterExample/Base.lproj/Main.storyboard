@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Counter View Controller-->
+        <!--Reactive Counter View Controller-->
         <scene sceneID="SnB-sc-wJq">
             <objects>
-                <viewController storyboardIdentifier="CounterViewController" id="aqR-B3-JR1" customClass="CounterViewController" customModule="ReduxCounterExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aqR-B3-JR1" customClass="ReactiveCounterViewController" customModule="ReduxCounterExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dck-VR-bko"/>
                         <viewControllerLayoutGuide type="bottom" id="Ur1-hF-gEm"/>
@@ -89,7 +89,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="counterLabel" destination="HtU-f5-TyP" id="KLL-dz-cOB"/>
+                        <outlet property="counterLabel" destination="HtU-f5-TyP" id="RRo-QT-cSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTp-AX-33l" sceneMemberID="firstResponder"/>
