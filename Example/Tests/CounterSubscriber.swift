@@ -13,7 +13,7 @@ class CounterSubscriber: StateConnectable, Subscriber {
     private(set) var connection: StateConnection?
     private(set) var counter: Int
 
-    init (counter: Int) {
+    init (counter: Int = 0) {
         self.counter = counter
     }
 

@@ -9,9 +9,7 @@ class ReactiveCounterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        subject?.map { $0.counter }
-            .subscribeNext(renderCounter)
-            .addDisposableTo(disposeBag)
+        subject?.bindTo(self).addDisposableTo(disposeBag)
     }
 
     private func renderCounter(counter: Int) {
@@ -32,5 +30,15 @@ class ReactiveCounterViewController: UIViewController {
 
     @IBAction func didTapBigIncrement() {
         subject?.dispatch(IncrementAction(amount: 5))
+    }
+}
+
+extension ReactiveCounterViewController: Subscriber {
+    func select(state: CounterState) -> Int {
+        return state.counter
+    }
+
+    func receive(selection: Int) {
+        counterLabel.text = String(selection)
     }
 }
