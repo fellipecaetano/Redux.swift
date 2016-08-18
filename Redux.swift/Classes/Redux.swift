@@ -77,7 +77,7 @@ extension Dispatch {
      - parameter thunk: The closure that will be executed with an injected `dispatch` function.
      */
     public func dispatch(thunk: (Action -> Void) -> Void) {
-        thunk { self.dispatch($0) }
+        thunk(self.dispatch)
     }
 }
 
