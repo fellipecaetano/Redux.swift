@@ -84,12 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Redux.swift-RxSwift/Redux.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Redux.swift-iOS8.3/Redux.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RxSwift-iOS8.3/RxSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RxSwift/RxSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Redux.swift-RxSwift/Redux.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Redux.swift-iOS8.3/Redux.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RxSwift-iOS8.3/RxSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RxSwift/RxSwift.framework"
 fi

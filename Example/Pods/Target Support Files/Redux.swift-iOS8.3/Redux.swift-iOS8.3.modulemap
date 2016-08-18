@@ -1,5 +1,5 @@
 framework module Redux {
-  umbrella header "Redux.swift-umbrella.h"
+  umbrella header "Redux.swift-iOS8.3-umbrella.h"
 
   export *
   module * { export * }

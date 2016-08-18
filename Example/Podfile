@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'ReduxCounterExample' do
-  pod 'Redux.swift', :path => '../'
+  pod 'Redux.swift/RxSwift', :path => '../'
 end
 
 target 'Redux.swift_Tests' do
