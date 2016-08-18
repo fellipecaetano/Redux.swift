@@ -6,6 +6,5 @@ end
 
 target 'Redux.swift_Tests' do
   pod 'Redux.swift/RxSwift', :path => '../'
-  pod 'Quick', '~> 0.8'
   pod 'Nimble', '~> 3.0'
 end

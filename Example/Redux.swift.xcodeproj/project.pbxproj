@@ -13,7 +13,6 @@
 		B33D0A301D4B92C400F8FC29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1121D4691F2009BC5DD /* AppDelegate.swift */; };
 		B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B351BAD31D6614C900A27065 /* ReduxTests.swift */; };
-		B36FC85B1D451EE500EED804 /* ReduxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36FC85A1D451EE500EED804 /* ReduxSpec.swift */; };
 		B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B374D1191D4695EB009BC5DD /* CounterSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1181D4695EB009BC5DD /* CounterSubscriber.swift */; };
 		B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */; };
@@ -31,7 +30,6 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92E40A221381C132FF4A54CA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B351BAD31D6614C900A27065 /* ReduxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxTests.swift; sourceTree = "<group>"; };
-		B36FC85A1D451EE500EED804 /* ReduxSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxSpec.swift; sourceTree = "<group>"; };
 		B374D1121D4691F2009BC5DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B374D1131D4691F2009BC5DD /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
 		B374D1141D4691F2009BC5DD /* CounterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACE91AFB9204008FA782 /* Supporting Files */,
-				B36FC85A1D451EE500EED804 /* ReduxSpec.swift */,
 				B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */,
 				B374D1181D4695EB009BC5DD /* CounterSubscriber.swift */,
 				B351BAD31D6614C900A27065 /* ReduxTests.swift */,
@@ -392,7 +389,6 @@
 			files = (
 				B374D1191D4695EB009BC5DD /* CounterSubscriber.swift in Sources */,
 				B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */,
-				B36FC85B1D451EE500EED804 /* ReduxSpec.swift in Sources */,
 				B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */,
 				B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */,
 			);
