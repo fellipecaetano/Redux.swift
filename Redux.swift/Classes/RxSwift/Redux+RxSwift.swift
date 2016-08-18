@@ -9,3 +9,29 @@ public extension Publisher where Self: ObservableType {
         return AnonymousDisposable(unsubscribe)
     }
 }
+
+public extension Publisher where Self: protocol<ObservableType, Dispatch> {
+    func asSubject() -> StateSubject<Publishing> {
+        return StateSubject(subscribe: self.subscribe, dispatch: self.dispatch)
+    }
+}
+
+public struct StateSubject<T>: ObservableType, Dispatch {
+    public typealias E = T
+
+    private let doSubscribe: AnyObserver<T> -> Disposable
+    private let doDispatch: Action -> Void
+
+    init(subscribe: AnyObserver<T> -> Disposable, dispatch: Action -> Void) {
+        doSubscribe = subscribe
+        doDispatch = dispatch
+    }
+
+    public func subscribe<O: ObserverType where O.E == E>(observer: O) -> Disposable {
+        return doSubscribe(AnyObserver(observer))
+    }
+
+    public func dispatch(action: Action) {
+        doDispatch(action)
+    }
+}

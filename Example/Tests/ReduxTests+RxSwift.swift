@@ -45,4 +45,30 @@ class ReduxRxSwiftTests: XCTestCase {
         store.dispatch(action)
         expect(stateReceived?.identifier).toEventually(equal("initial"))
     }
+
+    func testSubjectDispatch() {
+        let store = CounterStore()
+        let subject = store.asSubject()
+        var stateReceived: CounterState?
+
+        store.asObservable().subscribeNext { state in
+            stateReceived = state
+        }.addDisposableTo(disposeBag)
+
+        subject.dispatch(IncrementAction(amount: 3))
+        expect(stateReceived?.counter).toEventually(equal(3))
+    }
+
+    func testSubjectObservation() {
+        let store = CounterStore()
+        let subject = store.asSubject()
+        var stateReceived: CounterState?
+
+        subject.asObservable().subscribeNext { state in
+            stateReceived = state
+        }.addDisposableTo(disposeBag)
+
+        store.dispatch(IncrementAction(amount: 5))
+        expect(stateReceived?.counter).toEventually(equal(5))
+    }
 }

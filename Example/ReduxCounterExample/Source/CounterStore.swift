@@ -1,15 +1,10 @@
-//
-//  CounterStore.swift
-//  Redux.swift
-//
-//  Created by Fellipe Caetano on 7/25/16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
-//
-
 import Foundation
 import Redux
+import RxSwift
 
-class CounterStore: Publisher, Dispatch {
+class CounterStore: Publisher, Dispatch, ObservableType {
+    typealias E = CounterState
+
     private let store = Store<CounterState>(initialState: CounterState()) { state, action in
         switch action {
         case let action as IncrementAction:
