@@ -40,7 +40,7 @@ extension Store: ObservableType {
 
 public extension ObservableType {
     @warn_unused_result(message="http://git.io/rxs.ud")
-    func bindTo<S: Subscriber where S.Publishing == E>(subscriber: S) -> Disposable {
+    func bindNext<S: Subscriber where S.Publishing == E>(to subscriber: S) -> Disposable {
         return map(subscriber.select).subscribeNext(subscriber.receive)
     }
 }

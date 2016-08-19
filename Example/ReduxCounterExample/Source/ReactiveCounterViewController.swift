@@ -9,7 +9,7 @@ class ReactiveCounterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        subject?.bindTo(self).addDisposableTo(disposeBag)
+        subject?.bindNext(to: self).addDisposableTo(disposeBag)
     }
 
     @IBAction func didTapBigDecrement() {
