@@ -2,7 +2,7 @@ import Foundation
 import Redux
 import RxSwift
 
-class CounterStore: Publisher, Dispatcher, ObservableType {
+class CounterStore: Publisher, StateReading, Dispatcher, ObservableType {
     typealias E = CounterState
 
     private let store = Store<CounterState>(initialState: CounterState()) { state, action in
@@ -24,6 +24,10 @@ class CounterStore: Publisher, Dispatcher, ObservableType {
 
     func dispatch(action: Action) {
         return store.dispatch(action)
+    }
+
+    var getState: Void -> CounterState {
+        return store.getState
     }
 }
 

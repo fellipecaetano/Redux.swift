@@ -66,7 +66,7 @@ public final class Store<State>: Publisher, StateReading, Dispatcher {
 
 public protocol StateReading {
     associatedtype State
-    
+
     /**
      Encloses the current state and provides a way to read hot snapshots
      of it.
@@ -90,7 +90,7 @@ public protocol Dispatcher {
 
 extension Dispatcher {
     /**
-     Executes a closure with an injected `dispatch` function. 
+     Executes a closure with an injected `dispatch` function.
      Useful asynchronous `Action` dispatches.
 
      - parameter thunk: The closure that will be executed with an injected `dispatch` function.
@@ -102,15 +102,15 @@ extension Dispatcher {
 
 extension Dispatcher where Self: StateReading {
     /**
-     Executes a closure with an injected `dispatch` function and a state accessor. 
+     Executes a closure with an injected `dispatch` function and a state accessor.
      Allows asynchronous `Action` dispatches as well as decisions based on
      the current state.
 
-     - parameter thunk: The closure that will be executed with 
+     - parameter thunk: The closure that will be executed with
      an injected `dispatch` function and a state accessor.
      */
-    public func dispatch(thunk: ((Action -> Void), (Void -> State)) -> Void) {
-        thunk(dispatch, getState)
+    public func dispatch(thunk: (dispatch: (Action -> Void), getState: (Void -> State)) -> Void) {
+        thunk(dispatch: dispatch, getState: getState)
     }
 }
 
