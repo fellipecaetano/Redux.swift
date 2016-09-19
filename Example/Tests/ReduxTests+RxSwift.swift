@@ -45,13 +45,4 @@ class ReduxRxSwiftTests: XCTestCase {
         store.dispatch(action)
         expect(stateReceived?.identifier).toEventually(equal("initial"))
     }
-
-    func testSubscriberIntegration() {
-        let subscriber = CounterSubscriber()
-        let store = CounterStore()
-
-        store.bindNext(to: subscriber).addDisposableTo(disposeBag)
-        store.dispatch(IncrementAction(amount: 4))
-        expect(subscriber.counter) == 4
-    }
 }

@@ -11,10 +11,3 @@ public extension Publisher where Self: ObservableType {
 extension Store: ObservableType {
     public typealias E = State
 }
-
-public extension ObservableType {
-    @warn_unused_result(message="http://git.io/rxs.ud")
-    func bindNext<S: Subscriber where S.Publishing == E>(to subscriber: S) -> Disposable {
-        return map(subscriber.select).subscribeNext(subscriber.receive)
-    }
-}
