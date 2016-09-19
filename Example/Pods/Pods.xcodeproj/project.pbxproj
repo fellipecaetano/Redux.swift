@@ -733,7 +733,7 @@
 		986463B325FE1E46A4B8FD4FD0435B86 /* DSL+Wait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DSL+Wait.swift"; path = "Sources/Nimble/DSL+Wait.swift"; sourceTree = "<group>"; };
 		9879C29ACD318AC694738AC58F736166 /* DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DSL.h; path = Sources/Nimble/objc/DSL.h; sourceTree = "<group>"; };
 		99892E14948FCFA7062345A37B92B19D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../RxSwift-iOS9.3/Info.plist"; sourceTree = "<group>"; };
-		998FB384DD583696B433D569E30C2AEC /* Redux+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Redux+RxSwift.swift"; sourceTree = "<group>"; };
+		998FB384DD583696B433D569E30C2AEC /* Redux+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Redux+RxSwift.swift"; path = "RxSwift/Redux+RxSwift.swift"; sourceTree = "<group>"; };
 		99CFD65EB7CBABECEC5296DD11083FC7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99D5B2194CC0840342C9DBA05F307F6F /* KVORepresentable+Swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "KVORepresentable+Swift.swift"; path = "RxCocoa/Common/KVORepresentable+Swift.swift"; sourceTree = "<group>"; };
 		99E917E7807A450C8A74E59059455033 /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImagePickerController+Rx.swift"; path = "RxCocoa/iOS/UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
@@ -978,14 +978,6 @@
 			name = RxSwift;
 			sourceTree = "<group>";
 		};
-		25D741E770D2C68137F68C36DE41DA14 /* RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				998FB384DD583696B433D569E30C2AEC /* Redux+RxSwift.swift */,
-			);
-			path = RxSwift;
-			sourceTree = "<group>";
-		};
 		26D436C636FA765599AD656A2F8F9365 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,8 +1031,8 @@
 		38BF609969EC7665F222EBEDFABB0EDF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				998FB384DD583696B433D569E30C2AEC /* Redux+RxSwift.swift */,
 				F0446E9A6EBEB2CD29DDEC0D221E3BB2 /* Redux.swift */,
-				25D741E770D2C68137F68C36DE41DA14 /* RxSwift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
