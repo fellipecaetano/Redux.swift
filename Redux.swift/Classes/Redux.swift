@@ -4,7 +4,7 @@ import Foundation
  The data structure responsible for holding application state, allowing controlled mutation through dispatched
  `Actions` and notifying interested parties that `subscribe` to state changes.
  */
-public final class Store<State>: Publisher, Dispatcher {
+public final class Store<State>: Publisher, StateReading, Dispatcher {
     private let reduce: (State, Action) -> State
 
     private var state: State {
@@ -54,6 +54,24 @@ public final class Store<State>: Publisher, Dispatcher {
     private func publish(newState: State) {
         subscribers.values.forEach { $0(newState) }
     }
+
+    public var getState: Void -> State {
+        return { self.state }
+    }
+}
+
+/**
+ Defines state-reading capabilities.
+ */
+
+public protocol StateReading {
+    associatedtype State
+    
+    /**
+     Encloses the current state and provides a way to read hot snapshots
+     of it.
+    */
+    var getState: Void -> State { get }
 }
 
 /**
@@ -72,12 +90,27 @@ public protocol Dispatcher {
 
 extension Dispatcher {
     /**
-     Executes a closure with an injected `dispatch` function. Useful for asynchronous `Action` dispatching.
+     Executes a closure with an injected `dispatch` function. 
+     Useful asynchronous `Action` dispatches.
 
      - parameter thunk: The closure that will be executed with an injected `dispatch` function.
      */
     public func dispatch(thunk: (Action -> Void) -> Void) {
         thunk(self.dispatch)
+    }
+}
+
+extension Dispatcher where Self: StateReading {
+    /**
+     Executes a closure with an injected `dispatch` function and a state accessor. 
+     Allows asynchronous `Action` dispatches as well as decisions based on
+     the current state.
+
+     - parameter thunk: The closure that will be executed with 
+     an injected `dispatch` function and a state accessor.
+     */
+    public func dispatch(thunk: ((Action -> Void), (Void -> State)) -> Void) {
+        thunk(dispatch, getState)
     }
 }
 
@@ -92,6 +125,7 @@ public protocol Action {}
  */
 public protocol Publisher {
     associatedtype Publishing
+
     /**
      Adds a handler to a generic event.
 
