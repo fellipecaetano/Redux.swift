@@ -174,12 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Redux.swift_Tests" */;
 			buildPhases = (
-				C078B893AAC55B48863F2C66 /* 📦 Check Pods Manifest.lock */,
+				C078B893AAC55B48863F2C66 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				F975B8A48D87DA8D6E1CB05E /* 📦 Embed Pods Frameworks */,
-				0B5D53B2D6D8AA284A39F4ED /* 📦 Copy Pods Resources */,
+				F975B8A48D87DA8D6E1CB05E /* [CP] Embed Pods Frameworks */,
+				0B5D53B2D6D8AA284A39F4ED /* [CP] Copy Pods Resources */,
 				B3859CAA1D45C8680046F1F6 /* Run SwiftLint */,
 			);
 			buildRules = (
@@ -195,12 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3859CD01D468B960046F1F6 /* Build configuration list for PBXNativeTarget "ReduxCounterExample" */;
 			buildPhases = (
-				39EB72D325EAA52444704626 /* 📦 Check Pods Manifest.lock */,
+				39EB72D325EAA52444704626 /* [CP] Check Pods Manifest.lock */,
 				B3859CAE1D468B960046F1F6 /* Sources */,
 				B3859CAF1D468B960046F1F6 /* Frameworks */,
 				B3859CB01D468B960046F1F6 /* Resources */,
-				442614C494B87AF909676CE2 /* 📦 Embed Pods Frameworks */,
-				B58E936A2B8C11054E7ED247 /* 📦 Copy Pods Resources */,
+				442614C494B87AF909676CE2 /* [CP] Embed Pods Frameworks */,
+				B58E936A2B8C11054E7ED247 /* [CP] Copy Pods Resources */,
 				B374D11A1D4696F7009BC5DD /* Run SwiftLint */,
 			);
 			buildRules = (
@@ -270,14 +270,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B5D53B2D6D8AA284A39F4ED /* 📦 Copy Pods Resources */ = {
+		0B5D53B2D6D8AA284A39F4ED /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,14 +285,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Redux.swift_Tests/Pods-Redux.swift_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		39EB72D325EAA52444704626 /* 📦 Check Pods Manifest.lock */ = {
+		39EB72D325EAA52444704626 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,14 +300,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		442614C494B87AF909676CE2 /* 📦 Embed Pods Frameworks */ = {
+		442614C494B87AF909676CE2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,14 +343,14 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    cd ..\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		B58E936A2B8C11054E7ED247 /* 📦 Copy Pods Resources */ = {
+		B58E936A2B8C11054E7ED247 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,14 +358,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReduxCounterExample/Pods-ReduxCounterExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C078B893AAC55B48863F2C66 /* 📦 Check Pods Manifest.lock */ = {
+		C078B893AAC55B48863F2C66 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,14 +373,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F975B8A48D87DA8D6E1CB05E /* 📦 Embed Pods Frameworks */ = {
+		F975B8A48D87DA8D6E1CB05E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
