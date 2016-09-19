@@ -1,7 +1,7 @@
 import Redux
 import RxSwift
 
-class DisposalSpyStore: Publisher, Dispatch, ObservableType {
+class DisposalSpyStore: Publisher, Dispatcher, ObservableType {
     typealias E = IdentificationStore.Publishing
 
     private let store = IdentificationStore()

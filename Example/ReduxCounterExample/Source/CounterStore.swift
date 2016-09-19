@@ -2,7 +2,7 @@ import Foundation
 import Redux
 import RxSwift
 
-class CounterStore: Publisher, Dispatch, ObservableType {
+class CounterStore: Publisher, Dispatcher, ObservableType {
     typealias E = CounterState
 
     private let store = Store<CounterState>(initialState: CounterState()) { state, action in

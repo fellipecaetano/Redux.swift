@@ -4,7 +4,7 @@ import Foundation
  The data structure responsible for holding application state, allowing controlled mutation through dispatched
  `Actions` and notifying interested parties that `subscribe` to state changes.
  */
-public final class Store<State>: Publisher, Dispatch {
+public final class Store<State>: Publisher, Dispatcher {
     private let reduce: (State, Action) -> State
 
     private var state: State {
@@ -57,11 +57,11 @@ public final class Store<State>: Publisher, Dispatch {
 }
 
 /**
- Defines `Action` dispatch cabalities. Instances conforming to `Dispatch` are expected to know how to
+ Defines `Action` dispatch capabilities. Instances conforming to `Dispatcher` are expected to know how to
  dispatch `Actions`.
  */
 
-public protocol Dispatch {
+public protocol Dispatcher {
     /**
      Dispatches an action.
 
@@ -70,7 +70,7 @@ public protocol Dispatch {
     func dispatch(action: Action)
 }
 
-extension Dispatch {
+extension Dispatcher {
     /**
      Executes a closure with an injected `dispatch` function. Useful for asynchronous `Action` dispatching.
 
@@ -115,7 +115,7 @@ extension Publisher {
     }
 }
 
-extension Publisher where Self: Dispatch {
+extension Publisher where Self: Dispatcher {
     /**
      Creates a `StateConnection` to a compatible `Subscriber` (i. e. a subscriber that subscribes to changes to the same kind of object published by this `Publisher`).
      A `StateConnection` is an object that knows how to `subscribe()` and `dispatch()`.
@@ -158,7 +158,7 @@ public protocol Subscriber: class {
 /**
  An object that knows how to `subscribe()` and `dispatch()`
  */
-public protocol StateConnection: Dispatch {
+public protocol StateConnection: Dispatcher {
     /**
      Typically used to subscribe a previously associated `Subscriber` to changes published by the
      `Publisher` that created this `StateConnection`.
@@ -204,7 +204,7 @@ extension StateConnectable where Self: Subscriber {
 
     - parameter connector: The connection creator.
     */
-    public func connect<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) {
+    public func connect<T: protocol<Publisher, Dispatcher> where T.Publishing == Publishing>(to connector: T) {
         connect(with: connector.connection(to: self))
     }
 
@@ -214,7 +214,7 @@ extension StateConnectable where Self: Subscriber {
      - parameter connector: The connection creator.
      - returns: This `StateConnectable` after receiving the connection.
     */
-    public func connected<T: protocol<Publisher, Dispatch> where T.Publishing == Publishing>(to connector: T) -> Self {
+    public func connected<T: protocol<Publisher, Dispatcher> where T.Publishing == Publishing>(to connector: T) -> Self {
         connect(to: connector)
         return self
     }

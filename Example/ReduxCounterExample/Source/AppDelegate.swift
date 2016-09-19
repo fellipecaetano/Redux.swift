@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let counterViewController = window?.rootViewController as? ReactiveCounterViewController
-        counterViewController?.subject = store.asSubject()
+        counterViewController?.counter = store.asObservable()
+        counterViewController?.dispatcher = store
         return true
     }
 }

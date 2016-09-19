@@ -1,12 +1,15 @@
 PODS:
   - Nimble (3.2.0)
-  - Redux.swift/RxSwift (0.2.0):
+  - Redux.swift/RxSwift (0.4.0):
     - RxSwift (~> 2.6)
+  - RxCocoa (2.6.0):
+    - RxSwift (~> 2.5)
   - RxSwift (2.6.0)
 
 DEPENDENCIES:
   - Nimble (~> 3.0)
   - Redux.swift/RxSwift (from `../`)
+  - RxCocoa
 
 EXTERNAL SOURCES:
   Redux.swift:
@@ -14,9 +17,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  Redux.swift: f3ffad27dc94ffaf4633f0b9586dc880ca1bedd9
+  Redux.swift: 5b547e8d8f0a138032841c34f030fc774da20353
+  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
   RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
 
-PODFILE CHECKSUM: da6ef760cac0de039e231290035fc3badb98fc8b
+PODFILE CHECKSUM: 81ef0eda4ea0baf0df53bff355fc1c0c9d0bd141
 
 COCOAPODS: 1.0.0
