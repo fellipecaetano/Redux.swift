@@ -74,36 +74,4 @@ class ReduxTests: XCTestCase {
 
         expect(stateReceived?.counter).toEventually(equal(3))
     }
-
-    func testSubscriberIntegration() {
-        let store = CounterStore()
-        let subscriber = CounterSubscriber(counter: -1)
-        let unsubscribe = store.subscribe(subscriber: subscriber)
-
-        expect(subscriber.counter).toEventually(equal(0))
-
-        store.dispatch(IncrementAction(amount: 2))
-        expect(subscriber.counter).toEventually(equal(2))
-
-        unsubscribe()
-        store.dispatch(IncrementAction(amount: 3))
-        expect(subscriber.counter).toEventually(equal(2))
-    }
-
-    func testStateConnections() {
-        let store = CounterStore()
-
-        let subscriber = CounterSubscriber(counter: -1)
-        subscriber.connect(to: store)
-        let unsubscribe = subscriber.connection?.subscribe()
-
-        expect(subscriber.connection).toEventuallyNot(beNil())
-
-        subscriber.connection?.dispatch(IncrementAction(amount: 3))
-        expect(subscriber.counter).toEventually(equal(3))
-
-        unsubscribe?()
-        subscriber.connection?.dispatch(IncrementAction(amount: 3))
-        expect(subscriber.counter).toEventually(equal(3))
-    }
 }
