@@ -7,7 +7,7 @@ class DisposalSpyStore: Publisher, Dispatcher, ObservableType {
     fileprivate let store = IdentificationStore()
     fileprivate(set) var didUnsubscribe = false
 
-    func subscribe(_ subscription: (IdentificationStore.Publishing) -> Void) -> (Void) -> Void {
+    func subscribe(_ subscription: @escaping (IdentificationStore.Publishing) -> Void) -> ((Void) -> Void) {
         let unsubscribe = store.subscribe(subscription)
 
         return {

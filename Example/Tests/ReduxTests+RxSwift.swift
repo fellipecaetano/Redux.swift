@@ -10,9 +10,9 @@ class ReduxRxSwiftTests: XCTestCase {
         let observable = IdentificationStore().asObservable()
         var stateReceived: IdentificationState?
 
-        observable.subscribeNext { state in
+        observable.subscribe(onNext: { state in
             stateReceived = state
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
 
         expect(stateReceived?.identifier).toEventually(equal("initial"))
     }
@@ -21,9 +21,9 @@ class ReduxRxSwiftTests: XCTestCase {
         let store = IdentificationStore()
         var stateReceived: IdentificationState?
 
-        store.asObservable().subscribeNext { state in
+        store.asObservable().subscribe(onNext: { state in
             stateReceived = state
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
 
         let action = IdentifiedAction(identifier: "observe_this")
         store.dispatch(action)
@@ -34,9 +34,9 @@ class ReduxRxSwiftTests: XCTestCase {
         let store = DisposalSpyStore()
         var stateReceived: IdentificationState?
 
-        let disposable = store.asObservable().subscribeNext { state in
+        let disposable = store.asObservable().subscribe(onNext: { state in
             stateReceived = state
-        }
+        })
         disposable.dispose()
 
         expect(store.didUnsubscribe).toEventually(beTrue())

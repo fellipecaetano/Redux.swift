@@ -2,7 +2,7 @@ import Foundation
 import Redux
 import RxSwift
 
-class CounterStore: Publisher, StateReading, Dispatcher, ObservableType {
+class CounterStore: Publisher, Dispatcher, ObservableType {
     typealias E = CounterState
 
     fileprivate let store = Store<CounterState>(initialState: CounterState()) { state, action in
@@ -18,16 +18,12 @@ class CounterStore: Publisher, StateReading, Dispatcher, ObservableType {
         }
     }
 
-    func subscribe(_ subscription: (CounterState) -> Void) -> (Void) -> Void {
+    func subscribe(_ subscription: @escaping (CounterState) -> Void) -> ((Void) -> Void) {
         return store.subscribe(subscription)
     }
 
     func dispatch(_ action: Action) {
         return store.dispatch(action)
-    }
-
-    var getState: (Void) -> CounterState {
-        return store.getState
     }
 }
 

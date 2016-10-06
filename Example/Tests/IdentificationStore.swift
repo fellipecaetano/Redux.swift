@@ -15,7 +15,7 @@ class IdentificationStore: Publisher, Dispatcher, ObservableType {
         }
     }
 
-    func subscribe(_ subscription: (IdentificationState) -> Void) -> (Void) -> Void {
+    func subscribe(_ subscription: @escaping (IdentificationState) -> Void) -> ((Void) -> Void) {
         return store.subscribe(subscription)
     }
 

@@ -4,7 +4,7 @@ import Foundation
  The data structure responsible for holding application state, allowing controlled mutation through dispatched
  `Actions` and notifying interested parties that `subscribe` to state changes.
  */
-public final class Store<State>: Publisher, StateReading, Dispatcher {
+public final class Store<State>: Publisher, Dispatcher {
     public typealias Publishing = State
 
     fileprivate let reduce: (State, Action) -> State
@@ -56,24 +56,6 @@ public final class Store<State>: Publisher, StateReading, Dispatcher {
     fileprivate func publish(_ newState: State) {
         subscribers.values.forEach { $0(newState) }
     }
-
-    public var getState: (Void) -> State {
-        return { self.state }
-    }
-}
-
-/**
- Defines state-reading capabilities.
- */
-
-public protocol StateReading {
-    associatedtype State
-
-    /**
-     Encloses the current state and provides a way to read hot snapshots
-     of it.
-    */
-    var getState: (Void) -> State { get }
 }
 
 /**
@@ -97,22 +79,8 @@ extension Dispatcher {
 
      - parameter thunk: The closure that will be executed with an injected `dispatch` function.
      */
-    public func dispatch(_ thunk: ((Action) -> Void) -> Void) {
+    public func dispatch(_ thunk: (@escaping (Action) -> Void) -> Void) {
         thunk(self.dispatch)
-    }
-}
-
-extension Dispatcher where Self: StateReading {
-    /**
-     Executes a closure with an injected `dispatch` function and a state accessor.
-     Allows asynchronous `Action` dispatches as well as decisions based on
-     the current state.
-
-     - parameter thunk: The closure that will be executed with
-     an injected `dispatch` function and a state accessor.
-     */
-    public func dispatch(_ thunk: (_ dispatch: ((Action) -> Void), _ getState: ((Void) -> State)) -> Void) {
-        thunk(dispatch, getState)
     }
 }
 

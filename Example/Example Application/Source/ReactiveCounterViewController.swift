@@ -15,7 +15,7 @@ class ReactiveCounterViewController: UIViewController {
         counter
             .map({ $0.counter })
             .map(String.init)
-            .bindTo(counterLabel.rx_text)
+            .bindTo(counterLabel.rx.text)
             .addDisposableTo(disposeBag)
     }
 

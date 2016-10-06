@@ -13,8 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private let store = CounterStore()
 
-    func application(application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         let counterViewController = window?.rootViewController as? ReactiveCounterViewController
         counterViewController?.counter = store.asObservable()
         counterViewController?.dispatcher = store
