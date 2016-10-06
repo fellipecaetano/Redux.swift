@@ -212,12 +212,18 @@ static BOOL RX_forward_invocation(id __nonnull __unsafe_unretained self, NSInvoc
 
     if (messageSentObserver != nil) {
         NSArray *arguments = RX_extract_arguments(invocation);
-        [messageSentObserver messageSentWithParameters:arguments];
+        [messageSentObserver messageSentWithArguments:arguments];
     }
 
     if ([self respondsToSelector:originalSelector]) {
         invocation.selector = originalSelector;
         [invocation invokeWithTarget:self];
+
+        if (messageSentObserver != nil) {
+            NSArray *arguments = RX_extract_arguments(invocation);
+            [messageSentObserver methodInvokedWithArguments:arguments];
+        }
+
         return YES;
     }
 
@@ -331,18 +337,24 @@ IMP __nonnull RX_default_target_implementation() {
         return methodSignature;                                                                 \
     }
 
-#define DEALLOCATING_BODY(...)                                                       \
-    id<RXMessageSentObserver> observer = objc_getAssociatedObject(self, rxSelector); \
-    if (observer != nil && observer.targetImplementation == thisIMP) {               \
-        [observer messageSentWithParameters:@[]];                                    \
+#define DEALLOCATING_BODY(...)                                                        \
+    id<RXDeallocatingObserver> observer = objc_getAssociatedObject(self, rxSelector); \
+    if (observer != nil && observer.targetImplementation == thisIMP) {                \
+        [observer deallocating];                                                      \
     }
 
-#define OBSERVE_BODY(...)                                                               \
-    id<RXMessageSentObserver> observer = objc_getAssociatedObject(self, rxSelector);    \
-                                                                                        \
-    if (observer != nil && observer.targetImplementation == thisIMP) {                  \
-        [observer messageSentWithParameters:@[COMMA_DELIMITED_ARGUMENTS(__VA_ARGS__)]]; \
-    }                                                                                   \
+#define OBSERVE_BODY(...)                                                              \
+    id<RXMessageSentObserver> observer = objc_getAssociatedObject(self, rxSelector);   \
+                                                                                       \
+    if (observer != nil && observer.targetImplementation == thisIMP) {                 \
+        [observer messageSentWithArguments:@[COMMA_DELIMITED_ARGUMENTS(__VA_ARGS__)]]; \
+    }                                                                                  \
+
+
+#define OBSERVE_INVOKED_BODY(...)                                                        \
+    if (observer != nil && observer.targetImplementation == thisIMP) {                   \
+        [observer methodInvokedWithArguments:@[COMMA_DELIMITED_ARGUMENTS(__VA_ARGS__)]]; \
+    }                                                                                    \
 
 
 #define BUILD_ARG_WRAPPER(type)                   RX_ARG_ ## type                                                     //RX_ARG_ ## type
@@ -379,35 +391,37 @@ IMP __nonnull RX_default_target_implementation() {
 #define BUILD_EXAMPLE_METHOD_SELECTOR(return_value, ...) \
     RX_CAT2(RX_CAT2(example_, return_value), RX_FOR(_, SEPARATE_BY_SPACE, SELECTOR_PART, ## __VA_ARGS__))
 
-#define SWIZZLE_OBSERVE_METHOD(return_value, ...)                                                                                 \
-    @interface RXObjCRuntime (GENERATE_METHOD_IDENTIFIER(return_value, ## __VA_ARGS__))                                           \
-    @end                                                                                                                          \
-                                                                                                                                  \
-    @implementation RXObjCRuntime(GENERATE_METHOD_IDENTIFIER(return_value, ## __VA_ARGS__))                                       \
-    BUILD_EXAMPLE_METHOD(return_value, ## __VA_ARGS__)                                                                            \
-    SWIZZLE_METHOD(return_value, GENERATE_OBSERVE_METHOD_DECLARATION(return_value, ## __VA_ARGS__), OBSERVE_BODY, ## __VA_ARGS__) \
-                                                                                                                                  \
-    +(void)load {                                                                                                                 \
-       __unused SEL exampleSelector = @selector(BUILD_EXAMPLE_METHOD_SELECTOR(return_value, ## __VA_ARGS__));                     \
-       [self registerOptimizedObserver:^BOOL(RXObjCRuntime * __nonnull self, Class __nonnull class,                               \
-            SEL __nonnull selector, NSError **__nonnull error) {                                                                  \
-            return [self GENERATE_METHOD_IDENTIFIER(return_value, ## __VA_ARGS__):class selector:selector error:error];           \
-       } encodedAs:exampleSelector];                                                                                              \
-    }                                                                                                                             \
-                                                                                                                                  \
-    @end                                                                                                                          \
+#define SWIZZLE_OBSERVE_METHOD(return_value, ...)                                                                                                       \
+    @interface RXObjCRuntime (GENERATE_METHOD_IDENTIFIER(return_value, ## __VA_ARGS__))                                                                 \
+    @end                                                                                                                                                \
+                                                                                                                                                        \
+    @implementation RXObjCRuntime(GENERATE_METHOD_IDENTIFIER(return_value, ## __VA_ARGS__))                                                             \
+    BUILD_EXAMPLE_METHOD(return_value, ## __VA_ARGS__)                                                                                                  \
+    SWIZZLE_METHOD(return_value, GENERATE_OBSERVE_METHOD_DECLARATION(return_value, ## __VA_ARGS__), OBSERVE_BODY, OBSERVE_INVOKED_BODY, ## __VA_ARGS__) \
+                                                                                                                                                        \
+    +(void)load {                                                                                                                                       \
+       __unused SEL exampleSelector = @selector(BUILD_EXAMPLE_METHOD_SELECTOR(return_value, ## __VA_ARGS__));                                           \
+       [self registerOptimizedObserver:^BOOL(RXObjCRuntime * __nonnull self, Class __nonnull class,                                                     \
+            SEL __nonnull selector, NSError **__nonnull error) {                                                                                        \
+            return [self GENERATE_METHOD_IDENTIFIER(return_value, ## __VA_ARGS__):class selector:selector error:error];                                 \
+       } encodedAs:exampleSelector];                                                                                                                    \
+    }                                                                                                                                                   \
+                                                                                                                                                        \
+    @end                                                                                                                                                \
 
 // infrastructure method
+
+#define NO_BODY(...)
 
 #define SWIZZLE_INFRASTRUCTURE_METHOD(return_value, method_name, parameters, method_selector, body, ...)               \
     SWIZZLE_METHOD(return_value, -(BOOL)method_name:(Class __nonnull)class parameters error:(NSError **__nonnull)error \
         {                                                                                                              \
-            SEL selector = method_selector; , body, __VA_ARGS__)                                                       \
+            SEL selector = method_selector; , body, NO_BODY, __VA_ARGS__)                                                       \
 
 
 // common base
 
-#define SWIZZLE_METHOD(return_value, method_prototype, body, ...)                                                        \
+#define SWIZZLE_METHOD(return_value, method_prototype, body, invoked_body, ...)                                          \
 method_prototype                                                                                                         \
     __unused SEL rxSelector = RX_selector(selector);                                                                     \
     IMP (^newImplementationGenerator)() = ^() {                                                                          \
@@ -422,7 +436,10 @@ method_prototype                                                                
                                                                                                                          \
             return_value (*msgSend)(struct objc_super *, SEL DECLARE_ARGUMENTS(__VA_ARGS__))                             \
                 = (__typeof__(msgSend))objc_msgSendSuper;                                                                \
-            return msgSend(&superInfo, selector ARGUMENTS(__VA_ARGS__));                                                 \
+            @try {                                                                                                       \
+              return msgSend(&superInfo, selector ARGUMENTS(__VA_ARGS__));                                               \
+            }                                                                                                            \
+            @finally { invoked_body(__VA_ARGS__) }                                                                       \
         };                                                                                                               \
                                                                                                                          \
         thisIMP = imp_implementationWithBlock(newImplementation);                                                        \
@@ -436,8 +453,10 @@ method_prototype                                                                
         __block IMP thisIMP = nil;                                                                                       \
         id implementationReplacement = ^return_value(__unsafe_unretained id self DECLARE_ARGUMENTS(__VA_ARGS__) ) {      \
             body(__VA_ARGS__)                                                                                            \
-                                                                                                                         \
-            return originalImplementationTyped(self, selector ARGUMENTS(__VA_ARGS__));                                   \
+            @try {                                                                                                       \
+                return originalImplementationTyped(self, selector ARGUMENTS(__VA_ARGS__));                               \
+            }                                                                                                            \
+            @finally { invoked_body(__VA_ARGS__) }                                                                       \
         };                                                                                                               \
                                                                                                                          \
         thisIMP = imp_implementationWithBlock(implementationReplacement);                                                \
@@ -613,11 +632,11 @@ static NSMutableDictionary<NSString *, RXInterceptWithOptimizedObserver> *optimi
     }
 
     // For `dealloc` message, original implementation will be swizzled.
-    // This is a special case because observing `dealloc` message is performed when `rx_observeWeakly` is used.
+    // This is a special case because observing `dealloc` message is performed when `observeWeakly` is used.
     //
     // Some toll free bridged classes don't handle `object_setClass` well and cause crashes.
     //
-    // To make `rx_deallocating` as robust as possible, original implementation will be replaced.
+    // To make `deallocating` as robust as possible, original implementation will be replaced.
     if (selector == deallocSelector) {
         Class __nonnull deallocSwizzingTarget = [target class];
         IMP interceptorIMPForSelector = [self interceptorImplementationForSelector:selector forClass:deallocSwizzingTarget];
@@ -720,9 +739,9 @@ static NSMutableDictionary<NSString *, RXInterceptWithOptimizedObserver> *optimi
      If the object is reporting a different class then what it's real class, that means that there is probably
      already some interception mechanism in place or something weird is happening.
      
-     Most common case when this would happen is when using KVO (`rx_observe`) and `rx_sentMessage`.
+     Most common case when this would happen is when using KVO (`observe`) and `sentMessage`.
 
-     This error is easily resolved by just using `rx_sentMessage` observing before `rx_observe`.
+     This error is easily resolved by just using `sentMessage` observing before `observe`.
      
      The reason why other way around could create issues is because KVO will unregister it's interceptor 
      class and restore original class. Unfortunately that will happen no matter was there another interceptor
@@ -730,7 +749,7 @@ static NSMutableDictionary<NSString *, RXInterceptWithOptimizedObserver> *optimi
      
      Failure scenario:
      * KVO sets class to be `__KVO__OriginalClass` (subclass of `OriginalClass`)
-     * `rx_sentMessage` sets object class to be `_RX_namespace___KVO__OriginalClass` (subclass of `__KVO__OriginalClass`)
+     * `sentMessage` sets object class to be `_RX_namespace___KVO__OriginalClass` (subclass of `__KVO__OriginalClass`)
      * then unobserving with KVO will restore class to be `OriginalClass` -> failure point
 
      The reason why changing order of observing works is because any interception method should return

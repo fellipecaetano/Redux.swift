@@ -4,7 +4,7 @@ import RxSwift
 import Nimble
 
 class ReduxRxSwiftTests: XCTestCase {
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
     func testInitialObservation() {
         let observable = IdentificationStore().asObservable()

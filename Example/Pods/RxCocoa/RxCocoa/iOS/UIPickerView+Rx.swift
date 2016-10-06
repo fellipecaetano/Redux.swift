@@ -14,18 +14,18 @@
 #endif
     import UIKit
 
-extension UIPickerView {
+extension Reactive where Base: UIPickerView {
     /**
      Reactive wrapper for `delegate`.
      For more information take a look at `DelegateProxyType` protocol documentation.
      */
-    public var rx_delegate: DelegateProxy {
-        return RxPickerViewDelegateProxy.proxyForObject(self)
+    public var delegate: DelegateProxy {
+        return RxPickerViewDelegateProxy.proxyForObject(base)
     }
     
-    public var rx_itemSelected: ControlEvent<(row: Int, component: Int)> {
-        let source = rx_delegate
-            .observe(#selector(UIPickerViewDelegate.pickerView(_:didSelectRow:inComponent:)))
+    public var itemSelected: ControlEvent<(Int, Int)> {
+        let source = delegate
+            .methodInvoked(#selector(UIPickerViewDelegate.pickerView(_:didSelectRow:inComponent:)))
             .map {
                 return (try castOrThrow(Int.self, $0[1]), try castOrThrow(Int.self, $0[2]))
             }

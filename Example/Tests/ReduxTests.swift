@@ -65,8 +65,8 @@ class ReduxTests: XCTestCase {
         }
 
         store.dispatch { dispatch in
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-                dispatch_async(dispatch_get_main_queue()) {
+            dispatch_get_global_queue(DispatchQoS.QoSClass.userInitiated, 0).async {
+                DispatchQueue.main.async {
                     dispatch(IncrementAction(amount: 3))
                 }
             }
@@ -84,8 +84,8 @@ class ReduxTests: XCTestCase {
         }
 
         store.dispatch { dispatch, getState in
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-                dispatch_async(dispatch_get_main_queue()) {
+            dispatch_get_global_queue(DispatchQoS.QoSClass.userInitiated, 0).async {
+                DispatchQueue.main.async {
                     dispatch(IncrementAction(amount: getState().counter + 1)) // counter + 1
                     dispatch(IncrementAction(amount: getState().counter + 2)) // (counter + 1 + 2)
                 }

@@ -5,7 +5,7 @@ import RxSwift
 class CounterStore: Publisher, StateReading, Dispatcher, ObservableType {
     typealias E = CounterState
 
-    private let store = Store<CounterState>(initialState: CounterState()) { state, action in
+    fileprivate let store = Store<CounterState>(initialState: CounterState()) { state, action in
         switch action {
         case let action as IncrementAction:
             return CounterState(counter: state.counter + action.amount)
@@ -18,15 +18,15 @@ class CounterStore: Publisher, StateReading, Dispatcher, ObservableType {
         }
     }
 
-    func subscribe(subscription: CounterState -> Void) -> Void -> Void {
+    func subscribe(_ subscription: (CounterState) -> Void) -> (Void) -> Void {
         return store.subscribe(subscription)
     }
 
-    func dispatch(action: Action) {
+    func dispatch(_ action: Action) {
         return store.dispatch(action)
     }
 
-    var getState: Void -> CounterState {
+    var getState: (Void) -> CounterState {
         return store.getState
     }
 }

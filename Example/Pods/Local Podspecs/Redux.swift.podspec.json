@@ -1,7 +1,7 @@
 {
   "name": "Redux.swift",
   "module_name": "Redux",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "summary": "An implementation of a predictable state container in Swift.",
   "description": "Redux.swift is an implementation of a predictable state container, written in Swift. It aims to enforce separation of concerns and a unidirectional data flow by keeping your entire app state in a single data structure that cannot be mutated directly, instead relying on an action dispatch mechanism to describe changes.",
   "homepage": "https://github.com/fellipecaetano/Redux.swift",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/fellipecaetano/Redux.swift.git",
-    "tag": "0.4.0"
+    "tag": "0.5.0"
   },
   "platforms": {
     "ios": "8.0",
@@ -41,7 +41,7 @@
       ],
       "dependencies": {
         "RxSwift": [
-          "~> 2.6"
+          "3.0.0-beta.2"
         ]
       }
     }

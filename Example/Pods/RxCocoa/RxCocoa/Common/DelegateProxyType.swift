@@ -69,8 +69,8 @@ every view has a corresponding delegate virtual factory method.
 In case of UITableView / UIScrollView, there is
 
     extension UIScrollView {
-        public func rx_createDelegateProxy() -> RxScrollViewDelegateProxy {
-            return RxScrollViewDelegateProxy(parentObject: self)
+        public func createRxDelegateProxy() -> RxScrollViewDelegateProxy {
+            return RxScrollViewDelegateProxy(parentObject: base)
         }
     ....
 
@@ -78,7 +78,7 @@ In case of UITableView / UIScrollView, there is
 and override in UITableView
 
     extension UITableView {
-        public override func rx_createDelegateProxy() -> RxScrollViewDelegateProxy {
+        public override func createRxDelegateProxy() -> RxScrollViewDelegateProxy {
         ....
 
 
@@ -87,7 +87,7 @@ public protocol DelegateProxyType : AnyObject {
     /**
     Creates new proxy for target object.
     */
-    static func createProxyForObject(object: AnyObject) -> AnyObject
+    static func createProxyForObject(_ object: AnyObject) -> AnyObject
    
     /**
     Returns assigned proxy for object.
@@ -95,7 +95,7 @@ public protocol DelegateProxyType : AnyObject {
     - parameter object: Object that can have assigned delegate proxy.
     - returns: Assigned delegate proxy or `nil` if no delegate proxy is assigned.
     */
-    static func assignedProxyFor(object: AnyObject) -> AnyObject?
+    static func assignedProxyFor(_ object: AnyObject) -> AnyObject?
     
     /**
     Assigns proxy to object.
@@ -103,7 +103,7 @@ public protocol DelegateProxyType : AnyObject {
     - parameter object: Object that can have assigned delegate proxy.
     - parameter proxy: Delegate proxy object to assign to `object`.
     */
-    static func assignProxy(proxy: AnyObject, toObject object: AnyObject)
+    static func assignProxy(_ proxy: AnyObject, toObject object: AnyObject)
     
     /**
     Returns designated delegate property for object.
@@ -115,7 +115,7 @@ public protocol DelegateProxyType : AnyObject {
     - parameter object: Object that has delegate property.
     - returns: Value of delegate property.
     */
-    static func currentDelegateFor(object: AnyObject) -> AnyObject?
+    static func currentDelegateFor(_ object: AnyObject) -> AnyObject?
 
     /**
     Sets designated delegate property for object.
@@ -127,7 +127,7 @@ public protocol DelegateProxyType : AnyObject {
     - parameter toObject: Object that has delegate property.
     - parameter delegate: Delegate value.
     */
-    static func setCurrentDelegate(delegate: AnyObject?, toObject object: AnyObject)
+    static func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject)
     
     /**
     Returns reference of normal delegate that receives all forwarded messages
@@ -144,11 +144,11 @@ public protocol DelegateProxyType : AnyObject {
     - parameter forwardToDelegate: Reference of delegate that receives all messages through `self`.
     - parameter retainDelegate: Should `self` retain `forwardToDelegate`.
     */
-    func setForwardToDelegate(forwardToDelegate: AnyObject?, retainDelegate: Bool)
+    func setForwardToDelegate(_ forwardToDelegate: AnyObject?, retainDelegate: Bool)
 }
 
-@available(*, deprecated=2.5, renamed="DelegateProxyType.proxyForObject", message="You can just use normal static protocol extension. E.g. `RxScrollViewDelegateProxy.proxyForObject`")
-public func proxyForObject<P: DelegateProxyType>(type: P.Type, _ object: AnyObject) -> P {
+@available(*, deprecated:2.5, renamed:"DelegateProxyType.proxyForObject", message:"You can just use normal static protocol extension. E.g. `RxScrollViewDelegateProxy.proxyForObject`")
+public func proxyForObject<P: DelegateProxyType>(_ type: P.Type, _ object: AnyObject) -> P {
     return P.proxyForObject(object)
 }
 
@@ -160,37 +160,38 @@ extension DelegateProxyType {
      - returns: Installed instance of delegate proxy.
 
 
-         extension UISearchBar {
+         extension Reactive where Base: UISearchBar {
 
-             public var rx_delegate: DelegateProxy {
-                return RxSearchBarDelegateProxy.proxyForObject(self)
+             public var delegate: DelegateProxy {
+                return RxSearchBarDelegateProxy.proxyForObject(base)
              }
 
-             public var rx_text: ControlProperty<String> {
-                 let source: Observable<String> = self.rx_delegate.observe(#selector(UISearchBarDelegate.searchBar(_:textDidChange:)))
+             public var text: ControlProperty<String> {
+                 let source: Observable<String> = self.delegate.observe(#selector(UISearchBarDelegate.searchBar(_:textDidChange:)))
                  ...
              }
          }
     */
-    public static func proxyForObject(object: AnyObject) -> Self {
+    public static func proxyForObject(_ object: AnyObject) -> Self {
         MainScheduler.ensureExecutingOnScheduler()
 
         let maybeProxy = Self.assignedProxyFor(object) as? Self
 
         let proxy: Self
-        if maybeProxy == nil {
+        if let existingProxy = maybeProxy {
+            proxy = existingProxy
+        }
+        else {
             proxy = Self.createProxyForObject(object) as! Self
             Self.assignProxy(proxy, toObject: object)
             assert(Self.assignedProxyFor(object) === proxy)
-        }
-        else {
-            proxy = maybeProxy!
         }
 
         let currentDelegate: AnyObject? = Self.currentDelegateFor(object)
 
         if currentDelegate !== proxy {
             proxy.setForwardToDelegate(currentDelegate, retainDelegate: false)
+            assert(proxy.forwardToDelegate() === currentDelegate)
             Self.setCurrentDelegate(proxy, toObject: object)
             assert(Self.currentDelegateFor(object) === proxy)
             assert(proxy.forwardToDelegate() === currentDelegate)
@@ -208,7 +209,7 @@ extension DelegateProxyType {
     - parameter onProxyForObject: Object that has `delegate` property.
     - returns: Disposable object that can be used to clear forward delegate.
     */
-    public static func installForwardDelegate(forwardDelegate: AnyObject, retainDelegate: Bool, onProxyForObject object: AnyObject) -> Disposable {
+    public static func installForwardDelegate(_ forwardDelegate: AnyObject, retainDelegate: Bool, onProxyForObject object: AnyObject) -> Disposable {
         weak var weakForwardDelegate: AnyObject? = forwardDelegate
 
         let proxy = Self.proxyForObject(object)
@@ -226,9 +227,9 @@ extension DelegateProxyType {
         Self.setCurrentDelegate(nil, toObject: object)
         Self.setCurrentDelegate(proxy, toObject: object)
         
-        assert(proxy.forwardToDelegate() === forwardDelegate, "Setting of delegate failed")
+        assert(proxy.forwardToDelegate() === forwardDelegate, "Setting of delegate failed:\ncurrent:\n\(proxy.forwardToDelegate())\nexpected:\n\(forwardDelegate)")
         
-        return AnonymousDisposable {
+        return Disposables.create {
             MainScheduler.ensureExecutingOnScheduler()
             
             let delegate: AnyObject? = weakForwardDelegate
@@ -241,7 +242,7 @@ extension DelegateProxyType {
 }
 
 extension ObservableType {
-    func subscribeProxyDataSourceForObject<P: DelegateProxyType>(object: AnyObject, dataSource: AnyObject, retainDataSource: Bool, binding: (P, Event<E>) -> Void)
+    func subscribeProxyDataSource<P: DelegateProxyType>(ofObject object: AnyObject, dataSource: AnyObject, retainDataSource: Bool, binding: @escaping (P, Event<E>) -> Void)
         -> Disposable {
         let proxy = P.proxyForObject(object)
         let disposable = P.installForwardDelegate(dataSource, retainDelegate: retainDataSource, onProxyForObject: object)
@@ -253,6 +254,7 @@ extension ObservableType {
             }
             // source can never end, otherwise it would release the subscriber, and deallocate the data source
             .concat(Observable.never())
+            .takeUntil((object as! NSObject).rx.deallocated)
             .subscribe { [weak object] (event: Event<E>) in
                 MainScheduler.ensureExecutingOnScheduler()
 
@@ -263,16 +265,16 @@ extension ObservableType {
                 binding(proxy, event)
                 
                 switch event {
-                case .Error(let error):
+                case .error(let error):
                     bindingErrorToInterface(error)
                     disposable.dispose()
-                case .Completed:
+                case .completed:
                     disposable.dispose()
                 default:
                     break
                 }
             }
             
-        return CompositeDisposable(subscription, disposable)
+        return Disposables.create(subscription, disposable)
     }
 }

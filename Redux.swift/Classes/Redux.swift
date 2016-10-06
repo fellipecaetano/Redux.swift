@@ -5,13 +5,15 @@ import Foundation
  `Actions` and notifying interested parties that `subscribe` to state changes.
  */
 public final class Store<State>: Publisher, StateReading, Dispatcher {
-    private let reduce: (State, Action) -> State
+    public typealias Publishing = State
 
-    private var state: State {
+    fileprivate let reduce: (State, Action) -> State
+
+    fileprivate var state: State {
         didSet { publish(state) }
     }
 
-    private var subscribers: [String: State -> Void]
+    fileprivate var subscribers: [String: (State) -> Void]
 
     /**
      Initializes a `Store`.
@@ -19,7 +21,7 @@ public final class Store<State>: Publisher, StateReading, Dispatcher {
      - parameter initialState: The initial value of the application state in hold.
      - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
     */
-    public init (initialState: State, reducer: (State, Action) -> State) {
+    public init (initialState: State, reducer: @escaping (State, Action) -> State) {
         reduce = reducer
         state = initialState
         subscribers = [:]
@@ -30,7 +32,7 @@ public final class Store<State>: Publisher, StateReading, Dispatcher {
 
      - parameter action: The descriptor of **what** is the state change.
      */
-    public func dispatch(action: Action) {
+    public func dispatch(_ action: Action) {
         state = reduce(state, action)
     }
 
@@ -40,22 +42,22 @@ public final class Store<State>: Publisher, StateReading, Dispatcher {
      - parameter subscription: A closure that's called whenever there's a change to the state in hold.
      - returns: A closure that unsubscribes the provided subscription.
      */
-    public func subscribe(subscription: State -> Void) -> (Void -> Void) {
-        let token = NSUUID().UUIDString
+    public func subscribe(_ subscription: @escaping (State) -> Void) -> ((Void) -> Void) {
+        let token = UUID().uuidString
         subscribers[token] = subscription
 
         subscription(state)
 
         return { [weak self] in
-            self?.subscribers.removeValueForKey(token)
+            self?.subscribers.removeValue(forKey: token)
         }
     }
 
-    private func publish(newState: State) {
+    fileprivate func publish(_ newState: State) {
         subscribers.values.forEach { $0(newState) }
     }
 
-    public var getState: Void -> State {
+    public var getState: (Void) -> State {
         return { self.state }
     }
 }
@@ -71,7 +73,7 @@ public protocol StateReading {
      Encloses the current state and provides a way to read hot snapshots
      of it.
     */
-    var getState: Void -> State { get }
+    var getState: (Void) -> State { get }
 }
 
 /**
@@ -85,7 +87,7 @@ public protocol Dispatcher {
 
      - parameter action: The action that'll be dispatched.
     */
-    func dispatch(action: Action)
+    func dispatch(_ action: Action)
 }
 
 extension Dispatcher {
@@ -95,7 +97,7 @@ extension Dispatcher {
 
      - parameter thunk: The closure that will be executed with an injected `dispatch` function.
      */
-    public func dispatch(thunk: (Action -> Void) -> Void) {
+    public func dispatch(_ thunk: ((Action) -> Void) -> Void) {
         thunk(self.dispatch)
     }
 }
@@ -109,8 +111,8 @@ extension Dispatcher where Self: StateReading {
      - parameter thunk: The closure that will be executed with
      an injected `dispatch` function and a state accessor.
      */
-    public func dispatch(thunk: (dispatch: (Action -> Void), getState: (Void -> State)) -> Void) {
-        thunk(dispatch: dispatch, getState: getState)
+    public func dispatch(_ thunk: (_ dispatch: ((Action) -> Void), _ getState: ((Void) -> State)) -> Void) {
+        thunk(dispatch, getState)
     }
 }
 
@@ -132,5 +134,5 @@ public protocol Publisher {
      - parameter subscription: The handler that will be called in response to generic events.
      - returns: A closure that unsubscribes the provided subscription.
     */
-    func subscribe(subscription: Publishing -> Void) -> Void -> Void
+    func subscribe(_ subscription: @escaping (Publishing) -> Void) -> ((Void) -> Void)
 }

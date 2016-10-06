@@ -4,10 +4,10 @@ import RxSwift
 class DisposalSpyStore: Publisher, Dispatcher, ObservableType {
     typealias E = IdentificationStore.Publishing
 
-    private let store = IdentificationStore()
-    private(set) var didUnsubscribe = false
+    fileprivate let store = IdentificationStore()
+    fileprivate(set) var didUnsubscribe = false
 
-    func subscribe(subscription: IdentificationStore.Publishing -> Void) -> Void -> Void {
+    func subscribe(_ subscription: (IdentificationStore.Publishing) -> Void) -> (Void) -> Void {
         let unsubscribe = store.subscribe(subscription)
 
         return {
@@ -16,7 +16,7 @@ class DisposalSpyStore: Publisher, Dispatcher, ObservableType {
         }
     }
 
-    func dispatch(action: Action) {
+    func dispatch(_ action: Action) {
         store.dispatch(action)
     }
 }

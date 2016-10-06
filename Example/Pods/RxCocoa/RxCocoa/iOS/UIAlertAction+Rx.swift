@@ -17,14 +17,14 @@ import UIKit
 import RxSwift
 #endif
 
-extension UIAlertAction {
+extension Reactive where Base: UIAlertAction {
 
     /**
      Bindable sink for `enabled` property.
      */
-    public var rx_enabled: AnyObserver<Bool> {
-        return UIBindingObserver(UIElement: self) { alertAction, value in
-            alertAction.enabled = value
+    public var enabled: AnyObserver<Bool> {
+        return UIBindingObserver(UIElement: self.base) { alertAction, value in
+            alertAction.isEnabled = value
         }.asObserver()
     }
     

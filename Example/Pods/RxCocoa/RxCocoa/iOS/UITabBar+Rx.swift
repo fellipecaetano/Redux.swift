@@ -18,13 +18,14 @@ import RxSwift
  iOS only
  */
 #if os(iOS)
-extension UITabBar {
+extension Reactive where Base: UITabBar {
 
     /**
      Reactive wrapper for `delegate` message `tabBar:willBeginCustomizingItems:`.
     */
-    public var rx_willBeginCustomizing: ControlEvent<[UITabBarItem]> {
-        let source = rx_delegate.observe(#selector(UITabBarDelegate.tabBar(_:willBeginCustomizingItems:)))
+    public var willBeginCustomizing: ControlEvent<[UITabBarItem]> {
+        
+        let source = delegate.methodInvoked(#selector(UITabBarDelegate.tabBar(_:willBeginCustomizing:)))
             .map { a in
                 return try castOrThrow([UITabBarItem].self, a[1])
             }
@@ -35,8 +36,8 @@ extension UITabBar {
     /**
      Reactive wrapper for `delegate` message `tabBar:didBeginCustomizingItems:`.
     */
-    public var rx_didBeginCustomizing: ControlEvent<[UITabBarItem]> {
-        let source = rx_delegate.observe(#selector(UITabBarDelegate.tabBar(_:didBeginCustomizingItems:)))
+    public var didBeginCustomizing: ControlEvent<[UITabBarItem]> {
+        let source = delegate.methodInvoked(#selector(UITabBarDelegate.tabBar(_:didBeginCustomizing:)))
             .map { a in
                 return try castOrThrow([UITabBarItem].self, a[1])
             }
@@ -47,9 +48,9 @@ extension UITabBar {
     /**
      Reactive wrapper for `delegate` message `tabBar:willEndCustomizingItems:changed:`.
     */
-    public var rx_willEndCustomizing: ControlEvent<(items: [UITabBarItem], changed: Bool)> {
-        let source = rx_delegate.observe(#selector(UITabBarDelegate.tabBar(_:willEndCustomizingItems:changed:)))
-            .map { (a: [AnyObject]) -> (([UITabBarItem], Bool)) in
+    public var willEndCustomizing: ControlEvent<([UITabBarItem], Bool)> {
+        let source = delegate.methodInvoked(#selector(UITabBarDelegate.tabBar(_:willEndCustomizing:changed:)))
+            .map { (a: [Any]) -> (([UITabBarItem], Bool)) in
                 let items = try castOrThrow([UITabBarItem].self, a[1])
                 let changed = try castOrThrow(Bool.self, a[2])
                 return (items, changed)
@@ -61,9 +62,9 @@ extension UITabBar {
     /**
      Reactive wrapper for `delegate` message `tabBar:didEndCustomizingItems:changed:`.
     */
-    public var rx_didEndCustomizing: ControlEvent<(items: [UITabBarItem], changed: Bool)> {
-        let source = rx_delegate.observe(#selector(UITabBarDelegate.tabBar(_:didEndCustomizingItems:changed:)))
-            .map { (a: [AnyObject]) -> (([UITabBarItem], Bool)) in
+    public var didEndCustomizing: ControlEvent<([UITabBarItem], Bool)> {
+        let source = delegate.methodInvoked(#selector(UITabBarDelegate.tabBar(_:didEndCustomizing:changed:)))
+            .map { (a: [Any]) -> (([UITabBarItem], Bool)) in
                 let items = try castOrThrow([UITabBarItem].self, a[1])
                 let changed = try castOrThrow(Bool.self, a[2])
                 return (items, changed)
@@ -81,28 +82,31 @@ extension UITabBar {
 extension UITabBar {
     
     /**
-     Factory method that enables subclasses to implement their own `rx_delegate`.
+     Factory method that enables subclasses to implement their own `delegate`.
 
      - returns: Instance of delegate proxy that wraps `delegate`.
      */
-    public func rx_createDelegateProxy() -> RxTabBarDelegateProxy {
+    public func createRxDelegateProxy() -> RxTabBarDelegateProxy {
         return RxTabBarDelegateProxy(parentObject: self)
     }
 
+}
+
+extension Reactive where Base: UITabBar {
     /**
      Reactive wrapper for `delegate`.
 
      For more information take a look at `DelegateProxyType` protocol documentation.
     */
-    public var rx_delegate: DelegateProxy {
-        return RxTabBarDelegateProxy.proxyForObject(self)
+    public var delegate: DelegateProxy {
+        return RxTabBarDelegateProxy.proxyForObject(base)
     }
 
     /**
      Reactive wrapper for `delegate` message `tabBar:didSelectItem:`.
     */
-    public var rx_didSelectItem: ControlEvent<UITabBarItem> {
-        let source = rx_delegate.observe(#selector(UITabBarDelegate.tabBar(_:didSelectItem:)))
+    public var didSelectItem: ControlEvent<UITabBarItem> {
+        let source = delegate.methodInvoked(#selector(UITabBarDelegate.tabBar(_:didSelect:)))
             .map { a in
                 return try castOrThrow(UITabBarItem.self, a[1])
             }

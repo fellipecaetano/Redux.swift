@@ -5,7 +5,7 @@ import RxSwift
 class IdentificationStore: Publisher, Dispatcher, ObservableType {
     typealias E = IdentificationState
 
-    private let store = Store<IdentificationState>(initialState: IdentificationState()) { state, action in
+    fileprivate let store = Store<IdentificationState>(initialState: IdentificationState()) { state, action in
         switch action {
         case let action as IdentifiedAction:
             return IdentificationState(identifier: action.identifier)
@@ -15,11 +15,11 @@ class IdentificationStore: Publisher, Dispatcher, ObservableType {
         }
     }
 
-    func subscribe(subscription: IdentificationState -> Void) -> Void -> Void {
+    func subscribe(_ subscription: (IdentificationState) -> Void) -> (Void) -> Void {
         return store.subscribe(subscription)
     }
 
-    func dispatch(action: Action) {
+    func dispatch(_ action: Action) {
         store.dispatch(action)
     }
 }

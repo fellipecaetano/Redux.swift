@@ -21,7 +21,7 @@ Redux.swift is an implementation of a predictable state container, written in Sw
   end
   s.subspec 'RxSwift' do |ss|
     ss.source_files = ['Redux.swift/Classes/**/*']
-    ss.dependency 'RxSwift', '~> 2.6'
+    ss.dependency 'RxSwift', '3.0.0-beta.2'
   end
   s.default_subspec = 'Standard'
 end
