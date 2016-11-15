@@ -1,6 +1,6 @@
 PODS:
-  - Nimble (5.0.0)
-  - Redux.swift/RxSwift (0.5.0):
+  - Nimble (5.1.1)
+  - Redux.swift/RxSwift (1.0.0):
     - RxSwift (= 3.0.0-beta.2)
   - RxCocoa (3.0.0-beta.2):
     - RxSwift (~> 3.0.0-beta.2)
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
-  Redux.swift: 70a6656eb752fcad33b87f9c4ac79715d3333aa6
+  Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
+  Redux.swift: 1a7e093be66ef2b83b3c67220dc6f9737fbc6fcc
   RxCocoa: 1dd105d8a4e18034ccd7bd6d136445363ce67c8e
   RxSwift: 0ea939d7d97cb70657190ffde8dc2a9b455778fc
 
