@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		244933CEC39DB9B9C5E49B5A /* Pods_Redux_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */; };
 		551460921DDCB9EE00492685 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514608F1DDCB4C900492685 /* CounterViewController.swift */; };
+		551460941DDCC3FD00492685 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551460931DDCC3FD00492685 /* CounterView.swift */; };
 		7B532EC94304CEFD0230C67B /* Pods_ReduxCounterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E34534853BE317E3B0B5918 /* Pods_ReduxCounterExample.framework */; };
 		B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B351BAD31D6614C900A27065 /* ReduxTests.swift */; };
@@ -24,6 +25,7 @@
 		32C0D56F4DF8B73E2FD85357 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		415FDEC1D9090ACF219A7A0A /* Pods-ReduxCounterExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxCounterExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxCounterExample/Pods-ReduxCounterExample.release.xcconfig"; sourceTree = "<group>"; };
 		5514608F1DDCB4C900492685 /* CounterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
+		551460931DDCC3FD00492685 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		557EDF9142D369CEBB35C84F /* Pods-Redux.swift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Redux.swift_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Redux.swift_Tests/Pods-Redux.swift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E34534853BE317E3B0B5918 /* Pods_ReduxCounterExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReduxCounterExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACE51AFB9204008FA782 /* Redux.swift_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Redux.swift_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				B374D1121D4691F2009BC5DD /* AppDelegate.swift */,
 				B374D1131D4691F2009BC5DD /* CounterStore.swift */,
 				5514608F1DDCB4C900492685 /* CounterViewController.swift */,
+				551460931DDCC3FD00492685 /* CounterView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */,
 				B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */,
 				B3802BA81D661C340082A499 /* DisposalSpyStore.swift in Sources */,
+				551460941DDCC3FD00492685 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
