@@ -1,7 +1,12 @@
 import UIKit
+import Redux
 
-class CounterViewController: UIViewController {
-    init() {
+class CounterViewController<T: StoreProtocol>: UIViewController where T.State == Int, T.State == T.Publishing {
+    private let store: T
+    private var unsubscribe: (() -> ())?
+
+    init(store: T) {
+        self.store = store
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -11,6 +16,14 @@ class CounterViewController: UIViewController {
 
     override func loadView() {
         view = CounterView(frame: UIScreen.main.bounds)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        unsubscribe = store.subscribe(render)
+    }
+
+    private func render(counter: Int) {
+        counterLabel.text = "\(counter)"
     }
 }
 
