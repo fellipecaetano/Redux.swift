@@ -21,6 +21,10 @@ class IdentificationStore: StoreProtocol {
     func dispatch(_ action: Action) {
         store.dispatch(action)
     }
+
+    var state: IdentificationState {
+        return store.state
+    }
 }
 
 struct IdentificationState {

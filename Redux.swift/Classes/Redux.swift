@@ -7,7 +7,7 @@ import Foundation
 public final class Store<State>: StoreProtocol {
     fileprivate let reduce: (State, Action) -> State
 
-    fileprivate var state: State {
+    public private(set) var state: State {
         didSet { publish(state) }
     }
 
@@ -105,4 +105,5 @@ public protocol Publisher {
 
 public protocol StoreProtocol: Publisher, Dispatcher {
     associatedtype State = Publishing
+    var state: State { get }
 }

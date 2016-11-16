@@ -24,6 +24,10 @@ class CounterStore: StoreProtocol {
     func dispatch(_ action: Action) {
         return store.dispatch(action)
     }
+
+    var state: CounterState {
+        return store.state
+    }
 }
 
 struct CounterState {
