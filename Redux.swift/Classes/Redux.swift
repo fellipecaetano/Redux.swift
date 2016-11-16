@@ -107,3 +107,10 @@ public protocol StoreProtocol: Publisher, Dispatcher {
     associatedtype State = Publishing
     var state: State { get }
 }
+
+extension StoreProtocol {
+    public func dispatch(_ thunk: (@escaping () -> State, @escaping (Action) -> Void) -> Void) {
+        let getState = { self.state }
+        thunk(getState, dispatch)
+    }
+}
