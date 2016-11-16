@@ -18,8 +18,43 @@ class CounterViewController<T: StoreProtocol>: UIViewController where T.State ==
         view = CounterView(frame: UIScreen.main.bounds)
     }
 
+    override func viewDidLoad() {
+        bigDecrementButton.addTarget(self, action: #selector(didTapBigDecrementButton), for: .touchUpInside)
+        smallDecrementButton.addTarget(self, action: #selector(didTapSmallDecrementButton), for: .touchUpInside)
+        smallIncrementButton.addTarget(self, action: #selector(didTapSmallIncrementButton), for: .touchUpInside)
+        bigIncrementButton.addTarget(self, action: #selector(didTapBigIncrementButton), for: .touchUpInside)
+    }
+
+    @objc private func didTapBigDecrementButton(_ button: UIButton) {
+        decrement(amount: 5)
+    }
+
+    @objc private func didTapSmallDecrementButton(_ button: UIButton) {
+        decrement(amount: 1)
+    }
+
+    @objc private func didTapSmallIncrementButton(_ button: UIButton) {
+        increment(amount: 1)
+    }
+
+    @objc private func didTapBigIncrementButton(_ button: UIButton) {
+        increment(amount: 5)
+    }
+
+    private func increment(amount: Int) {
+        store.dispatch(IncrementAction(amount: amount))
+    }
+
+    private func decrement(amount: Int) {
+        store.dispatch(DecrementAction(amount: amount))
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         unsubscribe = store.subscribe(render)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        unsubscribe?()
     }
 
     private func render(counter: Int) {
@@ -29,7 +64,7 @@ class CounterViewController<T: StoreProtocol>: UIViewController where T.State ==
 
 extension CounterViewController {
     var bigDecrementButton: UIButton {
-        return smartView.bigIncrementButton
+        return smartView.bigDecrementButton
     }
 
     var smallDecrementButton: UIButton {
@@ -37,7 +72,7 @@ extension CounterViewController {
     }
 
     var smallIncrementButton: UIButton {
-        return smartView.smallDecrementButton
+        return smartView.smallIncrementButton
     }
 
     var bigIncrementButton: UIButton {
