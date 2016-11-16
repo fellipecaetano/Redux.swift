@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		244933CEC39DB9B9C5E49B5A /* Pods_Redux_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */; };
-		551460901DDCB4C900492685 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514608F1DDCB4C900492685 /* CounterViewController.swift */; };
+		551460911DDCB5D100492685 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514608F1DDCB4C900492685 /* CounterViewController.swift */; };
 		7B532EC94304CEFD0230C67B /* Pods_ReduxCounterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E34534853BE317E3B0B5918 /* Pods_ReduxCounterExample.framework */; };
 		B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B351BAD31D6614C900A27065 /* ReduxTests.swift */; };
 		B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B3802BA81D661C340082A499 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3802BA71D661C340082A499 /* DisposalSpyStore.swift */; };
 		B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */; };
-		B3859CBA1D468B960046F1F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3859CB81D468B960046F1F6 /* Main.storyboard */; };
 		B3859CBC1D468B960046F1F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3859CBB1D468B960046F1F6 /* Assets.xcassets */; };
 		B3859CBF1D468B960046F1F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3859CBD1D468B960046F1F6 /* LaunchScreen.storyboard */; };
 		B396B56E1DA6D67E000DE765 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1121D4691F2009BC5DD /* AppDelegate.swift */; };
@@ -36,7 +35,6 @@
 		B3802BA71D661C340082A499 /* DisposalSpyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposalSpyStore.swift; sourceTree = "<group>"; };
 		B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentificationStore.swift; sourceTree = "<group>"; };
 		B3859CB21D468B960046F1F6 /* ReduxCounterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxCounterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3859CB91D468B960046F1F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B3859CBB1D468B960046F1F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3859CBE1D468B960046F1F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3859CC01D468B960046F1F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				B3859CBB1D468B960046F1F6 /* Assets.xcassets */,
 				B3859CC01D468B960046F1F6 /* Info.plist */,
 				B3859CBD1D468B960046F1F6 /* LaunchScreen.storyboard */,
-				B3859CB81D468B960046F1F6 /* Main.storyboard */,
 			);
 			path = "Example Application";
 			sourceTree = "<group>";
@@ -259,7 +256,6 @@
 			files = (
 				B3859CBF1D468B960046F1F6 /* LaunchScreen.storyboard in Resources */,
 				B3859CBC1D468B960046F1F6 /* Assets.xcassets in Resources */,
-				B3859CBA1D468B960046F1F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				551460901DDCB4C900492685 /* CounterViewController.swift in Sources */,
 				B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */,
 				B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */,
 				B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */,
@@ -403,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551460911DDCB5D100492685 /* CounterViewController.swift in Sources */,
 				B396B56E1DA6D67E000DE765 /* AppDelegate.swift in Sources */,
 				B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */,
 			);
@@ -411,15 +407,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B3859CB81D468B960046F1F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B3859CB91D468B960046F1F6 /* Base */,
-			);
-			name = Main.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
 		B3859CBD1D468B960046F1F6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
