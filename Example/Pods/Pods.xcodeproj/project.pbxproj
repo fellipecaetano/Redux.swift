@@ -50,7 +50,6 @@
 		7C2792121CF1996F6795A5672EE00272 /* CwlBadInstructionException.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24DB2F2446E527BBFC72CA26C6B8A84 /* CwlBadInstructionException.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		7FABF717282EC77B44E1F0A61EBB0188 /* CwlCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = 452FDC80B11D712F48823EC456EBBA29 /* CwlCatchException.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		80EB3F3AD608D1B132A3EA4B3E28CAB1 /* mach_excServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4F92EECDCA297FE100F743A0D97DAF /* mach_excServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		85004A0CB65EC857538B665955BFDE28 /* Redux+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43E5B373FB040A1C05DE6A04AAE4A79 /* Redux+RxSwift.swift */; };
 		850FAC7757B64C91286A39FD7D0FAA98 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BECE32C49037A7ED54FA7449D104C15 /* Expectation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		87018F89EC8B67A9F5B6C58AF9D7865A /* HaveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E049072A630FFCCD3F97BEB8DAEB5 /* HaveCount.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		89AD78E4074EB23249969F39D82E8C28 /* CwlCatchBadInstruction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C9F9D39E4F2B5FAD828DF08CFE731D7 /* CwlCatchBadInstruction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -196,7 +195,6 @@
 		C06660C3CFDB5D7FB380A0A9EC58243E /* AdapterProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdapterProtocols.swift; path = Sources/Nimble/Adapters/AdapterProtocols.swift; sourceTree = "<group>"; };
 		C0DC852C2A01EFFCA088B59558DB0F3D /* Redux.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Redux.swift-prefix.pch"; sourceTree = "<group>"; };
 		C17D6F3A9DABA6397EF91F2358249B48 /* NMBExpectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NMBExpectation.swift; path = Sources/Nimble/Adapters/NMBExpectation.swift; sourceTree = "<group>"; };
-		C43E5B373FB040A1C05DE6A04AAE4A79 /* Redux+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Redux+RxSwift.swift"; sourceTree = "<group>"; };
 		C6572D69C597448CFADF6DBAD3CA4638 /* MatchError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatchError.swift; path = Sources/Nimble/Matchers/MatchError.swift; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CF9FFC3A7E159C541FBE81BC0A99DA5A /* NMBStringify.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMBStringify.m; path = Sources/NimbleObjectiveC/NMBStringify.m; sourceTree = "<group>"; };
@@ -272,14 +270,6 @@
 			path = "Target Support Files/Pods-ReduxCounterExample";
 			sourceTree = "<group>";
 		};
-		2D3F71C3C2FDF2908C394D6AFA002414 /* RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				C43E5B373FB040A1C05DE6A04AAE4A79 /* Redux+RxSwift.swift */,
-			);
-			path = RxSwift;
-			sourceTree = "<group>";
-		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				9FBFCC83B1CA45DBCA9F85805993D282 /* Redux.swift */,
-				2D3F71C3C2FDF2908C394D6AFA002414 /* RxSwift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -648,7 +637,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85004A0CB65EC857538B665955BFDE28 /* Redux+RxSwift.swift in Sources */,
 				24EE7D2FCE2DF6F376C41FFAB9EE47E5 /* Redux.swift in Sources */,
 				CEEF723342D87BD1BA52EADA412D405D /* Redux.swift-dummy.m in Sources */,
 			);
