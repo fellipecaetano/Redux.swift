@@ -1,7 +1,7 @@
 import Foundation
 import Redux
 
-class IdentificationStore: Publisher, Dispatcher {
+class IdentificationStore: StoreProtocol {
     typealias E = IdentificationState
 
     fileprivate let store = Store<IdentificationState>(initialState: IdentificationState()) { state, action in

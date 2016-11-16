@@ -4,9 +4,7 @@ import Foundation
  The data structure responsible for holding application state, allowing controlled mutation through dispatched
  `Actions` and notifying interested parties that `subscribe` to state changes.
  */
-public final class Store<State>: Publisher, Dispatcher {
-    public typealias Publishing = State
-
+public final class Store<State>: StoreProtocol {
     fileprivate let reduce: (State, Action) -> State
 
     fileprivate var state: State {
