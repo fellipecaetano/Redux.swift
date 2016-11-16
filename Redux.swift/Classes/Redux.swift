@@ -115,6 +115,26 @@ extension StoreProtocol {
     }
 }
 
+extension StoreProtocol where Publishing == State {
+    public func map<T>(_ transform: @escaping (State) -> T) -> AnyStore<T> {
+        func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
+            return self.subscribe { state in
+                subscription(transform(state))
+            }
+        }
+
+        func dispatch(_ action: Action) {
+            self.dispatch(action)
+        }
+
+        func getState() -> T {
+            return transform(self.state)
+        }
+
+        return AnyStore(subscribe: subscribe, dispatch: dispatch, getState: getState)
+    }
+}
+
 public struct AnyStore<T>: StoreProtocol {
     private let doSubscribe: (@escaping (T) -> Void) -> ((Void) -> Void)
     private let doDispatch: (Action) -> Void
