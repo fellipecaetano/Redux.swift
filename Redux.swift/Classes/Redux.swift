@@ -114,3 +114,29 @@ extension StoreProtocol {
         thunk(getState, dispatch)
     }
 }
+
+public struct AnyStore<T>: StoreProtocol {
+    private let doSubscribe: (@escaping (T) -> Void) -> ((Void) -> Void)
+    private let doDispatch: (Action) -> Void
+    private let getState: () -> T
+
+    fileprivate init (subscribe: @escaping (@escaping (T) -> Void) -> ((Void) -> Void),
+                      dispatch: @escaping (Action) -> Void,
+                      getState: @escaping () -> T) {
+        self.doSubscribe = subscribe
+        self.doDispatch = dispatch
+        self.getState = getState
+    }
+
+    public func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
+        return doSubscribe(subscription)
+    }
+
+    public func dispatch(_ action: Action) {
+        doDispatch(action)
+    }
+
+    public var state: T {
+        return getState()
+    }
+}
