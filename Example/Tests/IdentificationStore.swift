@@ -1,8 +1,7 @@
 import Foundation
 import Redux
-import RxSwift
 
-class IdentificationStore: Publisher, Dispatcher, ObservableType {
+class IdentificationStore: Publisher, Dispatcher {
     typealias E = IdentificationState
 
     fileprivate let store = Store<IdentificationState>(initialState: IdentificationState()) { state, action in
