@@ -104,3 +104,7 @@ public protocol Publisher {
     */
     func subscribe(_ subscription: @escaping (Publishing) -> Void) -> ((Void) -> Void)
 }
+
+public protocol StoreProtocol: Publisher, Dispatcher {
+    associatedtype State = Publishing
+}

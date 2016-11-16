@@ -1,7 +1,7 @@
 import Foundation
 import Redux
 
-class CounterStore: Publisher, Dispatcher {
+class CounterStore: StoreProtocol {
     typealias E = CounterState
 
     fileprivate let store = Store<CounterState>(initialState: CounterState()) { state, action in
