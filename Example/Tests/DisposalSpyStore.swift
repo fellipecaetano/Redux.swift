@@ -1,12 +1,12 @@
 import Redux
 
 class DisposalSpyStore: Publisher, Dispatcher {
-    typealias E = IdentificationStore.Publishing
+    typealias E = IdentificationStore.State
 
     fileprivate let store = IdentificationStore()
     fileprivate(set) var didUnsubscribe = false
 
-    func subscribe(_ subscription: @escaping (IdentificationStore.Publishing) -> Void) -> ((Void) -> Void) {
+    func subscribe(_ subscription: @escaping (IdentificationStore.State) -> Void) -> ((Void) -> Void) {
         let unsubscribe = store.subscribe(subscription)
 
         return {

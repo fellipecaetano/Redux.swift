@@ -40,7 +40,7 @@ public final class Store<State>: StoreProtocol {
      - parameter subscription: A closure that's called whenever there's a change to the state in hold.
      - returns: A closure that unsubscribes the provided subscription.
      */
-    public func subscribe(_ subscription: @escaping (State) -> Void) -> ((Void) -> Void) {
+    public func subscribe(_ subscription: @escaping (State) -> Void) -> (() -> Void) {
         let token = UUID().uuidString
         subscribers[token] = subscription
 
@@ -92,7 +92,7 @@ public protocol Action {}
  object in response to generic events.
  */
 public protocol Publisher {
-    associatedtype Publishing
+    associatedtype State
 
     /**
      Adds a handler to a generic event.
@@ -100,11 +100,10 @@ public protocol Publisher {
      - parameter subscription: The handler that will be called in response to generic events.
      - returns: A closure that unsubscribes the provided subscription.
     */
-    func subscribe(_ subscription: @escaping (Publishing) -> Void) -> ((Void) -> Void)
+    func subscribe(_ subscription: @escaping (State) -> Void) -> ((Void) -> Void)
 }
 
 public protocol StoreProtocol: Publisher, Dispatcher {
-    associatedtype State = Publishing
     var state: State { get }
 }
 
@@ -115,7 +114,7 @@ extension StoreProtocol {
     }
 }
 
-extension StoreProtocol where Publishing == State {
+extension StoreProtocol {
     public func map<T>(_ transform: @escaping (State) -> T) -> AnyStore<T> {
         func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
             return self.subscribe { state in
@@ -136,11 +135,11 @@ extension StoreProtocol where Publishing == State {
 }
 
 public struct AnyStore<T>: StoreProtocol {
-    private let doSubscribe: (@escaping (T) -> Void) -> ((Void) -> Void)
+    private let doSubscribe: (@escaping (T) -> Void) -> (() -> Void)
     private let doDispatch: (Action) -> Void
     private let getState: () -> T
 
-    fileprivate init (subscribe: @escaping (@escaping (T) -> Void) -> ((Void) -> Void),
+    fileprivate init (subscribe: @escaping (@escaping (T) -> Void) -> (() -> Void),
                       dispatch: @escaping (Action) -> Void,
                       getState: @escaping () -> T) {
         self.doSubscribe = subscribe
@@ -148,7 +147,7 @@ public struct AnyStore<T>: StoreProtocol {
         self.getState = getState
     }
 
-    public func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
+    public func subscribe(_ subscription: @escaping (T) -> Void) -> (() -> Void) {
         return doSubscribe(subscription)
     }
 

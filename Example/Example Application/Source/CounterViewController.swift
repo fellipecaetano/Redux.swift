@@ -1,9 +1,9 @@
 import UIKit
 import Redux
 
-class CounterViewController<T: StoreProtocol>: UIViewController where T.State == Int, T.State == T.Publishing {
+class CounterViewController<T: StoreProtocol>: UIViewController where T.State == Int {
     private let store: T
-    private var unsubscribe: (() -> ())?
+    private var unsubscribe: (() -> Void)?
 
     init(store: T) {
         self.store = store
