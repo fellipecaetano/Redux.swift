@@ -12,7 +12,6 @@
 		B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B351BAD31D6614C900A27065 /* ReduxTests.swift */; };
 		B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
-		B3802BA61D6618440082A499 /* ReduxTests+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3802BA51D6618440082A499 /* ReduxTests+RxSwift.swift */; };
 		B3802BA81D661C340082A499 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3802BA71D661C340082A499 /* DisposalSpyStore.swift */; };
 		B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */; };
 		B3859CBA1D468B960046F1F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3859CB81D468B960046F1F6 /* Main.storyboard */; };
@@ -32,7 +31,6 @@
 		B351BAD31D6614C900A27065 /* ReduxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxTests.swift; sourceTree = "<group>"; };
 		B374D1121D4691F2009BC5DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B374D1131D4691F2009BC5DD /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
-		B3802BA51D6618440082A499 /* ReduxTests+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReduxTests+RxSwift.swift"; sourceTree = "<group>"; };
 		B3802BA71D661C340082A499 /* DisposalSpyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposalSpyStore.swift; sourceTree = "<group>"; };
 		B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentificationStore.swift; sourceTree = "<group>"; };
 		B3859CB21D468B960046F1F6 /* ReduxCounterExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxCounterExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +102,6 @@
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				B3802BA71D661C340082A499 /* DisposalSpyStore.swift */,
 				B3859CA81D45C6030046F1F6 /* IdentificationStore.swift */,
-				B3802BA51D6618440082A499 /* ReduxTests+RxSwift.swift */,
 				B351BAD31D6614C900A27065 /* ReduxTests.swift */,
 			);
 			path = Tests;
@@ -394,7 +391,6 @@
 				B374D1161D4691F2009BC5DD /* CounterStore.swift in Sources */,
 				B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */,
 				B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */,
-				B3802BA61D6618440082A499 /* ReduxTests+RxSwift.swift in Sources */,
 				B3802BA81D661C340082A499 /* DisposalSpyStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
