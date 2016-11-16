@@ -73,7 +73,7 @@ public protocol Dispatcher {
 extension Dispatcher {
     /**
      Executes a closure with an injected `dispatch` function.
-     Useful asynchronous `Action` dispatches.
+     Useful for asynchronous `Action` dispatches.
 
      - parameter thunk: The closure that will be executed with an injected `dispatch` function.
      */
@@ -103,11 +103,28 @@ public protocol Publisher {
     func subscribe(_ subscription: @escaping (State) -> Void) -> ((Void) -> Void)
 }
 
+/**
+ Defines behavior exposed by a Redux store, i. e. action dispatching capabilities 
+ and notifications of state changes to subscribers.
+ */
 public protocol StoreProtocol: Publisher, Dispatcher {
+    /**
+     Returns the current `State` of the store.
+    */
     var state: State { get }
 }
 
 extension StoreProtocol {
+    /**
+     Executes a closure injected with a `dispatch` function and an
+     accessor for the current `State`.
+
+     Useful for asynchronous `Action` dispatches that depend on the current
+     `State` to perform logic before dispatching actions.
+     
+     - parameter thunk: The closure that will be executed injected with a `dispatch` function
+     and a `State` getter.
+     */
     public func dispatch(_ thunk: (@escaping () -> State, @escaping (Action) -> Void) -> Void) {
         let getState = { self.state }
         thunk(getState, dispatch)
@@ -115,6 +132,17 @@ extension StoreProtocol {
 }
 
 extension StoreProtocol {
+    /**
+     Maps this store into a store with the same dispatch capabilities
+     but with a transformed `State`.
+     
+     Useful for selecting branches of a larger `State` tree.
+
+     - parameter transform: The transformation that will be applied to the
+     current `State`.
+     - returns: a store with the same dispatch capabilities that publishes
+     `T` instead of `State`.
+    */
     public func map<T>(_ transform: @escaping (State) -> T) -> AnyStore<T> {
         func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
             return self.subscribe { state in
@@ -134,6 +162,9 @@ extension StoreProtocol {
     }
 }
 
+/**
+ A type-erased `StoreProtocol` conformance.
+ */
 public struct AnyStore<T>: StoreProtocol {
     private let doSubscribe: (@escaping (T) -> Void) -> (() -> Void)
     private let doDispatch: (Action) -> Void
