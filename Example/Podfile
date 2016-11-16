@@ -1,12 +1,11 @@
 use_frameworks!
 
 target 'ReduxCounterExample' do
-  pod 'Redux.swift/RxSwift', :path => '../'
-  pod 'RxCocoa', '3.0.0-beta.2'
+  pod 'Redux.swift', :path => '../'
 end
 
 target 'Redux.swift_Tests' do
-  pod 'Redux.swift/RxSwift', :path => '../'
+  pod 'Redux.swift', :path => '../'
   pod 'Nimble', '~> 5.0'
 end
 
