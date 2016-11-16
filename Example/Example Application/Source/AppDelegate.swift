@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  ReduxCounterExample
-//
-//  Created by Fellipe Caetano on 7/25/16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
