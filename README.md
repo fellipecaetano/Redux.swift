@@ -166,7 +166,7 @@ $ brew install carthage
 To integrate Redux.swift into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "fellipecaetano/Redux.swift" ~> 1.0
+github "fellipecaetano/Redux.swift" ~> 2.0
 ```
 
 Run `carthage update` to build the framework and drag the built `Redux.framework` into your Xcode project.
