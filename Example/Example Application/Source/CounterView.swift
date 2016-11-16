@@ -6,8 +6,8 @@ class CounterView: UIView {
     let smallIncrementButton = UIButton(type: .system)
     let bigIncrementButton = UIButton(type: .system)
     let counterLabel = UILabel()
-    
-    var buttons: [UIButton] {
+
+    private var buttons: [UIButton] {
         return [
             bigDecrementButton,
             smallDecrementButton,
@@ -15,35 +15,35 @@ class CounterView: UIView {
             bigIncrementButton
         ]
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     private func setup() {
         backgroundColor = .white
-        
+
         setupButton(bigDecrementButton, withTitle: "-5")
         setupButton(smallDecrementButton, withTitle: "-1")
         setupButton(smallIncrementButton, withTitle: "+1")
         setupButton(bigIncrementButton, withTitle: "+5")
-        
+
         let buttonsView = UIStackView(arrangedSubviews: buttons)
         setupButtonsView(buttonsView)
-        
+
         setupCounterLabel(counterLabel)
-        
+
         let contentView = UIStackView(arrangedSubviews: [counterLabel, buttonsView])
         setupContentView(contentView)
     }
-    
+
     private func setupButton(_ button: UIButton, withTitle title: String) {
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
         button.widthAnchor.constraint(equalToConstant: 40).isActive = true
         button.setTitle(title, for: .normal)
     }
-    
+
     private func setupButtonsView(_ buttonsView: UIStackView) {
         buttonsView.axis = .horizontal
         buttonsView.alignment = .center
@@ -51,12 +51,12 @@ class CounterView: UIView {
         buttonsView.distribution = .equalSpacing
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     private func setupCounterLabel(_ counterLabel: UILabel) {
         counterLabel.font = UIFont.boldSystemFont(ofSize: 45)
         counterLabel.textAlignment = .center
     }
-    
+
     private func setupContentView(_ contentView: UIStackView) {
         contentView.axis = .vertical
         contentView.alignment = .center
@@ -65,7 +65,7 @@ class CounterView: UIView {
         contentView.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(contentView)
-        
+
         contentView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         contentView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true

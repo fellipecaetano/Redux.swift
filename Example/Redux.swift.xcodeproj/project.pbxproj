@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		244933CEC39DB9B9C5E49B5A /* Pods_Redux_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA6FFBFE0BE20DA212C6F2 /* Pods_Redux_swift_Tests.framework */; };
 		551460921DDCB9EE00492685 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514608F1DDCB4C900492685 /* CounterViewController.swift */; };
-		551460941DDCC3FD00492685 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551460931DDCC3FD00492685 /* CounterView.swift */; };
+		551460951DDCC4DB00492685 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551460931DDCC3FD00492685 /* CounterView.swift */; };
 		7B532EC94304CEFD0230C67B /* Pods_ReduxCounterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E34534853BE317E3B0B5918 /* Pods_ReduxCounterExample.framework */; };
 		B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374D1131D4691F2009BC5DD /* CounterStore.swift */; };
 		B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B351BAD31D6614C900A27065 /* ReduxTests.swift */; };
@@ -394,7 +394,6 @@
 				B3859CA91D45C6030046F1F6 /* IdentificationStore.swift in Sources */,
 				B351BAD51D66155E00A27065 /* ReduxTests.swift in Sources */,
 				B3802BA81D661C340082A499 /* DisposalSpyStore.swift in Sources */,
-				551460941DDCC3FD00492685 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +404,7 @@
 				551460921DDCB9EE00492685 /* CounterViewController.swift in Sources */,
 				B396B56E1DA6D67E000DE765 /* AppDelegate.swift in Sources */,
 				B33D0A311D4B92F200F8FC29 /* CounterStore.swift in Sources */,
+				551460951DDCC4DB00492685 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
