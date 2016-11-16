@@ -121,6 +121,8 @@ The `Example` directory contains a project holding the tests for Redux.swift. To
 
 ## Installation
 
+### CocoaPods
+
 Redux.swift is available through [CocoaPods](http://cocoapods.org), a dependency manager for Cocoa projects. CocoaPods can be downloaded as a stand-alone app and can also be installed through [RubyGems](https://rubygems.org/):
 
 ```bash
@@ -149,6 +151,25 @@ Then, install your dependencies through the CocoaPods app or by running the foll
 ```bash
 $ pod install
 ```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following commands:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate Redux.swift into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "fellipecaetano/Redux.swift" ~> 1.0
+```
+
+Run `carthage update` to build the framework and drag the built `Redux.framework` into your Xcode project.
 
 ## Disclaimer
 
