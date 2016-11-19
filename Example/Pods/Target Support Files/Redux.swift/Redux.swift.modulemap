@@ -1,6 +1,0 @@
-framework module Redux {
-  umbrella header "Redux.swift-umbrella.h"
-
-  export *
-  module * { export * }
-}
