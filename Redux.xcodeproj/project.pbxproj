@@ -53,9 +53,9 @@
 		B3E9C83E1DE0D6FF00644180 = {
 			isa = PBXGroup;
 			children = (
-				B3E9C84A1DE0D6FF00644180 /* Redux */,
-				B3E9C8551DE0D70000644180 /* ReduxTests */,
 				B3E9C8491DE0D6FF00644180 /* Products */,
+				B3E9C84A1DE0D6FF00644180 /* Source */,
+				B3E9C8551DE0D70000644180 /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,22 +68,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B3E9C84A1DE0D6FF00644180 /* Redux */ = {
+		B3E9C84A1DE0D6FF00644180 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B3E9C84B1DE0D6FF00644180 /* Redux.h */,
 				B3E9C84C1DE0D6FF00644180 /* Info.plist */,
+				B3E9C84B1DE0D6FF00644180 /* Redux.h */,
 			);
-			path = Redux;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		B3E9C8551DE0D70000644180 /* ReduxTests */ = {
+		B3E9C8551DE0D70000644180 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B3E9C8561DE0D70000644180 /* ReduxTests.swift */,
 				B3E9C8581DE0D70000644180 /* Info.plist */,
+				B3E9C8561DE0D70000644180 /* ReduxTests.swift */,
 			);
-			path = ReduxTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,7 +328,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Redux/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -348,7 +348,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Redux/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -363,7 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
-				INFOPLIST_FILE = ReduxTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.ReduxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -375,7 +375,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
-				INFOPLIST_FILE = ReduxTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.ReduxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -402,6 +402,7 @@
 				B3E9C85E1DE0D70000644180 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3E9C85F1DE0D70000644180 /* Build configuration list for PBXNativeTarget "ReduxTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +411,7 @@
 				B3E9C8611DE0D70000644180 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
