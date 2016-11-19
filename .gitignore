@@ -28,3 +28,5 @@ Carthage
 # Emacs
 *~
 
+# Fastlane
+test_output

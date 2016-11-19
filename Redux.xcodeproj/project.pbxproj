@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E9C8521DE0D70000644180 /* Redux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8481DE0D6FF00644180 /* Redux.framework */; };
 		B3E9C8591DE0D70000644180 /* Redux.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E9C84B1DE0D6FF00644180 /* Redux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8621DE0D7F800644180 /* Redux.swift */; };
 		B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */; };
 		B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */; };
 		B3E9C8691DE0D9C600644180 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8661DE0D9C600644180 /* ReduxTests.swift */; };
+		B3E9C86E1DE0DCC900644180 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C86D1DE0DCC900644180 /* CounterStore.swift */; };
+		B3E9C8761DE0DEF600644180 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8741DE0DE9A00644180 /* Nimble.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B3E9C8531DE0D70000644180 /* PBXContainerItemProxy */ = {
+		B3E9C8701DE0DDA400644180 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B3E9C83F1DE0D6FF00644180 /* Project object */;
 			proxyType = 1;
@@ -35,6 +36,10 @@
 		B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposalSpyStore.swift; sourceTree = "<group>"; };
 		B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentificationStore.swift; sourceTree = "<group>"; };
 		B3E9C8661DE0D9C600644180 /* ReduxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxTests.swift; sourceTree = "<group>"; };
+		B3E9C86B1DE0DC5400644180 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Carthage/Checkouts/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
+		B3E9C86D1DE0DCC900644180 /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
+		B3E9C8721DE0DE8700644180 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		B3E9C8741DE0DE9A00644180 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../../../Library/Developer/Xcode/DerivedData/Redux-bmjfidxencazgldkeseeqeugtpid/Build/Products/Debug-iphonesimulator/Nimble.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E9C8521DE0D70000644180 /* Redux.framework in Frameworks */,
+				B3E9C8761DE0DEF600644180 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +67,7 @@
 				B3E9C8491DE0D6FF00644180 /* Products */,
 				B3E9C84A1DE0D6FF00644180 /* Source */,
 				B3E9C8551DE0D70000644180 /* Tests */,
+				B3E9C86A1DE0DC5300644180 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,12 +93,23 @@
 		B3E9C8551DE0D70000644180 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B3E9C86D1DE0DCC900644180 /* CounterStore.swift */,
 				B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */,
 				B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */,
 				B3E9C8661DE0D9C600644180 /* ReduxTests.swift */,
 				B3E9C8581DE0D70000644180 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		B3E9C86A1DE0DC5300644180 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3E9C8741DE0DE9A00644180 /* Nimble.framework */,
+				B3E9C8721DE0DE8700644180 /* Nimble.framework */,
+				B3E9C86B1DE0DC5400644180 /* Nimble.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +155,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B3E9C8541DE0D70000644180 /* PBXTargetDependency */,
+				B3E9C8711DE0DDA400644180 /* PBXTargetDependency */,
 			);
 			name = ReduxTests;
 			productName = ReduxTests;
@@ -219,6 +236,7 @@
 			files = (
 				B3E9C8691DE0D9C600644180 /* ReduxTests.swift in Sources */,
 				B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */,
+				B3E9C86E1DE0DCC900644180 /* CounterStore.swift in Sources */,
 				B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,10 +244,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B3E9C8541DE0D70000644180 /* PBXTargetDependency */ = {
+		B3E9C8711DE0DDA400644180 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B3E9C8471DE0D6FF00644180 /* Redux */;
-			targetProxy = B3E9C8531DE0D70000644180 /* PBXContainerItemProxy */;
+			targetProxy = B3E9C8701DE0DDA400644180 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -382,6 +400,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.ReduxTests;
@@ -397,6 +419,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.ReduxTests;
