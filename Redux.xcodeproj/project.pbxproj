@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B3E9C8521DE0D70000644180 /* Redux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8481DE0D6FF00644180 /* Redux.framework */; };
-		B3E9C8571DE0D70000644180 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8561DE0D70000644180 /* ReduxTests.swift */; };
 		B3E9C8591DE0D70000644180 /* Redux.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E9C84B1DE0D6FF00644180 /* Redux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8621DE0D7F800644180 /* Redux.swift */; };
+		B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */; };
+		B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */; };
+		B3E9C8691DE0D9C600644180 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8661DE0D9C600644180 /* ReduxTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +30,11 @@
 		B3E9C84B1DE0D6FF00644180 /* Redux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Redux.h; sourceTree = "<group>"; };
 		B3E9C84C1DE0D6FF00644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E9C8511DE0D70000644180 /* ReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E9C8561DE0D70000644180 /* ReduxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduxTests.swift; sourceTree = "<group>"; };
 		B3E9C8581DE0D70000644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E9C8621DE0D7F800644180 /* Redux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposalSpyStore.swift; sourceTree = "<group>"; };
+		B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentificationStore.swift; sourceTree = "<group>"; };
+		B3E9C8661DE0D9C600644180 /* ReduxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +87,10 @@
 		B3E9C8551DE0D70000644180 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */,
+				B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */,
+				B3E9C8661DE0D9C600644180 /* ReduxTests.swift */,
 				B3E9C8581DE0D70000644180 /* Info.plist */,
-				B3E9C8561DE0D70000644180 /* ReduxTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -158,6 +164,7 @@
 					B3E9C8501DE0D70000644180 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 8Q86GGRUX8;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -210,7 +217,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E9C8571DE0D70000644180 /* ReduxTests.swift in Sources */,
+				B3E9C8691DE0D9C600644180 /* ReduxTests.swift in Sources */,
+				B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */,
+				B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,11 +380,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.ReduxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -384,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

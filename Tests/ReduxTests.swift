@@ -1,36 +1,77 @@
-//
-//  ReduxTests.swift
-//  ReduxTests
-//
-//  Created by Fellipe Caetano on 19/11/16.
-//  Copyright © 2016 Fellipe Caetano. All rights reserved.
-//
-
 import XCTest
-@testable import Redux
+import Nimble
+import Redux
 
 class ReduxTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testInitialState() {
+        let store = IdentificationStore()
+
+        var stateReceived: IdentificationState?
+        _ = store.subscribe { newState in
+            stateReceived = newState
         }
+
+        expect(stateReceived?.identifier).toEventually(equal("initial"))
     }
-    
+
+    func testDispatchedChanges() {
+        let store = IdentificationStore()
+
+        var stateReceived: IdentificationState?
+        _ = store.subscribe { newState in
+            stateReceived = newState
+        }
+
+        store.dispatch(IdentifiedAction(identifier: "dispatched"))
+        expect(stateReceived?.identifier).toEventually(equal("dispatched"))
+    }
+
+    func testSubscriptionDisposal() {
+        let store = IdentificationStore()
+
+        var stateReceived: IdentificationState?
+        let unsubscribe = store.subscribe { newState in
+            stateReceived = newState
+        }
+        unsubscribe()
+
+        store.dispatch(IdentifiedAction(identifier: "dispatched"))
+        expect(stateReceived?.identifier).toEventually(equal("initial"))
+    }
+
+    func testReduction() {
+        let store = CounterStore()
+
+        var stateReceived: CounterState?
+        _ = store.subscribe { newState in
+            stateReceived = newState
+        }
+
+        expect(stateReceived?.counter).toEventually(equal(0))
+
+        store.dispatch(IncrementAction(amount: 5))
+        expect(stateReceived?.counter).toEventually(equal(5))
+
+        store.dispatch(DecrementAction(amount: 2))
+        expect(stateReceived?.counter).toEventually(equal(3))
+    }
+
+    func testAsynchronousDispatches() {
+        let store = CounterStore()
+
+        var stateReceived: CounterState?
+        _ = store.subscribe { newState in
+            stateReceived = newState
+        }
+
+        store.dispatch { dispatch in
+            DispatchQueue.global(qos: .userInitiated).async {
+                DispatchQueue.main.async {
+                    dispatch(IncrementAction(amount: 3))
+                }
+            }
+        }
+
+        expect(stateReceived?.counter).toEventually(equal(3))
+    }
 }
