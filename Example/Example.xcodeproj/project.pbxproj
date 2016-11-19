@@ -13,7 +13,23 @@
 		B3E9C8931DE0E1D400644180 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8901DE0E1D400644180 /* CounterStore.swift */; };
 		B3E9C8941DE0E1D400644180 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8911DE0E1D400644180 /* CounterView.swift */; };
 		B3E9C8951DE0E1D400644180 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8921DE0E1D400644180 /* CounterViewController.swift */; };
+		B3E9C8971DE0E49F00644180 /* Redux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8961DE0E49F00644180 /* Redux.framework */; };
+		B3E9C8981DE0E49F00644180 /* Redux.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8961DE0E49F00644180 /* Redux.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B3E9C8991DE0E49F00644180 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B3E9C8981DE0E49F00644180 /* Redux.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B3E9C8801DE0E0A300644180 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +40,7 @@
 		B3E9C8901DE0E1D400644180 /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
 		B3E9C8911DE0E1D400644180 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		B3E9C8921DE0E1D400644180 /* CounterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
+		B3E9C8961DE0E49F00644180 /* Redux.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Redux.framework; path = Carthage/Build/iOS/Redux.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E9C8971DE0E49F00644180 /* Redux.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +58,7 @@
 		B3E9C8771DE0E0A300644180 = {
 			isa = PBXGroup;
 			children = (
+				B3E9C8961DE0E49F00644180 /* Redux.framework */,
 				B3E9C8811DE0E0A300644180 /* Products */,
 				B3E9C8821DE0E0A300644180 /* Source */,
 			);
@@ -77,6 +96,7 @@
 				B3E9C87C1DE0E0A300644180 /* Sources */,
 				B3E9C87D1DE0E0A300644180 /* Frameworks */,
 				B3E9C87E1DE0E0A300644180 /* Resources */,
+				B3E9C8991DE0E49F00644180 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,6 +277,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Source/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -271,6 +295,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Source/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
