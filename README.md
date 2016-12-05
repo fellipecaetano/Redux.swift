@@ -11,7 +11,6 @@ Redux.swift is an implementation of a predictable state container, written in Sw
 
 - [Principles](#principles)
 - [Usage](#usage)
-  - [RxSwift](#rxswift)
 - [Example](#example)
 - [Testing](#testing)
 - [Requirements](#requirements)
@@ -88,19 +87,13 @@ unsubscribe()
 
 ```
 
-### RxSwift
-
-The "reactive" programming model of Redux matches effortlessly with the concept of observable streams advocated by projects such as [RxSwift](https://github.com/ReactiveX/RxSwift).
-Therefore, Redux.swift ships an extension exposing `Publishers` as `Observables`, effectively turning state changes into a ReactiveX-compatible stream.
-If you include the `Redux.swift/RxSwift` subspec, `Store` conforms to `ObservableType` by default.
-
 ## Example
 
 Inside the `Example` directory you will find a sample application that presents a counter, which can be manipulated by increment and decrement buttons. To run it:
 
 1. Clone the repository
 2. Enter the `Example` directory
-3. Open the `Redux.swift.xcworkspace` file in Xcode 7.3
+3. Open the `Redux.swift.xcworkspace` file in Xcode
 4. Select the `ReduxCounterExample` target in the target selection dropdown near the Stop button
 5. Build and run the application
 
@@ -110,14 +103,14 @@ The `Example` directory contains a project holding the tests for Redux.swift. To
 
 1. Clone the repository
 2. Enter the `Example` directory
-3. Open the `Redux.swift.xcworkspace` file in Xcode 7.3
+3. Open the `Redux.swift.xcworkspace` file in Xcode
 4. Select the `Redux.swift-Example` target in the target selection dropdown near the Stop button
 5. Press `⌘U` or click `Test` from the `Product` menu
 
 ## Requirements
 
-- iOS 8.0+ / Mac OS X 10.9+ / tvOS 9.0+ / watchOS 2.0+
-- Xcode 7.3+
+- iOS 9.0+
+- Xcode 8.0+
 
 ## Installation
 
@@ -134,15 +127,6 @@ To integrate Redux.swift into your Xcode project using CocoaPods, specify it in 
 ```ruby
 target '<target_name>' do
   pod 'Redux.swift'
-end
-```
-
-Redux.swift also couples nicely with [RxSwift](https://github.com/ReactiveX/RxSwift). The `Redux.swift/RxSwift` subspec ships the entire project plus
-extensions that integrate Redux.swift with RxSwift:
-
-```ruby
-target '<target_name>' do
-  pod 'Redux.swift/RxSwift'
 end
 ```
 
@@ -166,7 +150,7 @@ $ brew install carthage
 To integrate Redux.swift into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "fellipecaetano/Redux.swift" ~> 2.0
+github "fellipecaetano/Redux.swift"
 ```
 
 Run `carthage update` to build the framework and drag the built `Redux.framework` into your Xcode project.
