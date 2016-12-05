@@ -93,18 +93,17 @@ Inside the `Example` directory you will find a sample application that presents 
 
 1. Clone the repository
 2. Enter the `Example` directory
-3. Open the `Redux.swift.xcworkspace` file in Xcode
-4. Select the `ReduxCounterExample` target in the target selection dropdown near the Stop button
+3. Open `Example.xcodeproj` in Xcode
+4. Select the `Example` target in the target selection dropdown near the Stop button
 5. Build and run the application
 
 ## Testing
 
-The `Example` directory contains a project holding the tests for Redux.swift. To run them:
+To run tests against the library:
 
 1. Clone the repository
-2. Enter the `Example` directory
-3. Open the `Redux.swift.xcworkspace` file in Xcode
-4. Select the `Redux.swift-Example` target in the target selection dropdown near the Stop button
+3. Open `Redux.xcworkspace` in Xcode
+4. Select the `Redux` target in the target selection dropdown near the `Stop` button
 5. Press `⌘U` or click `Test` from the `Product` menu
 
 ## Requirements
