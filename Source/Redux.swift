@@ -226,3 +226,17 @@ public protocol Command {
     */
     func run(state: () -> State, dispatch: @escaping (Action) -> Void)
 }
+
+extension StoreProtocol {
+    /**
+     Runs a `Command` injecting the current `State` and a handle
+     for dispatching `Action` instances from this `StoreProtocol`.
+     
+     - parameter command: The `Command` instance that will be run.
+     */
+    public func dispatch<C: Command>(_ command: C) where C.State == State {
+        dispatch { getState, dispatch in
+            command.run(state: getState, dispatch: dispatch)
+        }
+    }
+}
