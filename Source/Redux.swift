@@ -1,5 +1,11 @@
 import Foundation
 
+/**
+ Functions meant for execution whenever actions are dispatched
+ from a store. The first parameter is an accessor for the
+ aforementioned store's state when the middleware is run, and the
+ second parameter is the action that triggered the execution.
+ */
 public typealias Middleware<T> = ((() -> T), Action) -> Void
 
 /**
@@ -20,6 +26,7 @@ public final class Store<State>: StoreProtocol {
      Initializes a `Store`.
 
      - parameter initialState: The initial value of the application state in hold.
+     - parameter middleware: A collection of functions that will be run whenever an `Action` is dispatched.
      - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
     */
     public init (initialState: State,
@@ -199,4 +206,23 @@ public struct AnyStore<T>: StoreProtocol {
     public var state: T {
         return getState()
     }
+}
+
+/**
+ A wrapper for asynchronous dispatches. Useful for namespacing
+ long-running procedures that dispatch many `Action`
+ instances asynchronously.
+ */
+protocol Command {
+    associatedtype State
+    
+    /**
+     Runs an arbitrary procedure that dispatches `Action` instances
+     asynchronously.
+
+     - parameter state: A state accessor. It only makes sense
+     when this `Command` is dispatched by a `Store`.
+     - parameter dispatch: Dispatches an action.
+    */
+    func run(state: () -> State, dispatch: @escaping (Action) -> Void)
 }
