@@ -213,7 +213,7 @@ public struct AnyStore<T>: StoreProtocol {
  long-running procedures that dispatch many `Action`
  instances asynchronously.
  */
-protocol Command {
+public protocol Command {
     associatedtype State
     
     /**
