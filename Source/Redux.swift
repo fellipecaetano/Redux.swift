@@ -1,5 +1,7 @@
 import Foundation
 
+public typealias Middleware<T> = ((() -> T), Action) -> Void
+
 /**
  The data structure responsible for holding application state, allowing controlled mutation through dispatched
  `Actions` and notifying interested parties that `subscribe` to state changes.
@@ -12,6 +14,7 @@ public final class Store<State>: StoreProtocol {
     }
 
     fileprivate var subscribers: [String: (State) -> Void]
+    fileprivate let middleware: [Middleware<State>]
 
     /**
      Initializes a `Store`.
@@ -19,10 +22,13 @@ public final class Store<State>: StoreProtocol {
      - parameter initialState: The initial value of the application state in hold.
      - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
     */
-    public init (initialState: State, reducer: @escaping (State, Action) -> State) {
-        reduce = reducer
-        state = initialState
-        subscribers = [:]
+    public init (initialState: State,
+                 middleware: [Middleware<State>] = [],
+                 reducer: @escaping (State, Action) -> State) {
+        self.reduce = reducer
+        self.state = initialState
+        self.subscribers = [:]
+        self.middleware = middleware
     }
 
     /**
@@ -31,6 +37,10 @@ public final class Store<State>: StoreProtocol {
      - parameter action: The descriptor of **what** is the state change.
      */
     public func dispatch(_ action: Action) {
+        for middleware in self.middleware {
+            middleware({ self.state }, action)
+        }
+
         state = reduce(state, action)
     }
 

@@ -2,15 +2,17 @@ import Foundation
 import Redux
 
 class IdentificationStore: StoreProtocol {
-    typealias E = IdentificationState
+    fileprivate let store: Store<IdentificationState>
 
-    fileprivate let store = Store<IdentificationState>(initialState: IdentificationState()) { state, action in
-        switch action {
-        case let action as IdentifiedAction:
-            return IdentificationState(identifier: action.identifier)
-
-        default:
-            return state
+    init (middleware: [Middleware<IdentificationState>] = []) {
+        store = Store<IdentificationState>(initialState: IdentificationState(),
+                                           middleware: middleware) { state, action in
+            switch action {
+            case let action as IdentifiedAction:
+                return IdentificationState(identifier: action.identifier)
+            default:
+                return state
+            }
         }
     }
 
