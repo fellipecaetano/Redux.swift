@@ -50,7 +50,9 @@ struct DecrementAction: Action {
     let amount: Int
 }
 
-struct MultipleIncrementsCommand: Command {
+struct MultipleIncrementsCommand: CompleteableCommand {
+    typealias State = CounterState
+
     let amount: Int
     let times: Int
 

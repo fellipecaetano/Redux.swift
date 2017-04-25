@@ -223,12 +223,15 @@ public protocol Command {
      - parameter state: A state accessor. It only makes sense
      when this `Command` is dispatched by a `Store`.
      - parameter dispatch: Dispatches an action.
-     - parameter completion: Optional completion block for when the command finished its execution
     */
-    func run(state: () -> State, dispatch: @escaping (Action) -> Void, completion: (() -> Void )?)
+    func run(state: () -> State, dispatch: @escaping (Action) -> Void)
 }
 
-extension Command {
+/**
+ A command that informs its store of its completion so it can be used
+ for testing.
+ */
+public protocol CompleteableCommand: Command {
     /**
      Runs an arbitrary procedure that dispatches `Action` instances
      asynchronously.
@@ -236,8 +239,14 @@ extension Command {
      - parameter state: A state accessor. It only makes sense
      when this `Command` is dispatched by a `Store`.
      - parameter dispatch: Dispatches an action.
+     - parameter completion: Optional completion block for when the 
+     command finished its execution
      */
-    func run(state: () -> State, dispatch: @escaping(Action) -> Void) {
+    func run(state: () -> State, dispatch: @escaping (Action) -> Void, completion: (() -> Void)?)
+}
+
+extension CompleteableCommand {
+    public func run(state: () -> State, dispatch: @escaping (Action) -> Void) {
         run(state: state, dispatch: dispatch, completion: nil)
     }
 }
@@ -248,9 +257,26 @@ extension StoreProtocol {
      for dispatching `Action` instances from this `StoreProtocol`.
      
      - parameter command: The `Command` instance that will be run.
-     - parameter completion: The completion block to be executed when the command finish its execution
+     - parameter completion: The completion block to be executed 
+     when the command finish its execution
      */
-    public func dispatch<C: Command>(_ command: C, completion: (() -> Void)? = nil) where C.State == State {
+    public func dispatch<C: Command>(_ command: C) where C.State == State {
+        dispatch { getState, dispatch in
+            command.run(state: getState, dispatch: dispatch)
+        }
+    }
+
+    /**
+     Runs a `CompleteableCommand` injecting the current `State` and a handle 
+     for dispatching `Action` instances from this `StoreProtocol`.
+
+     - parameter command: The `CompleteableCommand` instance that will be run.
+     - parameter completion: The completion block to be executed
+     when the command finish its execution
+     */
+    public func dispatch<C: CompleteableCommand>(_ command: C, completion: (() -> Void)? = nil)
+        where C.State == State {
+
         dispatch { getState, dispatch in
             command.run(state: getState, dispatch: dispatch, completion: completion)
         }
