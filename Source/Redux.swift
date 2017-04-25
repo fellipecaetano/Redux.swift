@@ -223,8 +223,23 @@ public protocol Command {
      - parameter state: A state accessor. It only makes sense
      when this `Command` is dispatched by a `Store`.
      - parameter dispatch: Dispatches an action.
+     - parameter completion: Optional completion block for when the command finished its execution
     */
-    func run(state: () -> State, dispatch: @escaping (Action) -> Void)
+    func run(state: () -> State, dispatch: @escaping (Action) -> Void, completion: (() -> Void )?)
+}
+
+extension Command {
+    /**
+     Runs an arbitrary procedure that dispatches `Action` instances
+     asynchronously.
+
+     - parameter state: A state accessor. It only makes sense
+     when this `Command` is dispatched by a `Store`.
+     - parameter dispatch: Dispatches an action.
+     */
+    func run(state: () -> State, dispatch: @escaping(Action) -> Void) {
+        self.run(state: state, dispatch: dispatch, completion: nil)
+    }
 }
 
 extension StoreProtocol {
@@ -233,10 +248,11 @@ extension StoreProtocol {
      for dispatching `Action` instances from this `StoreProtocol`.
      
      - parameter command: The `Command` instance that will be run.
+     - parameter completion: The completion block to be executed when the command finish its execution
      */
-    public func dispatch<C: Command>(_ command: C) where C.State == State {
+    public func dispatch<C: Command>(_ command: C, completion: (() -> Void)? = nil) where C.State == State {
         dispatch { getState, dispatch in
-            command.run(state: getState, dispatch: dispatch)
+            command.run(state: getState, dispatch: dispatch, completion: completion)
         }
     }
 }

@@ -88,4 +88,18 @@ class ReduxTests: XCTestCase {
         store.dispatch(IdentifiedAction(identifier: "dispatched"))
         expect(actionDispatched?.identifier) == "dispatched"
     }
+
+    func testCommand() {
+        let command = MultipleIncrementsCommand(amount: 10, times: 3)
+        let store = CounterStore()
+
+        var commandExecuted: Bool = false
+        store.dispatch(command) { 
+            commandExecuted = true
+        }
+
+        expect(store.actionHistory.count).toEventually(equal(3))
+        expect(store.state.counter).toEventually(equal(30))
+        expect(commandExecuted).toEventually(equal(true))
+    }
 }
