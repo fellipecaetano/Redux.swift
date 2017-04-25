@@ -238,7 +238,7 @@ extension Command {
      - parameter dispatch: Dispatches an action.
      */
     func run(state: () -> State, dispatch: @escaping(Action) -> Void) {
-        self.run(state: state, dispatch: dispatch, completion: nil)
+        run(state: state, dispatch: dispatch, completion: nil)
     }
 }
 
