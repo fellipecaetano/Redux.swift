@@ -4,6 +4,8 @@ import Redux
 class CounterStore: StoreProtocol {
     typealias E = CounterState
 
+    private(set) var actionHistory: [Action] = []
+
     fileprivate let store = Store<CounterState>(initialState: CounterState()) { state, action in
         switch action {
         case let action as IncrementAction:
@@ -22,6 +24,8 @@ class CounterStore: StoreProtocol {
     }
 
     func dispatch(_ action: Action) {
+        actionHistory.append(action)
+
         return store.dispatch(action)
     }
 
@@ -44,4 +48,19 @@ struct IncrementAction: Action {
 
 struct DecrementAction: Action {
     let amount: Int
+}
+
+struct MultipleIncrementsCommand: CompleteableCommand {
+    typealias State = CounterState
+
+    let amount: Int
+    let times: Int
+
+    func run(state: () -> CounterState, dispatch: @escaping (Action) -> Void, completion: (() -> Void)?) {
+        for _ in (0..<times) {
+            dispatch(IncrementAction(amount: amount))
+        }
+
+        completion?()
+    }
 }
