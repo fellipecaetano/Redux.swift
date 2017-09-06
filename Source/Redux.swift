@@ -117,7 +117,7 @@ public protocol Publisher {
      - parameter subscription: The handler that will be called in response to generic events.
      - returns: A closure that unsubscribes the provided subscription.
     */
-    func subscribe(_ subscription: @escaping (State) -> Void) -> ((Void) -> Void)
+    func subscribe(_ subscription: @escaping (State) -> Void) -> (() -> Void)
 }
 
 /**
@@ -161,7 +161,7 @@ extension StoreProtocol {
      `T` instead of `State`.
     */
     public func map<T>(_ transform: @escaping (State) -> T) -> AnyStore<T> {
-        func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
+        func subscribe(_ subscription: @escaping (T) -> Void) -> (() -> Void) {
             return self.subscribe { state in
                 subscription(transform(state))
             }

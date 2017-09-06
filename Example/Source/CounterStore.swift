@@ -17,7 +17,7 @@ class CounterStore: StoreProtocol {
         }
     }
 
-    func subscribe(_ subscription: @escaping (CounterState) -> Void) -> ((Void) -> Void) {
+    func subscribe(_ subscription: @escaping (CounterState) -> Void) -> (() -> Void) {
         return store.subscribe(subscription)
     }
 

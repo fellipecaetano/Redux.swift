@@ -13,8 +13,8 @@
 		B3E9C8931DE0E1D400644180 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8901DE0E1D400644180 /* CounterStore.swift */; };
 		B3E9C8941DE0E1D400644180 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8911DE0E1D400644180 /* CounterView.swift */; };
 		B3E9C8951DE0E1D400644180 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8921DE0E1D400644180 /* CounterViewController.swift */; };
-		B3E9C8971DE0E49F00644180 /* Redux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8961DE0E49F00644180 /* Redux.framework */; };
-		B3E9C8981DE0E49F00644180 /* Redux.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3E9C8961DE0E49F00644180 /* Redux.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BF0DC6141F607D5200A7617C /* Redux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0DC6131F607D5200A7617C /* Redux.framework */; };
+		BF0DC6151F607D5300A7617C /* Redux.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF0DC6131F607D5200A7617C /* Redux.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B3E9C8981DE0E49F00644180 /* Redux.framework in Embed Frameworks */,
+				BF0DC6151F607D5300A7617C /* Redux.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,7 +40,7 @@
 		B3E9C8901DE0E1D400644180 /* CounterStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
 		B3E9C8911DE0E1D400644180 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		B3E9C8921DE0E1D400644180 /* CounterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
-		B3E9C8961DE0E49F00644180 /* Redux.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Redux.framework; path = Carthage/Build/iOS/Redux.framework; sourceTree = "<group>"; };
+		BF0DC6131F607D5200A7617C /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E9C8971DE0E49F00644180 /* Redux.framework in Frameworks */,
+				BF0DC6141F607D5200A7617C /* Redux.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +58,7 @@
 		B3E9C8771DE0E0A300644180 = {
 			isa = PBXGroup;
 			children = (
-				B3E9C8961DE0E49F00644180 /* Redux.framework */,
+				BF0DC6131F607D5200A7617C /* Redux.framework */,
 				B3E9C8811DE0E0A300644180 /* Products */,
 				B3E9C8821DE0E0A300644180 /* Source */,
 			);
@@ -114,7 +114,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Fellipe Caetano";
 				TargetAttributes = {
 					B3E9C87F1DE0E0A300644180 = {
@@ -190,7 +190,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -198,7 +200,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -239,7 +246,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -247,7 +256,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -277,16 +291,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Source/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -295,16 +305,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8Q86GGRUX8;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Source/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fellipecaetano.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

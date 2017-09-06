@@ -16,7 +16,7 @@ class IdentificationStore: StoreProtocol {
         }
     }
 
-    func subscribe(_ subscription: @escaping (IdentificationState) -> Void) -> ((Void) -> Void) {
+    func subscribe(_ subscription: @escaping (IdentificationState) -> Void) -> (() -> Void) {
         return store.subscribe(subscription)
     }
 
