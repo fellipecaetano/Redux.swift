@@ -12,6 +12,7 @@
 		B3C2D7121F852DEA00AC38E3 /* Redux+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */; };
 		B3C2D7151F85328C00AC38E3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C2D7141F85328C00AC38E3 /* RxSwift.framework */; };
 		B3C2D7221F853B2400AC38E3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C2D7231F853B2400AC38E3 /* RxSwift.framework */; };
+		B3C2D7251F8542C300AC38E3 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D7241F8542C300AC38E3 /* MiddlewareTests.swift */; };
 		B3E9C8591DE0D70000644180 /* Redux.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E9C84B1DE0D6FF00644180 /* Redux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8621DE0D7F800644180 /* Redux.swift */; };
 		B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */; };
@@ -37,6 +38,7 @@
 		B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Redux+Rx.swift"; sourceTree = "<group>"; };
 		B3C2D7141F85328C00AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		B3C2D7231F853B2400AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3C2D7241F8542C300AC38E3 /* MiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		B3E9C8481DE0D6FF00644180 /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E9C84B1DE0D6FF00644180 /* Redux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Redux.h; sourceTree = "<group>"; };
 		B3E9C84C1DE0D6FF00644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,8 +78,8 @@
 		B3C2D7131F852E5300AC38E3 /* Rx */ = {
 			isa = PBXGroup;
 			children = (
-				B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */,
 				B3C2D70D1F852DC900AC38E3 /* Epic.swift */,
+				B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -85,10 +87,10 @@
 		B3E9C83E1DE0D6FF00644180 = {
 			isa = PBXGroup;
 			children = (
+				B3E9C86A1DE0DC5300644180 /* Frameworks */,
 				B3E9C8491DE0D6FF00644180 /* Products */,
 				B3E9C84A1DE0D6FF00644180 /* Source */,
 				B3E9C8551DE0D70000644180 /* Tests */,
-				B3E9C86A1DE0DC5300644180 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,10 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				B3C2D7131F852E5300AC38E3 /* Rx */,
-				B3C2D70E1F852DC900AC38E3 /* Middleware.swift */,
-				B3E9C8621DE0D7F800644180 /* Redux.swift */,
 				B3E9C84C1DE0D6FF00644180 /* Info.plist */,
+				B3C2D70E1F852DC900AC38E3 /* Middleware.swift */,
 				B3E9C84B1DE0D6FF00644180 /* Redux.h */,
+				B3E9C8621DE0D7F800644180 /* Redux.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -119,8 +121,9 @@
 				B3E9C86D1DE0DCC900644180 /* CounterStore.swift */,
 				B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */,
 				B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */,
-				B3E9C8661DE0D9C600644180 /* ReduxTests.swift */,
 				B3E9C8581DE0D70000644180 /* Info.plist */,
+				B3C2D7241F8542C300AC38E3 /* MiddlewareTests.swift */,
+				B3E9C8661DE0D9C600644180 /* ReduxTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */,
 				B3E9C86E1DE0DCC900644180 /* CounterStore.swift in Sources */,
 				B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */,
+				B3C2D7251F8542C300AC38E3 /* MiddlewareTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

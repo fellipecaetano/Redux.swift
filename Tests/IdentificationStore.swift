@@ -4,7 +4,7 @@ import Redux
 class IdentificationStore: StoreProtocol {
     fileprivate let store: Store<IdentificationState>
 
-    init () {
+    init (middleware: Middleware<IdentificationState>...) {
         store = Store<IdentificationState>(
             initialState: IdentificationState(),
             reducer: { state, action in
@@ -14,7 +14,8 @@ class IdentificationStore: StoreProtocol {
                 default:
                     return state
                 }
-            }
+            },
+            middleware: Middlewares.combine(middleware)
         )
     }
 
