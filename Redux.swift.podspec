@@ -12,5 +12,16 @@ Redux.swift is an implementation of a predictable state container, written in Sw
   s.source = { :git => 'https://github.com/fellipecaetano/Redux.swift.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.requires_arc = true
-  s.source_files = ['Source/**/*.swift']
+
+  s.subspec 'Basic' do |ss|
+    ss.source_files = ['Source/**/*.swift']
+    ss.exclude_files = ['Source/Rx/**/*.swift']
+  end
+
+  s.subspec 'Rx' do |ss|
+    ss.source_files = ['Source/**/*.swift']
+    ss.dependency 'RxSwift', '~> 3.6'
+  end
+
+  s.default_subspec = 'Basic'
 end

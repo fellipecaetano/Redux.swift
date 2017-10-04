@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3C2D70F1F852DC900AC38E3 /* Epic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D70D1F852DC900AC38E3 /* Epic.swift */; };
+		B3C2D7101F852DC900AC38E3 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D70E1F852DC900AC38E3 /* Middleware.swift */; };
+		B3C2D7121F852DEA00AC38E3 /* Redux+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */; };
 		B3E9C8591DE0D70000644180 /* Redux.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E9C84B1DE0D6FF00644180 /* Redux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8621DE0D7F800644180 /* Redux.swift */; };
 		B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B3C2D70D1F852DC900AC38E3 /* Epic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epic.swift; sourceTree = "<group>"; };
+		B3C2D70E1F852DC900AC38E3 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
+		B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Redux+Rx.swift"; sourceTree = "<group>"; };
 		B3E9C8481DE0D6FF00644180 /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E9C84B1DE0D6FF00644180 /* Redux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Redux.h; sourceTree = "<group>"; };
 		B3E9C84C1DE0D6FF00644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B3C2D7131F852E5300AC38E3 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */,
+				B3C2D70D1F852DC900AC38E3 /* Epic.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
 		B3E9C83E1DE0D6FF00644180 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +98,8 @@
 		B3E9C84A1DE0D6FF00644180 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B3C2D7131F852E5300AC38E3 /* Rx */,
+				B3C2D70E1F852DC900AC38E3 /* Middleware.swift */,
 				B3E9C8621DE0D7F800644180 /* Redux.swift */,
 				B3E9C84C1DE0D6FF00644180 /* Info.plist */,
 				B3E9C84B1DE0D6FF00644180 /* Redux.h */,
@@ -226,6 +243,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C2D7101F852DC900AC38E3 /* Middleware.swift in Sources */,
+				B3C2D70F1F852DC900AC38E3 /* Epic.swift in Sources */,
+				B3C2D7121F852DEA00AC38E3 /* Redux+Rx.swift in Sources */,
 				B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

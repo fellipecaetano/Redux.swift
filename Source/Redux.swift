@@ -1,26 +1,24 @@
 import Foundation
 
 /**
- Functions meant for execution whenever actions are dispatched
- from a store. The first parameter is an accessor for the
- aforementioned store's state when the middleware is run, and the
- second parameter is the action that triggered the execution.
+ Represents a function capable of dispatching Action instances
  */
-public typealias Middleware<T> = ((() -> T), Action) -> Void
+public typealias Dispatch = (Action) -> Void
+
+/**
+ Represents a reducer that acts on state instances of type T
+ */
+public typealias Reducer<T> = (T, Action) -> T
 
 /**
  The data structure responsible for holding application state, allowing controlled mutation through dispatched
  `Actions` and notifying interested parties that `subscribe` to state changes.
  */
 public final class Store<State>: StoreProtocol {
-    fileprivate let reduce: (State, Action) -> State
-
-    public private(set) var state: State {
-        didSet { publish(state) }
-    }
-
-    fileprivate var subscribers: [String: (State) -> Void]
-    fileprivate let middleware: [Middleware<State>]
+    public private(set) var state: State { didSet { publish(state) } }
+    fileprivate let reduce: Reducer<State>
+    fileprivate var subscribers = [String: (State) -> Void]()
+    fileprivate var dispatcher: Dispatch!
 
     /**
      Initializes a `Store`.
@@ -28,14 +26,13 @@ public final class Store<State>: StoreProtocol {
      - parameter initialState: The initial value of the application state in hold.
      - parameter middleware: A collection of functions that will be run whenever an `Action` is dispatched.
      - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
-    */
+     */
     public init (initialState: State,
-                 middleware: [Middleware<State>] = [],
-                 reducer: @escaping (State, Action) -> State) {
-        self.reduce = reducer
+                 reducer: @escaping Reducer<State>,
+                 middleware: @escaping Middleware<State>) {
         self.state = initialState
-        self.subscribers = [:]
-        self.middleware = middleware
+        self.reduce = reducer
+        self.dispatcher = middleware({ [unowned self] in self.state }, _dispatch)(_dispatch)
     }
 
     /**
@@ -44,10 +41,10 @@ public final class Store<State>: StoreProtocol {
      - parameter action: The descriptor of **what** is the state change.
      */
     public func dispatch(_ action: Action) {
-        for middleware in self.middleware {
-            middleware({ self.state }, action)
-        }
+        dispatcher(action)
+    }
 
+    private func _dispatch(_ action: Action) {
         state = reduce(state, action)
     }
 
@@ -83,7 +80,7 @@ public protocol Dispatcher {
      Dispatches an action.
 
      - parameter action: The action that'll be dispatched.
-    */
+     */
     func dispatch(_ action: Action)
 }
 
@@ -116,18 +113,18 @@ public protocol Publisher {
 
      - parameter subscription: The handler that will be called in response to generic events.
      - returns: A closure that unsubscribes the provided subscription.
-    */
-    func subscribe(_ subscription: @escaping (State) -> Void) -> ((Void) -> Void)
+     */
+    func subscribe(_ subscription: @escaping (State) -> Void) -> (() -> Void)
 }
 
 /**
- Defines behavior exposed by a Redux store, i. e. action dispatching capabilities 
+ Defines behavior exposed by a Redux store, i. e. action dispatching capabilities
  and notifications of state changes to subscribers.
  */
 public protocol StoreProtocol: Publisher, Dispatcher {
     /**
      Returns the current `State` of the store.
-    */
+     */
     var state: State { get }
 }
 
@@ -138,73 +135,13 @@ extension StoreProtocol {
 
      Useful for asynchronous `Action` dispatches that depend on the current
      `State` to perform logic before dispatching actions.
-     
+
      - parameter thunk: The closure that will be executed injected with a `dispatch` function
      and a `State` getter.
      */
     public func dispatch(_ thunk: (@escaping () -> State, @escaping (Action) -> Void) -> Void) {
         let getState = { self.state }
         thunk(getState, dispatch)
-    }
-}
-
-extension StoreProtocol {
-    /**
-     Maps this store into a store with the same dispatch capabilities
-     but with a transformed `State`.
-     
-     Useful for selecting branches of a larger `State` tree.
-
-     - parameter transform: The transformation that will be applied to the
-     current `State`.
-     - returns: a store with the same dispatch capabilities that publishes
-     `T` instead of `State`.
-    */
-    public func map<T>(_ transform: @escaping (State) -> T) -> AnyStore<T> {
-        func subscribe(_ subscription: @escaping (T) -> Void) -> ((Void) -> Void) {
-            return self.subscribe { state in
-                subscription(transform(state))
-            }
-        }
-
-        func dispatch(_ action: Action) {
-            self.dispatch(action)
-        }
-
-        func getState() -> T {
-            return transform(self.state)
-        }
-
-        return AnyStore(subscribe: subscribe, dispatch: dispatch, getState: getState)
-    }
-}
-
-/**
- A type-erased `StoreProtocol` conformance.
- */
-public struct AnyStore<T>: StoreProtocol {
-    private let doSubscribe: (@escaping (T) -> Void) -> (() -> Void)
-    private let doDispatch: (Action) -> Void
-    private let getState: () -> T
-
-    fileprivate init (subscribe: @escaping (@escaping (T) -> Void) -> (() -> Void),
-                      dispatch: @escaping (Action) -> Void,
-                      getState: @escaping () -> T) {
-        self.doSubscribe = subscribe
-        self.doDispatch = dispatch
-        self.getState = getState
-    }
-
-    public func subscribe(_ subscription: @escaping (T) -> Void) -> (() -> Void) {
-        return doSubscribe(subscription)
-    }
-
-    public func dispatch(_ action: Action) {
-        doDispatch(action)
-    }
-
-    public var state: T {
-        return getState()
     }
 }
 
@@ -215,7 +152,7 @@ public struct AnyStore<T>: StoreProtocol {
  */
 public protocol Command {
     associatedtype State
-    
+
     /**
      Runs an arbitrary procedure that dispatches `Action` instances
      asynchronously.
@@ -223,62 +160,21 @@ public protocol Command {
      - parameter state: A state accessor. It only makes sense
      when this `Command` is dispatched by a `Store`.
      - parameter dispatch: Dispatches an action.
-    */
-    func run(state: () -> State, dispatch: @escaping (Action) -> Void)
-}
-
-/**
- A command that informs its store of its completion so it can be used
- for testing.
- */
-public protocol CompleteableCommand: Command {
-    /**
-     Runs an arbitrary procedure that dispatches `Action` instances
-     asynchronously.
-
-     - parameter state: A state accessor. It only makes sense
-     when this `Command` is dispatched by a `Store`.
-     - parameter dispatch: Dispatches an action.
-     - parameter completion: Optional completion block for when the 
-     command finished its execution
      */
-    func run(state: () -> State, dispatch: @escaping (Action) -> Void, completion: (() -> Void)?)
-}
-
-extension CompleteableCommand {
-    public func run(state: () -> State, dispatch: @escaping (Action) -> Void) {
-        run(state: state, dispatch: dispatch, completion: nil)
-    }
+    func run(state: () -> State, dispatch: @escaping (Action) -> Void)
 }
 
 extension StoreProtocol {
     /**
      Runs a `Command` injecting the current `State` and a handle
      for dispatching `Action` instances from this `StoreProtocol`.
-     
+
      - parameter command: The `Command` instance that will be run.
-     - parameter completion: The completion block to be executed 
-     when the command finish its execution
      */
     public func dispatch<C: Command>(_ command: C) where C.State == State {
         dispatch { getState, dispatch in
             command.run(state: getState, dispatch: dispatch)
         }
     }
-
-    /**
-     Runs a `CompleteableCommand` injecting the current `State` and a handle 
-     for dispatching `Action` instances from this `StoreProtocol`.
-
-     - parameter command: The `CompleteableCommand` instance that will be run.
-     - parameter completion: The completion block to be executed
-     when the command finish its execution
-     */
-    public func dispatch<C: CompleteableCommand>(_ command: C, completion: (() -> Void)? = nil)
-        where C.State == State {
-
-        dispatch { getState, dispatch in
-            command.run(state: getState, dispatch: dispatch, completion: completion)
-        }
-    }
 }
+
