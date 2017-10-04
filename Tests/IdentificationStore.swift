@@ -4,19 +4,21 @@ import Redux
 class IdentificationStore: StoreProtocol {
     fileprivate let store: Store<IdentificationState>
 
-    init (middleware: [Middleware<IdentificationState>] = []) {
-        store = Store<IdentificationState>(initialState: IdentificationState(),
-                                           middleware: middleware) { state, action in
-            switch action {
-            case let action as IdentifiedAction:
-                return IdentificationState(identifier: action.identifier)
-            default:
-                return state
+    init () {
+        store = Store<IdentificationState>(
+            initialState: IdentificationState(),
+            reducer: { state, action in
+                switch action {
+                case let action as IdentifiedAction:
+                    return IdentificationState(identifier: action.identifier)
+                default:
+                    return state
+                }
             }
-        }
+        )
     }
 
-    func subscribe(_ subscription: @escaping (IdentificationState) -> Void) -> ((Void) -> Void) {
+    func subscribe(_ subscription: @escaping (IdentificationState) -> Void) -> (() -> Void) {
         return store.subscribe(subscription)
     }
 

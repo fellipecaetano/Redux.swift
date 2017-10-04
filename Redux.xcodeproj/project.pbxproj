@@ -11,6 +11,7 @@
 		B3C2D7101F852DC900AC38E3 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D70E1F852DC900AC38E3 /* Middleware.swift */; };
 		B3C2D7121F852DEA00AC38E3 /* Redux+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */; };
 		B3C2D7151F85328C00AC38E3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C2D7141F85328C00AC38E3 /* RxSwift.framework */; };
+		B3C2D7221F853B2400AC38E3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C2D7231F853B2400AC38E3 /* RxSwift.framework */; };
 		B3E9C8591DE0D70000644180 /* Redux.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E9C84B1DE0D6FF00644180 /* Redux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8621DE0D7F800644180 /* Redux.swift */; };
 		B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */; };
@@ -35,6 +36,7 @@
 		B3C2D70E1F852DC900AC38E3 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		B3C2D7111F852DEA00AC38E3 /* Redux+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Redux+Rx.swift"; sourceTree = "<group>"; };
 		B3C2D7141F85328C00AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		B3C2D7231F853B2400AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E9C8481DE0D6FF00644180 /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E9C84B1DE0D6FF00644180 /* Redux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Redux.h; sourceTree = "<group>"; };
 		B3E9C84C1DE0D6FF00644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C2D7221F853B2400AC38E3 /* RxSwift.framework in Frameworks */,
 				B3E9C8761DE0DEF600644180 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +128,7 @@
 		B3E9C86A1DE0DC5300644180 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3C2D7231F853B2400AC38E3 /* RxSwift.framework */,
 				B3C2D7141F85328C00AC38E3 /* RxSwift.framework */,
 				B3E9C8741DE0DE9A00644180 /* Nimble.framework */,
 				B3E9C8721DE0DE8700644180 /* Nimble.framework */,

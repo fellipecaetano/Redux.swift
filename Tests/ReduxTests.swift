@@ -75,20 +75,6 @@ class ReduxTests: XCTestCase {
         expect(stateReceived?.counter).toEventually(equal(3))
     }
 
-    func testMiddlewareExecution() {
-        var actionDispatched: IdentifiedAction?
-
-        let middleware: Middleware<IdentificationState> = { getState, action in
-            actionDispatched = action as? IdentifiedAction
-        }
-
-        let store = IdentificationStore(middleware: [middleware])
-
-        expect(actionDispatched).to(beNil())
-        store.dispatch(IdentifiedAction(identifier: "dispatched"))
-        expect(actionDispatched?.identifier) == "dispatched"
-    }
-
     func testCommand() {
         let command = MultipleIncrementsCommand(amount: 10, times: 3)
         let store = CounterStore()
