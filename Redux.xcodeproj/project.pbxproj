@@ -13,9 +13,9 @@
 		B3C2D7151F85328C00AC38E3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C2D7141F85328C00AC38E3 /* RxSwift.framework */; };
 		B3C2D7221F853B2400AC38E3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C2D7231F853B2400AC38E3 /* RxSwift.framework */; };
 		B3C2D7251F8542C300AC38E3 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D7241F8542C300AC38E3 /* MiddlewareTests.swift */; };
+		B3C2D7271F85436200AC38E3 /* EpicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2D7261F85436200AC38E3 /* EpicTests.swift */; };
 		B3E9C8591DE0D70000644180 /* Redux.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E9C84B1DE0D6FF00644180 /* Redux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E9C8631DE0D7F800644180 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8621DE0D7F800644180 /* Redux.swift */; };
-		B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */; };
 		B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */; };
 		B3E9C8691DE0D9C600644180 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C8661DE0D9C600644180 /* ReduxTests.swift */; };
 		B3E9C86E1DE0DCC900644180 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9C86D1DE0DCC900644180 /* CounterStore.swift */; };
@@ -39,13 +39,13 @@
 		B3C2D7141F85328C00AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		B3C2D7231F853B2400AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C2D7241F8542C300AC38E3 /* MiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
+		B3C2D7261F85436200AC38E3 /* EpicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicTests.swift; sourceTree = "<group>"; };
 		B3E9C8481DE0D6FF00644180 /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E9C84B1DE0D6FF00644180 /* Redux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Redux.h; sourceTree = "<group>"; };
 		B3E9C84C1DE0D6FF00644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E9C8511DE0D70000644180 /* ReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E9C8581DE0D70000644180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3E9C8621DE0D7F800644180 /* Redux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
-		B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposalSpyStore.swift; sourceTree = "<group>"; };
 		B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentificationStore.swift; sourceTree = "<group>"; };
 		B3E9C8661DE0D9C600644180 /* ReduxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxTests.swift; sourceTree = "<group>"; };
 		B3E9C86B1DE0DC5400644180 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Carthage/Checkouts/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
@@ -119,11 +119,11 @@
 			isa = PBXGroup;
 			children = (
 				B3E9C86D1DE0DCC900644180 /* CounterStore.swift */,
-				B3E9C8641DE0D9C600644180 /* DisposalSpyStore.swift */,
 				B3E9C8651DE0D9C600644180 /* IdentificationStore.swift */,
 				B3E9C8581DE0D70000644180 /* Info.plist */,
 				B3C2D7241F8542C300AC38E3 /* MiddlewareTests.swift */,
 				B3E9C8661DE0D9C600644180 /* ReduxTests.swift */,
+				B3C2D7261F85436200AC38E3 /* EpicTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -266,8 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E9C8691DE0D9C600644180 /* ReduxTests.swift in Sources */,
-				B3E9C8671DE0D9C600644180 /* DisposalSpyStore.swift in Sources */,
 				B3E9C86E1DE0DCC900644180 /* CounterStore.swift in Sources */,
+				B3C2D7271F85436200AC38E3 /* EpicTests.swift in Sources */,
 				B3E9C8681DE0D9C600644180 /* IdentificationStore.swift in Sources */,
 				B3C2D7251F8542C300AC38E3 /* MiddlewareTests.swift in Sources */,
 			);

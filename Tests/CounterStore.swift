@@ -6,17 +6,25 @@ class CounterStore: StoreProtocol {
 
     private(set) var actionHistory: [Action] = []
 
-    fileprivate let store = Store<CounterState>(initialState: CounterState()) { state, action in
-        switch action {
-        case let action as IncrementAction:
-            return CounterState(counter: state.counter + action.amount)
+    fileprivate let store: Store<CounterState>
 
-        case let action as DecrementAction:
-            return CounterState(counter: state.counter - action.amount)
+    init (middleware: Middleware<CounterState>...) {
+        store = Store<CounterState>(
+            initialState: CounterState(),
+            reducer: { state, action in
+                switch action {
+                case let action as IncrementAction:
+                    return CounterState(counter: state.counter + action.amount)
 
-        default:
-            return state
-        }
+                case let action as DecrementAction:
+                    return CounterState(counter: state.counter - action.amount)
+
+                default:
+                    return state
+                }
+            },
+            middleware: Middlewares.combine(middleware)
+        )
     }
 
     func subscribe(_ subscription: @escaping (CounterState) -> Void) -> (() -> Void) {
