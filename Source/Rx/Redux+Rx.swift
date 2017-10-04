@@ -11,7 +11,7 @@ public extension Publisher where Self: ObservableType {
 }
 
 public extension Dispatcher {
-    private func asObserver() -> AnyObserver<Action> {
+    public func asObserver() -> AnyObserver<Action> {
         return AnyObserver { event in
             if case .next(let action) = event {
                 self.dispatch(action)

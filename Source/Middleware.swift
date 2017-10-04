@@ -1,7 +1,7 @@
 public typealias Middleware<State> = (@escaping () -> State, @escaping Dispatch) -> (@escaping Dispatch) -> Dispatch
 
 public struct Middlewares {
-    static func combine<State>(_ middleware: Middleware<State>...) -> Middleware<State> {
+    public static func combine<State>(_ middleware: Middleware<State>...) -> Middleware<State> {
         return { getState, dispatch in
             let chain = middleware.map({ middleware in middleware(getState, dispatch) })
 

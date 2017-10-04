@@ -2,12 +2,12 @@ import RxSwift
 
 public typealias Epic<T> = (@escaping () -> T, Observable<Action>) -> Observable<Action>
 
-struct Epics {
-    static func middleware<T>(_ epics: @escaping Epic<T>...) -> Middleware<T> {
+public struct Epics {
+    public static func middleware<T>(_ epics: @escaping Epic<T>...) -> Middleware<T> {
         return middleware(combine(epics))
     }
 
-    static func middleware<T>(_ epic: @escaping Epic<T>) -> Middleware<T> {
+    public static func middleware<T>(_ epic: @escaping Epic<T>) -> Middleware<T> {
         let actionSubject = PublishSubject<Action>()
 
         return { getState, dispatch in
