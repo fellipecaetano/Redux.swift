@@ -27,6 +27,19 @@ public final class Store<State>: StoreProtocol {
      - parameter middleware: A collection of functions that will be run whenever an `Action` is dispatched.
      - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
      */
+    public init (initialState: State, reducer: @escaping Reducer<State>) {
+        self.state = initialState
+        self.reduce = reducer
+        self.dispatcher = _dispatch(_:)
+    }
+
+    /**
+     Initializes a `Store`.
+
+     - parameter initialState: The initial value of the application state in hold.
+     - parameter middleware: A collection of functions that will be run whenever an `Action` is dispatched.
+     - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
+     */
     public init (initialState: State,
                  reducer: @escaping Reducer<State>,
                  middleware: @escaping Middleware<State>) {

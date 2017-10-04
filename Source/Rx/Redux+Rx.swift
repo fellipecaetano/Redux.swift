@@ -11,10 +11,6 @@ public extension Publisher where Self: ObservableType {
 }
 
 public extension Dispatcher {
-    func connect<O: AnyObject & ReactiveCompatible>(to actions: Observable<Action>, ownedBy owner: O) {
-        _ = actions.takeUntil(owner.rx.deallocated).bind(to: asObserver())
-    }
-
     private func asObserver() -> AnyObserver<Action> {
         return AnyObserver { event in
             if case .next(let action) = event {

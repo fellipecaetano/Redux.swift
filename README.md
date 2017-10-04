@@ -92,9 +92,10 @@ Inside the `Example` directory you will find a sample application that presents 
 
 1. Clone the repository
 2. Enter the `Example` directory
-3. Open `Example.xcodeproj` in Xcode
-4. Select the `Example` target in the target selection dropdown near the Stop button
-5. Build and run the application
+3. Run "carthage update --platform iOS"
+4. Open `Example.xcodeproj` in Xcode
+5. Select the `Example` target in the target selection dropdown near the Stop button
+6. Build and run the application
 
 ## Testing
 

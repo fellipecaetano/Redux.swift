@@ -1,1 +1,2 @@
-github "fellipecaetano/Redux.swift" "2.1.0"
+github "ReactiveX/RxSwift" "3.6.1"
+github "fellipecaetano/Redux.swift" "79f4953def09fcbd09e581994d0423419835d40a"

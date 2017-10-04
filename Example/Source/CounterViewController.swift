@@ -1,7 +1,7 @@
 import UIKit
 import Redux
 
-class CounterViewController<T: StoreProtocol>: UIViewController where T.State == Int {
+class CounterViewController<T: StoreProtocol>: UIViewController where T.State == CounterState {
     private let store: T
     private var unsubscribe: (() -> Void)?
 
@@ -50,7 +50,9 @@ class CounterViewController<T: StoreProtocol>: UIViewController where T.State ==
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        unsubscribe = store.subscribe(render)
+        unsubscribe = store.subscribe { [weak self] state in
+            self?.render(counter: state.counter)
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
