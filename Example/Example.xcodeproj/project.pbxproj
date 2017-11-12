@@ -35,7 +35,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B3C2D7161F85351F00AC38E3 /* Redux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Redux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C2D71A1F85357800AC38E3 /* Redux.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Redux.framework; path = Carthage/Build/iOS/Redux.framework; sourceTree = "<group>"; };
 		B3C2D71E1F8537A300AC38E3 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		B3E9C8801DE0E0A300644180 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				B3C2D71E1F8537A300AC38E3 /* RxSwift.framework */,
-				B3C2D7161F85351F00AC38E3 /* Redux.framework */,
 				B3E9C8961DE0E49F00644180 /* Redux.framework */,
 				B3C2D71A1F85357800AC38E3 /* Redux.framework */,
 				B3E9C8811DE0E0A300644180 /* Products */,

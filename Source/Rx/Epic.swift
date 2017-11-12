@@ -20,6 +20,10 @@ public struct Epics {
         }
     }
 
+    public static func combine<T>(_ epics: Epic<T>...) -> Epic<T> {
+        return combine(epics)
+    }
+
     private static func combine<T>(_ epics: [Epic<T>]) -> Epic<T> {
         return { getState, actions in
             .merge(
