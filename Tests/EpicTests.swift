@@ -6,11 +6,11 @@ import RxSwift
 class EpicTests: XCTestCase {
     func testActionTransformation() {
         let epic: Epic<CounterState> = { _, actions in
-            actions.map({ action in
+            actions.flatMap({ action -> Observable<Action> in
                 if let action = action as? IncrementAction {
-                    return IncrementAction(amount: action.amount * 2)
+                    return .just(DecrementAction(amount: action.amount * 3))
                 } else {
-                    return action
+                    return .empty()
                 }
             })
         }
@@ -24,25 +24,41 @@ class EpicTests: XCTestCase {
 
         store.dispatch(IncrementAction(amount: 5))
         // The initial action passes through, and is re-dispatched after being transformed
-        expect(stateReceived?.counter) == 15
+        expect(stateReceived?.counter) == -10
     }
 
-    func testActionFiltering() {
+    func testMiddlewareChain() {
         let epic: Epic<CounterState> = { _, actions in
-            actions.filter({ action in
-                return action is DecrementAction
+            actions.flatMap({ action -> Observable<Action> in
+                if let action = action as? IncrementAction {
+                    return .just(DecrementAction(amount: action.amount * 6))
+                } else {
+                    return .empty()
+                }
             })
         }
 
-        let store = CounterStore(middleware: Epics.middleware(epic))
+        var actionReceivedByMiddleware: Action?
+
+        let middleware: Middleware<CounterState> = { _ in { next in { action in
+            actionReceivedByMiddleware = action
+
+            if let action = action as? DecrementAction {
+                next(DecrementAction(amount: Int(action.amount / 2)))
+            } else {
+                next(action)
+            }
+        }}}
+
+        let store = CounterStore(middleware: Epics.middleware(epic), middleware)
 
         var stateReceived: CounterState?
         _ = store.subscribe { newState in
             stateReceived = newState
         }
 
-        store.dispatch(DecrementAction(amount: 3)) // Happens twice
-        store.dispatch(IncrementAction(amount: 5)) // Happens once
-        expect(stateReceived?.counter) == -1
+        store.dispatch(IncrementAction(amount: 1))
+        expect(actionReceivedByMiddleware as? DecrementAction) == DecrementAction(amount: 6)
+        expect(stateReceived?.counter) == -2
     }
 }

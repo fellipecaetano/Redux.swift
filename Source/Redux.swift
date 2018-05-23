@@ -18,7 +18,7 @@ public final class Store<State>: StoreProtocol {
     public private(set) var state: State { didSet { publish(state) } }
     fileprivate let reduce: Reducer<State>
     fileprivate var subscribers = [String: (State) -> Void]()
-    fileprivate var dispatcher: Dispatch!
+    fileprivate var dispatcher: Dispatch?
 
     /**
      Initializes a `Store`.
@@ -40,12 +40,15 @@ public final class Store<State>: StoreProtocol {
      - parameter middleware: A collection of functions that will be run whenever an `Action` is dispatched.
      - parameter reducer: The root pure function that's responsible for transforming state according to `Actions`.
      */
-    public init (initialState: State,
-                 reducer: @escaping Reducer<State>,
-                 middleware: @escaping Middleware<State>) {
+    public init (initialState: State, reducer: @escaping Reducer<State>, middleware: [Middleware<State>]) {
         self.state = initialState
         self.reduce = reducer
-        self.dispatcher = middleware({ [unowned self] in self.state }, _dispatch)(_dispatch)
+
+        let chain = middleware.map({ m in
+            m({ self.state }, { [weak self] in self?.dispatcher?($0) })
+        })
+
+        self.dispatcher = chain.reversed().reduce(self._dispatch(_:)) { a, b in b(a) }
     }
 
     /**
@@ -54,7 +57,7 @@ public final class Store<State>: StoreProtocol {
      - parameter action: The descriptor of **what** is the state change.
      */
     public func dispatch(_ action: Action) {
-        dispatcher(action)
+        dispatcher?(action)
     }
 
     private func _dispatch(_ action: Action) {

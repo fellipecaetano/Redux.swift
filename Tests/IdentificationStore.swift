@@ -15,7 +15,7 @@ class IdentificationStore: StoreProtocol {
                     return state
                 }
             },
-            middleware: Middlewares.combine(middleware)
+            middleware: middleware
         )
     }
 

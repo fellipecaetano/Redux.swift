@@ -23,7 +23,7 @@ class CounterStore: StoreProtocol {
                     return state
                 }
             },
-            middleware: Middlewares.combine(middleware)
+            middleware: middleware
         )
     }
 
@@ -50,11 +50,11 @@ struct CounterState {
     }
 }
 
-struct IncrementAction: Action {
+struct IncrementAction: Action, Equatable {
     let amount: Int
 }
 
-struct DecrementAction: Action {
+struct DecrementAction: Action, Equatable {
     let amount: Int
 }
 
