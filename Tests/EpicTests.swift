@@ -40,7 +40,7 @@ class EpicTests: XCTestCase {
 
         var actionReceivedByMiddleware: Action?
 
-        let middleware: Middleware<CounterState> = { _ in { next in { action in
+        let middleware: Middleware<CounterState> = { _,_  in { next in { action in
             actionReceivedByMiddleware = action
 
             if let action = action as? DecrementAction {

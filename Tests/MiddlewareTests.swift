@@ -4,7 +4,7 @@ import Redux
 
 class MiddlewareTests: XCTestCase {
     func testMiddlewareActionChaining() {
-        let middleware: Middleware<IdentificationState> = { _ in { next in { action in next(action) }}}
+        let middleware: Middleware<IdentificationState> = { _,_  in { next in { action in next(action) }}}
         let store = IdentificationStore(middleware: middleware)
 
         var stateReceived: IdentificationState?
@@ -17,7 +17,7 @@ class MiddlewareTests: XCTestCase {
     }
 
     func testMiddlewareActionCancellation() {
-        let middleware: Middleware<IdentificationState> = { _ in { next in { action in
+        let middleware: Middleware<IdentificationState> = { _,_  in { next in { action in
             if let action = action as? IdentifiedAction, action.identifier == "cancel" {
                 return
             }

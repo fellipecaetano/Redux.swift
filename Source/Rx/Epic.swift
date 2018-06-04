@@ -3,7 +3,7 @@ import RxSwift
 public typealias Epic<T> = (@escaping () -> T, Observable<Action>) -> Observable<Action>
 
 public struct Epics {
-    public static func middleware<T>(_ epics: @escaping Epic<T>...) -> Middleware<T> {
+    public static func middleware<T>(_ epics: Epic<T>...) -> Middleware<T> {
         return middleware(combine(epics))
     }
 
