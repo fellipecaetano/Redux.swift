@@ -11,7 +11,9 @@ public struct Epics {
         let actionSubject = PublishSubject<Action>()
 
         return { getState, dispatch in
-            _ = epic(getState, actionSubject.asObservable()).subscribe(onNext: dispatch)
+            _ = epic(getState, actionSubject.asObservable())
+                .observeOn(MainScheduler.asyncInstance)
+                .subscribe(onNext: dispatch)
 
             return { next in { action in
                 next(action)

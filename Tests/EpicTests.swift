@@ -23,8 +23,7 @@ class EpicTests: XCTestCase {
         }
 
         store.dispatch(IncrementAction(amount: 5))
-        // The initial action passes through, and is re-dispatched after being transformed
-        expect(stateReceived?.counter) == -10
+        expect(stateReceived?.counter).toEventually(equal(-10))
     }
 
     func testMiddlewareChain() {
@@ -58,7 +57,7 @@ class EpicTests: XCTestCase {
         }
 
         store.dispatch(IncrementAction(amount: 1))
-        expect(actionReceivedByMiddleware as? DecrementAction) == DecrementAction(amount: 6)
-        expect(stateReceived?.counter) == -2
+        expect(actionReceivedByMiddleware as? DecrementAction).toEventually(equal(DecrementAction(amount: 6)))
+        expect(stateReceived?.counter).toEventually(equal(-2))
     }
 }
