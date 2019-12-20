@@ -21,5 +21,5 @@ public extension Dispatcher {
 }
 
 extension Store: ObservableType {
-    public typealias E = State
+    public typealias Element = State
 }
