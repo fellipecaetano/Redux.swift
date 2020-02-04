@@ -175,7 +175,7 @@ import PackageDescription
 let package = Package(
     name: "YourProject",
     dependencies: [
-        .package(url: 'https://github.com/fellipecaetano/Redux.swift.git', from: "6.0.0")
+        .package(url: "https://github.com/fellipecaetano/Redux.swift.git", from: "6.0.0")
     ],
     targets: [
         .target("YourProject", dependencies: ["Redux"])
