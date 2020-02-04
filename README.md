@@ -154,6 +154,39 @@ github "fellipecaetano/Redux.swift"
 
 Run `carthage update` to build the framework and drag the built `Redux.framework` into your Xcode project.
 
+### Swift Package Manager
+
+You can integrate Redux.swift into your project through Swift Package Manager
+
+#### Xcode 11 or later
+
+To integrate Redux.swift directly from Xcode, go to:
+`File > Swift Packages > Add Package Dependency` 
+
+#### Before Xcode 11
+
+Create `Package.swift` file.
+
+```swift
+// swift-tools-version:5.0
+
+import PackageDescription
+
+let package = Package(
+    name: "YourProject",
+    dependencies: [
+        .package(url: 'https://github.com/fellipecaetano/Redux.swift.git', from: "6.0.0")
+    ],
+    targets: [
+        .target("YourProject", dependencies: ["Redux"])
+    ]
+)
+```
+
+```bash
+$ swift build
+```
+
 ## Disclaimer
 
 Redux.swift is very small and I strived for clarity when writing it, so hopefully the whole code can be easily understood. It is not meant to be a comprehensive translation of Redux, nor do I want it to replace mature and solid projects such as ReSwift. It is rather an experiment and an exercise, and I hope you will have as much fun using it as I did writing it.
