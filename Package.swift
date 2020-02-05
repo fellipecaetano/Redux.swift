@@ -10,8 +10,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "5.0.0"),
-        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.5"),
-        .package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", from: Version("2.0.0-beta.1"))
+        .package(url: "https://github.com/Quick/Nimble.git", .branch("master")),
     ],
     targets: [
         .target(
