@@ -1,7 +1,7 @@
 import RxSwift
 
 public extension Publisher where Self: ObservableType {
-    func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == State {
+    func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.Element == State {
         let unsubscribe = subscribe(observer.onNext)
 
         return Disposables.create {
@@ -11,7 +11,7 @@ public extension Publisher where Self: ObservableType {
 }
 
 public extension Dispatcher {
-    public func asObserver() -> AnyObserver<Action> {
+    func asObserver() -> AnyObserver<Action> {
         return AnyObserver { event in
             if case .next(let action) = event {
                 self.dispatch(action)
@@ -21,5 +21,5 @@ public extension Dispatcher {
 }
 
 extension Store: ObservableType {
-    public typealias E = State
+    public typealias Element = State
 }
